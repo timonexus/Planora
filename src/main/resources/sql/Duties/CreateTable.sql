@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS duties (
+    id INTEGER PRIMARY KEY,
+    date TEXT NOT NULL,
+    time TEXT NOT NULL
+);
