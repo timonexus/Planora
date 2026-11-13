@@ -1,17 +1,17 @@
 package de.timonexus.planora.ui.sidebar.header;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 
 import javax.swing.*;
 
 import de.timonexus.planora.ui.Component;
-import de.timonexus.planora.utils.Colors;
-import de.timonexus.planora.utils.Fonts;
 import de.timonexus.planora.utils.RoundedPanel;
 import de.timonexus.planora.utils.RoundedPanel.BorderPlacement;
+import de.timonexus.planora.utils.enums.Colors;
+import de.timonexus.planora.utils.enums.Fonts;
+import de.timonexus.planora.utils.enums.Logo;
 
 public class PlanoraSidebarHeader extends JPanel implements Component{
 
@@ -28,7 +28,7 @@ public class PlanoraSidebarHeader extends JPanel implements Component{
         this.labelPanel = new JPanel();
         this.labelPlanora = new JLabel();
         this.iconPanel = new JPanel();
-        this.labelIcon = new JLabel();
+        this.labelIcon = Logo.LOGOV0_0_1.getIconLabel();
     }
 
 	@Override
@@ -98,16 +98,6 @@ public class PlanoraSidebarHeader extends JPanel implements Component{
     private void skinLabelIcon(){
         this.labelIcon.setHorizontalAlignment(SwingConstants.CENTER);
         this.labelIcon.setVerticalAlignment(SwingConstants.CENTER);
-
-        java.net.URL logoURL = getClass().getResource("/logo/LogoPlanora_[2026-11-13].png");
-        if (logoURL != null) {
-            ImageIcon originalIcon = new ImageIcon(logoURL);
-            Image scaledImage = originalIcon.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-
-            this.labelIcon.setIcon(new ImageIcon(scaledImage));
-        } else {
-            System.err.println("Planora logo could not be found.");
-        }
     }
     
 }

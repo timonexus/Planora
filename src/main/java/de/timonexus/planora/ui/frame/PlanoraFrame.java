@@ -6,7 +6,7 @@ import javax.swing.*;
 
 import de.timonexus.planora.ui.Component;
 import de.timonexus.planora.ui.sidebar.PlanoraSidebar;
-import de.timonexus.planora.utils.Colors;
+import de.timonexus.planora.utils.enums.Colors;
 
 public class PlanoraFrame extends JFrame implements Frame{
 

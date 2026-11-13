@@ -1,4 +1,4 @@
-package de.timonexus.planora.utils;
+package de.timonexus.planora.utils.enums;
 
 import java.awt.Font;
 import java.awt.FontFormatException;

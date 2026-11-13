@@ -8,8 +8,8 @@ import javax.swing.*;
 
 import de.timonexus.planora.ui.Component;
 import de.timonexus.planora.ui.sidebar.header.PlanoraSidebarHeader;
-import de.timonexus.planora.utils.Colors;
 import de.timonexus.planora.utils.RoundedPanel;
+import de.timonexus.planora.utils.enums.Colors;
 
 public class PlanoraSidebar extends JPanel implements Component{
 
