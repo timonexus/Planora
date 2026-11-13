@@ -2,6 +2,7 @@ package de.timonexus.planora;
 
 public class Main{
     public static void main(String[] args){
-        System.out.println("Hello World");
+        Application application = new Application();
+        application.startApplication();
     }
 }

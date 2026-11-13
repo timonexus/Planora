@@ -26,7 +26,7 @@ public class Application {
 
     // method to start application
     public void startApplication(){
-        System.out.println("Application successfully started");
+        System.out.println("[INFO] Application successfully started");
     }
 
     // getter
