@@ -4,7 +4,7 @@ import de.timonexus.planora.utils.Values;
 
 public enum SidebarValues implements Values<Object>{
 
-    WIDTH(200),
+    WIDTH(280),
     HEIGHT(20),
 	;
 

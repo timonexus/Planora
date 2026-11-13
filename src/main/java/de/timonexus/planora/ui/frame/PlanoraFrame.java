@@ -4,14 +4,14 @@ import java.awt.BorderLayout;
 
 import javax.swing.*;
 
-import de.timonexus.planora.ui.Colors;
+import de.timonexus.planora.ui.Component;
 import de.timonexus.planora.ui.sidebar.PlanoraSidebar;
-import de.timonexus.planora.ui.sidebar.Sidebar;
+import de.timonexus.planora.utils.Colors;
 
 public class PlanoraFrame extends JFrame implements Frame{
 
     // attributes
-    private final Sidebar sidebar;
+    private final Component sidebar;
 
     // constructor
     public PlanoraFrame(){
@@ -30,7 +30,7 @@ public class PlanoraFrame extends JFrame implements Frame{
 
     @Override 
     public void prepareComponents(){
-        this.sidebar.prepareSidebar();
+        this.sidebar.prepareComponent();
     }
 
     @Override

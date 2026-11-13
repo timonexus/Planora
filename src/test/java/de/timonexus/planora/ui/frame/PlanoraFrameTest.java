@@ -7,7 +7,7 @@ import javax.swing.SwingUtilities;
 
 import org.junit.jupiter.api.Test;
 
-import de.timonexus.planora.ui.Colors;
+import de.timonexus.planora.utils.Colors;
 
 import org.junit.jupiter.api.Assumptions;
 
