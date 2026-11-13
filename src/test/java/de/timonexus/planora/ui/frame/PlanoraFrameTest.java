@@ -6,6 +6,9 @@ import java.awt.GraphicsEnvironment;
 import javax.swing.SwingUtilities;
 
 import org.junit.jupiter.api.Test;
+
+import de.timonexus.planora.ui.Colors;
+
 import org.junit.jupiter.api.Assumptions;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -39,7 +42,7 @@ class PlanoraFrameTest {
                         frame.getHeight()
                     ),
                     () -> assertEquals(
-                        FrameValues.BACKGROUNDCOLOR.getValue(),
+                        Colors.BASE.getColor(),
                         frame.getContentPane().getBackground()
                     )
                 );
