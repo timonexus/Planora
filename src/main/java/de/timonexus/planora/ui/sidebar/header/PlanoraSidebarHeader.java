@@ -2,7 +2,6 @@ package de.timonexus.planora.ui.sidebar.header;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Image;
 
 import javax.swing.*;
 
