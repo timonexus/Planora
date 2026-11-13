@@ -1,12 +1,11 @@
 package de.timonexus.planora.ui.frame;
 
-import java.awt.*;
+import de.timonexus.planora.utils.Values;
 
-public enum FrameValues {
+public enum FrameValues implements Values<Object>{
 
-    WIDTH(200),
-    HEIGHT(200),
-    BACKGROUNDCOLOR(new Color(42,42,42)),
+    WIDTH(1500),
+    HEIGHT(800),
     TITLE("Planora");
     
     // attribute
@@ -18,11 +17,13 @@ public enum FrameValues {
     }
 
     // getter
+    @Override 
     public Object getValue() {
         return value;
     }
 
     // setter
+    @Override 
     public void setValue(Object value) {
         this.value = value;
     }
