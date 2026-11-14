@@ -27,7 +27,7 @@ public class PlanoraSidebarHeader extends JPanel implements Component{
         this.labelPanel = new JPanel();
         this.labelPlanora = new JLabel();
         this.iconPanel = new JPanel();
-        this.labelIcon = Logo.LOGOV0_0_1.getIconLabel();
+        this.labelIcon = Logo.DEFAULT_LOGO.getIconLabel();
     }
 
 	@Override
@@ -44,8 +44,19 @@ public class PlanoraSidebarHeader extends JPanel implements Component{
 	public void prepareComponents() {}
 
 	@Override
-	public void addComponents() {
+	public void addComponents() {}
 
+    @Override 
+    public void skinParts(){
+        skinBasePanel();
+        skinLabelPanel();
+        skinLabelPlanora();
+        skinIconPanel();
+        skinLabelIcon();
+    }
+
+    @Override 
+    public void addParts(){
         //labelPanel
         this.labelPanel.add(this.labelPlanora, BorderLayout.CENTER);
 
@@ -57,14 +68,6 @@ public class PlanoraSidebarHeader extends JPanel implements Component{
         this.basePanel.add(this.iconPanel, BorderLayout.WEST);
 
         this.add(basePanel, BorderLayout.CENTER);
-	}
-
-    private void skinParts(){
-        skinBasePanel();
-        skinLabelPanel();
-        skinLabelPlanora();
-        skinIconPanel();
-        skinLabelIcon();
     }
 
     private void skinBasePanel(){
