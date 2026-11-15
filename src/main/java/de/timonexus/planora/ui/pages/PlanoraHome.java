@@ -22,7 +22,7 @@ public class PlanoraHome extends JPanel implements DefaultPage{
     public void skinPage(){
         this.setBackground(Colors.BASE.getColor());
 		this.setLayout(new BorderLayout());
-    	this.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+    	this.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 20));
     }
 
     @Override 
