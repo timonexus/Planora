@@ -1,9 +1,13 @@
+
 package de.timonexus.planora.ui.sidebar.header;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import de.timonexus.planora.ui.Component;
 import de.timonexus.planora.utils.RoundedPanel;
@@ -12,17 +16,17 @@ import de.timonexus.planora.utils.enums.Colors;
 import de.timonexus.planora.utils.enums.Fonts;
 import de.timonexus.planora.utils.enums.Logo;
 
-public class PlanoraSidebarHeader extends JPanel implements Component{
+public class PlanoraSidebarHeader extends JPanel implements Component {
 
-    // attributes
+    // Attributes
     private final RoundedPanel basePanel;
     private final JPanel labelPanel;
     private final JLabel labelPlanora;
     private final JPanel iconPanel;
     private final JLabel labelIcon;
 
-    // constructor
-    public PlanoraSidebarHeader(){
+    // Constructor
+    public PlanoraSidebarHeader() {
         this.basePanel = new RoundedPanel();
         this.labelPanel = new JPanel();
         this.labelPlanora = new JLabel();
@@ -30,24 +34,19 @@ public class PlanoraSidebarHeader extends JPanel implements Component{
         this.labelIcon = Logo.DEFAULT_LOGO.getIconLabel();
     }
 
-	@Override
-	public void designComponent() {
-        this.setOpaque(false);
-        this.setPreferredSize(new Dimension((int) PlanoraSidebarHeaderValues.WIDTH.getValue(), (int) PlanoraSidebarHeaderValues.HEIGHT.getValue()));
-        this.setBorder(BorderFactory.createEmptyBorder(20, 20, 25, 20));
-        this.setLayout(new BorderLayout());
+    @Override
+    public void designComponent() {
+        setOpaque(false);
+        setPreferredSize(new Dimension(
+                (int) PlanoraSidebarHeaderValues.WIDTH.getValue(),
+                (int) PlanoraSidebarHeaderValues.HEIGHT.getValue()
+        ));
+        setBorder(BorderFactory.createEmptyBorder(20, 20, 25, 20));
+        setLayout(new BorderLayout());
+    }
 
-        skinParts();
-	}
-
-	@Override
-	public void prepareComponents() {}
-
-	@Override
-	public void addComponents() {}
-
-    @Override 
-    public void skinParts(){
+    @Override
+    public void skinParts() {
         skinBasePanel();
         skinLabelPanel();
         skinLabelPlanora();
@@ -55,51 +54,60 @@ public class PlanoraSidebarHeader extends JPanel implements Component{
         skinLabelIcon();
     }
 
-    @Override 
-    public void addParts(){
-        //labelPanel
-        this.labelPanel.add(this.labelPlanora, BorderLayout.CENTER);
+    @Override
+    public void addParts() {
+        labelPanel.add(labelPlanora, BorderLayout.CENTER);
+        iconPanel.add(labelIcon, BorderLayout.CENTER);
 
-        // iconPanel
-        this.iconPanel.add(this.labelIcon, BorderLayout.CENTER);
+        basePanel.add(iconPanel, BorderLayout.WEST);
+        basePanel.add(labelPanel, BorderLayout.CENTER);
 
-        // basePanel
-        this.basePanel.add(this.labelPanel, BorderLayout.EAST);
-        this.basePanel.add(this.iconPanel, BorderLayout.WEST);
-
-        this.add(basePanel, BorderLayout.CENTER);
+        add(basePanel, BorderLayout.CENTER);
     }
 
-    private void skinBasePanel(){
-        this.basePanel.setPreferredSize(new Dimension());
-        this.basePanel.setBackground(Colors.MENUES.getColor());
-        this.basePanel.setRoundedBorder(Colors.DIALOGS.getColor(), 1, BorderPlacement.OUTSIDE);
-        this.basePanel.setRadius(15);
-        this.basePanel.setLayout(new BorderLayout());
+    @Override
+    public void prepareComponents() {}
+
+    @Override
+    public void addComponents() {}
+
+    private void skinBasePanel() {
+        basePanel.setBackground(Colors.MENUES.getColor());
+        basePanel.setRoundedBorder(
+                Colors.DIALOGS.getColor(),
+                1,
+                BorderPlacement.OUTSIDE
+        );
+        basePanel.setRadius(15);
+        basePanel.setLayout(new BorderLayout());
     }
 
-    private void skinLabelPanel(){
-        this.labelPanel.setPreferredSize(new Dimension(140, 50));
-        this.labelPanel.setOpaque(false);
-        this.labelPanel.setLayout(new BorderLayout());
+    private void skinLabelPanel() {
+        labelPanel.setPreferredSize(new Dimension(140, 50));
+        labelPanel.setOpaque(false);
+        labelPanel.setLayout(new BorderLayout());
     }
 
-    private void skinLabelPlanora(){
-        this.labelPlanora.setText("Planora");
-        this.labelPlanora.setForeground(Colors.TEXT.getColor());
-        this.labelPlanora.setFont(Fonts.LOGO.loadFont());
-        this.labelPlanora.setVerticalAlignment(SwingConstants.CENTER);
+    private void skinLabelPlanora() {
+        labelPlanora.setText("Planora");
+        labelPlanora.setForeground(Colors.TEXT.getColor());
+        labelPlanora.setFont(Fonts.LOGO.loadFont());
+        labelPlanora.setVerticalAlignment(SwingConstants.CENTER);
     }
 
-    private void skinIconPanel(){
-        this.iconPanel.setPreferredSize(new Dimension(55, 50));
-        this.iconPanel.setOpaque(false);
-        this.iconPanel.setLayout(new BorderLayout());
+    private void skinIconPanel() {
+        iconPanel.setPreferredSize(new Dimension(55, 50));
+        iconPanel.setOpaque(false);
+        iconPanel.setLayout(new BorderLayout());
     }
 
-    private void skinLabelIcon(){
-        this.labelIcon.setHorizontalAlignment(SwingConstants.CENTER);
-        this.labelIcon.setVerticalAlignment(SwingConstants.CENTER);
+    private void skinLabelIcon() {
+        labelIcon.setHorizontalAlignment(SwingConstants.CENTER);
+        labelIcon.setVerticalAlignment(SwingConstants.CENTER);
     }
-    
+
+    @Override
+    public void refresh() {
+        // Currently no dynamic content to refresh.
+    }
 }

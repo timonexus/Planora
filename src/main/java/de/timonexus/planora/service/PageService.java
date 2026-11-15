@@ -16,7 +16,9 @@ public class PageService implements Service{
     // method for opening page
     @Override
     public void openPage(Pages nPage){
-        this.frame.setPage(nPage.getPage());
+        Pages.deactivateAll();
+        nPage.setActive(true);
+        this.frame.refresh();
     }
 
 }

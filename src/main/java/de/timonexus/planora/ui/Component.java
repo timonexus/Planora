@@ -16,4 +16,6 @@ public interface Component {
     void addParts();
     void prepareComponents();
     void addComponents();
+
+    public void refresh();
 }

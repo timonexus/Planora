@@ -32,7 +32,7 @@ public class PlanoraSidebar extends JPanel implements Component{
 		this.pageService = new PageService(nFrame);
 
 		this.header = new PlanoraSidebarHeader();
-		this.linkContainer = new PlanoraSidebarLinksContainer(List.of(Pages.STARTSEITE, Pages.KALENDER, Pages.DIENST), 1, pageService);
+		this.linkContainer = new PlanoraSidebarLinksContainer(List.of(Pages.STARTSEITE, Pages.KALENDER, Pages.DIENST, Pages.AUSBILDUNGEN, Pages.KATEGORIEN, Pages.THEMEN, Pages.GRUPPEN, Pages.AUSBILDER, Pages.ABZEICHEN), 1, pageService);
 		this.footer = new PlanoraSidebarFooter(pageService);
 	}
 
@@ -77,6 +77,14 @@ public class PlanoraSidebar extends JPanel implements Component{
 		this.basePanel.setBackground(Colors.APP_BAR.getColor());
 		this.basePanel.setRadius(35);
 		this.basePanel.setLayout(new BorderLayout());
+	}
+
+	@Override 
+	public void refresh(){
+		addComponents();
+		this.linkContainer.refresh();
+		this.footer.refresh();
+		this.linkContainer.refresh();
 	}
     
 }
