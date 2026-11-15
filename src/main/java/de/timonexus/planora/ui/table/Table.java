@@ -1,8 +1,10 @@
 package de.timonexus.planora.ui.table;
 
 import java.awt.BorderLayout;
+
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+
 import de.timonexus.planora.ui.Component;
 import de.timonexus.planora.utils.RoundedPanel;
 import de.timonexus.planora.utils.enums.Colors;
