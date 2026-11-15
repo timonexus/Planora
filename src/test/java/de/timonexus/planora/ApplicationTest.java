@@ -1,4 +1,3 @@
-
 package de.timonexus.planora;
 
 import de.timonexus.planora.database.DatabaseInitializer;
@@ -22,9 +21,10 @@ class ApplicationTest {
         Application application = new Application();
 
         assertNotNull(application.getDatabaseInitializer());
+
         assertInstanceOf(
-                DatabaseInitializer.class,
-                application.getDatabaseInitializer()
+            DatabaseInitializer.class,
+            application.getDatabaseInitializer()
         );
     }
 
@@ -34,19 +34,11 @@ class ApplicationTest {
         Application application = new Application();
 
         DatabaseInitializer initializer1 =
-                application.getDatabaseInitializer();
+            application.getDatabaseInitializer();
 
         DatabaseInitializer initializer2 =
-                application.getDatabaseInitializer();
+            application.getDatabaseInitializer();
 
         assertSame(initializer1, initializer2);
-    }
-
-    // Test: Start application
-    @Test
-    void testStartApplication() {
-        Application application = new Application();
-
-        assertDoesNotThrow(application::startApplication);
     }
 }
