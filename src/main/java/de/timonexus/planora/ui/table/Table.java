@@ -6,6 +6,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import de.timonexus.planora.ui.Component;
+import de.timonexus.planora.ui.table.tableHeader.TableHeader;
 import de.timonexus.planora.utils.RoundedPanel;
 import de.timonexus.planora.utils.enums.Colors;
 
@@ -13,10 +14,12 @@ public class Table extends JPanel implements Component{
 
     // attributes
     private final RoundedPanel basePanel;
+	private final Component tableHeader;
 
     // constructor
     public Table(){
         this.basePanel = new RoundedPanel();
+		this.tableHeader = new TableHeader();
     }
 
 	@Override
@@ -38,10 +41,12 @@ public class Table extends JPanel implements Component{
 
 	@Override
 	public void prepareComponents() {
+		this.tableHeader.prepareComponent();
 	}
 
 	@Override
 	public void addComponents() {
+		this.basePanel.add((JPanel) this.tableHeader, BorderLayout.NORTH);
 	}
 
 	@Override
