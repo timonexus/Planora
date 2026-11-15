@@ -30,7 +30,7 @@ public class PlanoraFrame extends JFrame implements Frame{
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(Colors.BASE.getColor());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setIconImage(Logo.DEFAULT_LOGO.getImage());
+        this.setIconImage(Logo.DEFAULT_LOGO.getImageForTaskbar());
         this.setLayout(new BorderLayout());
     }
 
