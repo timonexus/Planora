@@ -2,7 +2,6 @@ package de.timonexus.planora.ui.sidebar.links;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -17,6 +16,7 @@ import de.timonexus.planora.ui.pages.Pages;
 import de.timonexus.planora.utils.RoundedPanel;
 import de.timonexus.planora.utils.RoundedPanel.BorderPlacement;
 import de.timonexus.planora.utils.enums.Colors;
+import de.timonexus.planora.utils.enums.Fonts;
 
 public class PlanoraSidebarLink extends JPanel implements Component {
 
@@ -108,7 +108,7 @@ public class PlanoraSidebarLink extends JPanel implements Component {
 
     // Name label styling
     private void skinNameLabel() {
-        nameLabel.setFont(new Font("SansSerif", Font.PLAIN, 16));
+        nameLabel.setFont(Fonts.TEXT.loadFont());
         nameLabel.setText(page.getName());
     }
 
