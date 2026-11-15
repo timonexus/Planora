@@ -1,8 +1,8 @@
-
 <div align="center">
 
-<img src="/src/main/resources/logo/LogoPlanora_[2026-11-15].png" width="180" alt="Planora Logo">
-
+<img src="assets/logo/planora-logo.png"
+     width="180"
+     alt="Planora Logo">
 
 # Planora
 
@@ -10,14 +10,17 @@
 
 **A smarter way to organize lessons, teams and activities.**
 
-Planora is a modern desktop planning application designed for schools, clubs and organizations. It brings people, topics and activities together in one structured workspace — making planning easier, clearer and more efficient.
+Planora is a modern desktop planning application designed for
+schools, clubs and organizations. It brings people, topics and
+activities together in one structured workspace — making
+planning easier, clearer and more efficient.
 
 <br/>
 
 [![Java](https://img.shields.io/badge/Java-25-orange?logo=openjdk&logoColor=white)](https://www.oracle.com/java/)
 [![Maven](https://img.shields.io/badge/Maven-3.9%2B-C71A36?logo=apachemaven&logoColor=white)](https://maven.apache.org/)
-[![Platform](https://img.shields.io/badge/Platform-Desktop-blue)]()
-[![Status](https://img.shields.io/badge/Status-In%20Development-yellow)]()
+![Platform](https://img.shields.io/badge/Platform-Desktop-blue)
+![Status](https://img.shields.io/badge/Status-In%20Development-yellow)
 [![GitHub](https://img.shields.io/badge/GitHub-Timonexus-181717?logo=github)](https://github.com/timonexus)
 
 <br/>
