@@ -11,6 +11,7 @@ import javax.swing.SwingConstants;
 import de.timonexus.planora.ui.Component;
 import de.timonexus.planora.utils.RoundedPanel;
 import de.timonexus.planora.utils.enums.Colors;
+import de.timonexus.planora.utils.enums.Fonts;
 
 public class PageTableContainer extends JPanel implements Component{
 
@@ -18,12 +19,15 @@ public class PageTableContainer extends JPanel implements Component{
     private final RoundedPanel basePanel;
     private final JPanel titlePanel;
     private final JLabel titleLabel;
+    private final String pageName;
 
     // constructor
-    public PageTableContainer(){
+    public PageTableContainer(String nPageName){
         this.basePanel = new RoundedPanel();
         this.titlePanel = new JPanel();
         this.titleLabel = new JLabel();
+
+        this.pageName = nPageName;
     }
 
 	@Override
@@ -77,8 +81,9 @@ public class PageTableContainer extends JPanel implements Component{
     }
 
     private void skinTitleLabel(){
-        this.titleLabel.setText("Dienst");
+        this.titleLabel.setText(this.pageName);
         this.titleLabel.setForeground(Colors.TEXT.getColor());
+        this.titleLabel.setFont(Fonts.TITLE.loadFont());
         this.titleLabel.setVerticalAlignment(SwingConstants.CENTER);
     }
     

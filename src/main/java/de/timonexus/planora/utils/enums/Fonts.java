@@ -7,7 +7,7 @@ import java.io.InputStream;
 
 public enum Fonts {
     LOGO("/fonts/montserrat/Montserrat-Black.ttf", 800, 20),
-    TITLE("/fonts/inter/Inter_28pt-Medium.ttf", 500, 20);
+    TITLE("/fonts/inter/Inter_28pt-Medium.ttf", 500, 30);
 
     // attributes
     private final String path;
