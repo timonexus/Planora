@@ -31,7 +31,9 @@ public enum Icons {
     TEACHER_BRIGHT("/icons/teacher_bright.png", 20),
     TEACHER_DARK("/icons/teacher_dark.png", 20),
     BAGDES_BRIGHT("/icons/badge_bright.png", 20),
-    BADGES_DARK("/icons/badge_dark.png", 20)
+    BADGES_DARK("/icons/badge_dark.png", 20),
+    SEARCH_BRIGHT("/icons/search_bright.png", 20),
+    SEARCH_DARK("/icons/search_dark.png", 20),
     ;
 
     private final String path;
