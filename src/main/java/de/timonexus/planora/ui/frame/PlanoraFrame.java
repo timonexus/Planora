@@ -20,7 +20,7 @@ public class PlanoraFrame extends JFrame implements Frame{
     // constructor
     public PlanoraFrame(){
         this.sidebar = new PlanoraSidebar(this);
-        this.page = Pages.STARTSEITE.getPage();
+        this.page = loadActivePage();
     }
 
     @Override
@@ -46,9 +46,27 @@ public class PlanoraFrame extends JFrame implements Frame{
         this.add((JPanel) this.page, BorderLayout.CENTER);
     }
 
-    @Override 
-    public void refresh(){
-        this.repaint();
+    @Override
+    public void refresh() {
+        DefaultPage newPage = loadActivePage();
+
+        if (newPage == page) {
+            return;
+        }
+
+        if (page != null) {
+            this.remove( (JPanel) page);
+        }
+
+        page = newPage;
+        page.preparePage();
+
+        this.add((JPanel) page, BorderLayout.CENTER);
+
+        revalidate();
+        repaint();
+
+        this.sidebar.refresh();
     }
 
     // getter
@@ -63,7 +81,11 @@ public class PlanoraFrame extends JFrame implements Frame{
     @Override 
     public void setPage(DefaultPage page) {
         this.page = page;
-        this.refresh();
+    }
+
+    private DefaultPage loadActivePage(){
+        Pages pages = Pages.getActivePage();
+        return pages.getPage();
     }
     
 }

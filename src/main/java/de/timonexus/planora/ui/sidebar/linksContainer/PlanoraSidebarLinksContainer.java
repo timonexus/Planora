@@ -2,6 +2,7 @@ package de.timonexus.planora.ui.sidebar.linksContainer;
 
 import java.awt.Dimension;
 import java.util.List;
+import java.util.Objects;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -73,7 +74,12 @@ public class PlanoraSidebarLinksContainer extends JPanel implements Component{
 
     // setter
     public void setPages(List<Pages> pages) {
-        this.pages = pages;
+        this.pages = List.copyOf(Objects.requireNonNull(pages));
+        refresh();
+    }
+
+    public void refresh() {
+        addComponents();
     }
     
 }

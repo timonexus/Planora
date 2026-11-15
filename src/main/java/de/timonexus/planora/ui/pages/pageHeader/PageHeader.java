@@ -1,0 +1,57 @@
+package de.timonexus.planora.ui.pages.pageHeader;
+
+import javax.swing.JPanel;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
+import de.timonexus.planora.ui.Component;
+import de.timonexus.planora.utils.RoundedPanel;
+import de.timonexus.planora.utils.enums.Colors;
+
+public class PageHeader extends JPanel implements Component{
+
+    // attributes
+    private final RoundedPanel basePanel; 
+
+    // constructor
+    public PageHeader(){
+        this.basePanel = new RoundedPanel();
+    }
+
+	@Override
+	public void designComponent() {
+        this.setLayout(new BorderLayout());
+        this.setPreferredSize(new Dimension((int) PageHeaderValues.WIDTH.getValue(), (int) PageHeaderValues.HEIGHT.getValue()));
+        this.setOpaque(false);
+	}
+
+	@Override
+	public void skinParts() {
+        skinBasePanel();
+	}
+
+	@Override
+	public void addParts() {
+        this.add(this.basePanel, BorderLayout.CENTER);
+	}
+
+	@Override
+	public void prepareComponents() {
+	}
+
+	@Override
+	public void addComponents() {
+	}
+
+	@Override
+	public void refresh() {
+	}
+
+    private void skinBasePanel(){
+        this.basePanel.setBackground(Colors.APP_BAR.getColor());
+        this.basePanel.setRadius(35);
+        this.basePanel.setLayout(new BorderLayout());
+    }
+    
+}
