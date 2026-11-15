@@ -42,6 +42,8 @@ public enum Icons {
     DELETE_DARK("/icons/delete_dark.png", 20),
     EXPORT_BRIGHT("/icons/export_bright.png", 20),
     EXPORT_DARK("/icons/export_dark.png", 20),
+    FILTER_BRIGHT("/icons/filter_bright.png", 20),
+    FILTER_DARK("/icons/filter_dark.png", 20),
     ;
 
     private final String path;

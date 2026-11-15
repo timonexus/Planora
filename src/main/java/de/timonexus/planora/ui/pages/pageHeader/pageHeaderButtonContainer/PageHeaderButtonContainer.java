@@ -16,6 +16,7 @@ public class PageHeaderButtonContainer extends JPanel implements Component{
     private final Component buttonExport;
     private final Component buttonEdit;
     private final Component buttonDelete;
+    private final Component buttonFilter;
     private final Component buttonAdd;
 
     // constructor
@@ -23,6 +24,7 @@ public class PageHeaderButtonContainer extends JPanel implements Component{
         this.buttonExport = new PageHeaderButton(Icons.EXPORT_BRIGHT, false);
         this.buttonEdit = new PageHeaderButton(Icons.EDIT_BRIGHT, false);
         this.buttonDelete = new PageHeaderButton(Icons.DELETE_BRIGHT, false);
+        this.buttonFilter = new PageHeaderButton(Icons.FILTER_BRIGHT, false);
         this.buttonAdd = new PageHeaderButton(Icons.ADD_DARK, true);
     }
 
@@ -46,6 +48,7 @@ public class PageHeaderButtonContainer extends JPanel implements Component{
         this.buttonExport.prepareComponent();
         this.buttonEdit.prepareComponent();
         this.buttonDelete.prepareComponent();
+        this.buttonFilter.prepareComponent();
         this.buttonAdd.prepareComponent();
 	}
 
@@ -54,6 +57,8 @@ public class PageHeaderButtonContainer extends JPanel implements Component{
         this.removeAll();
 
         this.add((JPanel) this.buttonExport);
+        this.add(Box.createHorizontalStrut(10));
+        this.add((JPanel) this.buttonFilter);
         this.add(Box.createHorizontalStrut(10));
         this.add((JPanel) this.buttonDelete);
         this.add(Box.createHorizontalStrut(10));

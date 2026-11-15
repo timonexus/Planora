@@ -6,7 +6,7 @@ import de.timonexus.planora.utils.Values;
 
 public enum PageHeaderButtonContainerValues implements Values<Object>{
 
-    WIDTH(210),
+    WIDTH(260),
     HEIGHT(20),
     BORDER(BorderFactory.createEmptyBorder(15, 20, 15, 20)),
 	;
