@@ -10,15 +10,15 @@ import de.timonexus.planora.ui.pages.pageHeader.PageHeader;
 import de.timonexus.planora.ui.pages.pageTableContainer.PageTableContainer;
 import de.timonexus.planora.utils.enums.Colors;
 
-public class PlanoraDuties extends JPanel implements DefaultPage{
+public class PlanoraTeachers extends JPanel implements DefaultPage{
 
     // attributes
     private final Component header;
     private final Component tableCard;
     
-    public PlanoraDuties(){
+    public PlanoraTeachers(){
         this.header = new PageHeader();
-        this.tableCard = new PageTableContainer("Dienste");
+        this.tableCard = new PageTableContainer("Ausbilder");
     }
 
     @Override 

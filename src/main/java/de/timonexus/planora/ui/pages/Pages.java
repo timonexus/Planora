@@ -2,6 +2,7 @@ package de.timonexus.planora.ui.pages;
 
 import javax.swing.JLabel;
 
+import de.timonexus.planora.ui.pages.Dienste.PlanoraDuties;
 import de.timonexus.planora.utils.enums.Icons;
 
 public enum Pages {
@@ -9,11 +10,11 @@ public enum Pages {
     STARTSEITE("Startseite", Icons.STARTSEITE_BRIGHT, Icons.STARTSEITE_DARK, new PlanoraHome(), true),
     KALENDER("Kalender", Icons.CALENDAR_BRIGHT, Icons.CALENDAR_DARK, new PlanoraHome(), false),
     DIENST("Dienste", Icons.DUTIE_BRIGHT, Icons.DUTIE_DARK, new PlanoraDuties(), false),
-    AUSBILDUNGEN("Ausbildungen", Icons.TRAININGEVENTS_BRIGHT, Icons.TRAININGEVENTS_DARK, new PlanoraHome(), false),
+    AUSBILDUNGEN("Ausbildungen", Icons.TRAININGEVENTS_BRIGHT, Icons.TRAININGEVENTS_DARK, new PlanoraTrainingEvents(), false),
     KATEGORIEN("Kategorien", Icons.CATEGORIES_BRIGHT, Icons.CATEGORIES_DARK, new PlanoraDuties(), false),
     THEMEN("Themen", Icons.TOPICS_BRIGHT, Icons.TOPICS_DARK, new PlanoraDuties(), false),
     GRUPPEN("Gruppen",Icons.GROUPS_BRIGHT, Icons.GROUPS_DARK, new PlanoraDuties(), false),
-    AUSBILDER("Ausbilder", Icons.TEACHER_BRIGHT, Icons.TEACHER_DARK, new PlanoraHome(), false),
+    AUSBILDER("Ausbilder", Icons.TEACHER_BRIGHT, Icons.TEACHER_DARK, new PlanoraTeachers(), false),
     ABZEICHEN("Abzeichen", Icons.BAGDES_BRIGHT, Icons.BADGES_DARK, new PlanoraHome(), false),
 
 
