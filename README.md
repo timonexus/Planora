@@ -280,6 +280,4 @@ Until a license is added to the repository, all rights remain with the respectiv
 
 Developed with care by **[Timonexus](https://github.com/timonexus)**
 
-[GitHub Repository](https://github.com/timonexus/Planora)
-
 </div>
