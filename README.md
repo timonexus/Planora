@@ -1,6 +1,9 @@
 
 <div align="center">
 
+<img src="assets/planora-logo.png" width="180" alt="Planora Logo">
+
+
 # Planora
 
 ### Plan. Organize. Achieve.
