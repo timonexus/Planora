@@ -1,4 +1,4 @@
-package de.timonexus.planora.ui.pages;
+package de.timonexus.planora.ui.pages.Badges;
 
 import java.awt.BorderLayout;
 
@@ -6,19 +6,20 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import de.timonexus.planora.ui.Component;
+import de.timonexus.planora.ui.pages.DefaultPage;
 import de.timonexus.planora.ui.pages.pageHeader.PageHeader;
 import de.timonexus.planora.ui.pages.pageTableContainer.PageTableContainer;
 import de.timonexus.planora.utils.enums.Colors;
 
-public class PlanoraTeachers extends JPanel implements DefaultPage{
+public class PlanoraBadges extends JPanel implements DefaultPage{
 
     // attributes
     private final Component header;
     private final Component tableCard;
     
-    public PlanoraTeachers(){
+    public PlanoraBadges(){
         this.header = new PageHeader();
-        this.tableCard = new PageTableContainer("Ausbilder");
+        this.tableCard = new PageTableContainer("Abzeichen");
     }
 
     @Override 

@@ -1,17 +1,18 @@
-package de.timonexus.planora.ui.pages;
+package de.timonexus.planora.ui.pages.Help;
 
 import java.awt.BorderLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.*;
 
+import de.timonexus.planora.ui.pages.DefaultPage;
 import de.timonexus.planora.utils.enums.Colors;
 
-public class PlanoraHome extends JPanel implements DefaultPage{
+public class PlanoraHelp extends JPanel implements DefaultPage{
 
     // attributes
 
-    public PlanoraHome(){
+    public PlanoraHelp(){
     }
 
     @Override 
@@ -27,7 +28,7 @@ public class PlanoraHome extends JPanel implements DefaultPage{
 
     @Override 
     public void addComponents(){
-        this.add(new JLabel("Startseite"), BorderLayout.NORTH);
+        this.add(new JLabel("Anleitung / Hilfe"), BorderLayout.NORTH);
     }
     
 }
