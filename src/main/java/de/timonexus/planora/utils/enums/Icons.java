@@ -34,6 +34,14 @@ public enum Icons {
     BADGES_DARK("/icons/badge_dark.png", 20),
     SEARCH_BRIGHT("/icons/search_bright.png", 20),
     SEARCH_DARK("/icons/search_dark.png", 20),
+    ADD_BRIGHT("/icons/add_bright.png", 20),
+    ADD_DARK("/icons/add_dark.png", 20),
+    EDIT_BRIGHT("/icons/edit_bright.png", 20),
+    EDIT_DARK("/icons/edit_dark.png", 20),
+    DELETE_BRIGHT("/icons/delete_bright.png", 20),
+    DELETE_DARK("/icons/delete_dark.png", 20),
+    EXPORT_BRIGHT("/icons/export_bright.png", 20),
+    EXPORT_DARK("/icons/export_dark.png", 20),
     ;
 
     private final String path;
