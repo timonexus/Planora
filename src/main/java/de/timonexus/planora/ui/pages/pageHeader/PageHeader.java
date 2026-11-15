@@ -6,6 +6,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import de.timonexus.planora.ui.Component;
+import de.timonexus.planora.ui.pages.pageHeader.pageHeaderButtonContainer.PageHeaderButtonContainer;
+import de.timonexus.planora.ui.pages.pageHeader.pageHeaderSearchbar.PageHeaderSearchbar;
 import de.timonexus.planora.utils.RoundedPanel;
 import de.timonexus.planora.utils.enums.Colors;
 
@@ -13,10 +15,14 @@ public class PageHeader extends JPanel implements Component{
 
     // attributes
     private final RoundedPanel basePanel; 
+    private final Component searchbar;
+    private final Component buttonContainer;
 
     // constructor
     public PageHeader(){
         this.basePanel = new RoundedPanel();
+        this.searchbar = new PageHeaderSearchbar();
+        this.buttonContainer = new PageHeaderButtonContainer();
     }
 
 	@Override
@@ -38,10 +44,14 @@ public class PageHeader extends JPanel implements Component{
 
 	@Override
 	public void prepareComponents() {
+        this.searchbar.prepareComponent();
+        this.buttonContainer.prepareComponent();
 	}
 
 	@Override
 	public void addComponents() {
+        this.basePanel.add((JPanel) this.searchbar, BorderLayout.WEST);
+        this.basePanel.add((JPanel) this.buttonContainer, BorderLayout.EAST);
 	}
 
 	@Override
