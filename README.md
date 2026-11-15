@@ -1,7 +1,7 @@
 
 <div align="center">
 
-<img src="assets/planora-logo.png" width="180" alt="Planora Logo">
+<img src="/src/main/resources/logo/LogoPlanora_[2026-11-15].png" width="180" alt="Planora Logo">
 
 
 # Planora
