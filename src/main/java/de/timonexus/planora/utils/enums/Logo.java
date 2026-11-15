@@ -8,7 +8,8 @@ import de.timonexus.planora.utils.ImageLoader;
 
 public enum Logo {
     LOGOV0_0_1("/logo/LogoPlanora_[2026-11-13].png"),
-    DEFAULT_LOGO(Logo.LOGOV0_0_1);
+    LOGOV0_0_2("/logo/LogoPlanora_[2026-11-15].png"),
+    DEFAULT_LOGO(Logo.LOGOV0_0_2);
 
     // attributes
     private final String path;
@@ -32,5 +33,9 @@ public enum Logo {
 
     public Image getImage(){
         return new ImageLoader().getImage(this.path, 35);
+    }
+
+    public Image getImageForTaskbar(){
+        return new ImageLoader().getImage(this.path, 50);
     }
 }
