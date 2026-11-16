@@ -19,7 +19,7 @@ public class PlanoraTeachers extends JPanel implements DefaultPage{
     
     public PlanoraTeachers(){
         this.header = new PageHeader();
-        this.tableCard = new PageTableContainer("Ausbilder", new PlanoraTeachersModel());
+        this.tableCard = new PageTableContainer("Ausbilder");
     }
 
     @Override 

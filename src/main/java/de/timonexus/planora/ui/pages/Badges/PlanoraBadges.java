@@ -19,7 +19,7 @@ public class PlanoraBadges extends JPanel implements DefaultPage{
     
     public PlanoraBadges(){
         this.header = new PageHeader();
-        this.tableCard = new PageTableContainer("Abzeichen", new PlanoraBadgeModel());
+        this.tableCard = new PageTableContainer("Abzeichen");
     }
 
     @Override 

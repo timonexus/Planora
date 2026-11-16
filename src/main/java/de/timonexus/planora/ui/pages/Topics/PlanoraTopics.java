@@ -19,7 +19,7 @@ public class PlanoraTopics extends JPanel implements DefaultPage{
     
     public PlanoraTopics(){
         this.header = new PageHeader();
-        this.tableCard = new PageTableContainer("Themen", new PlanoraTopicsModel());
+        this.tableCard = new PageTableContainer("Themen");
     }
 
     @Override 

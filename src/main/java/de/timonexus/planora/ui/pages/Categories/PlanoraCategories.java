@@ -19,7 +19,7 @@ public class PlanoraCategories extends JPanel implements DefaultPage{
     
     public PlanoraCategories(){
         this.header = new PageHeader();
-        this.tableCard = new PageTableContainer("Kategorien", new PlanoraCategorieModel());
+        this.tableCard = new PageTableContainer("Kategorien");
     }
 
     @Override 
