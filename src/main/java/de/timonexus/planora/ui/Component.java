@@ -1,6 +1,6 @@
 package de.timonexus.planora.ui;
 
-public interface Component {
+public interface Component{
     
     default void prepareComponent(){
         designComponent();
