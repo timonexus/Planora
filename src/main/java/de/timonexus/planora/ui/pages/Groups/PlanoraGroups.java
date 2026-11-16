@@ -19,7 +19,7 @@ public class PlanoraGroups extends JPanel implements DefaultPage{
     
     public PlanoraGroups(){
         this.header = new PageHeader();
-        this.tableCard = new PageTableContainer("Gruppen");
+        this.tableCard = new PageTableContainer("Gruppen", new PlanoraGroupsModel());
     }
 
     @Override 

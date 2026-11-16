@@ -2,6 +2,7 @@ package de.timonexus.planora.ui.table.tableHeader;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
@@ -18,10 +19,13 @@ public class TableHeader extends JPanel implements Component{
 
     // attributes
     private final RoundedPanel basePanel;
+    private final List<TableHeaderElement> headerElements;
 
     // constructor
-    public TableHeader(){
+    public TableHeader(List<TableHeaderElement> nHeaderElements){
         this.basePanel = new RoundedPanel();
+
+        this.headerElements = nHeaderElements;
     }
 
     @Override
@@ -40,31 +44,9 @@ public class TableHeader extends JPanel implements Component{
     public void addParts() {
         this.basePanel.removeAll();
 
-        JLabel idL = new JLabel("ID");
-        idL.setForeground(Colors.TEXT.getColor());
-        idL.setFont(Fonts.TEXT.loadFont());
-        TableHeaderElement id = new TableHeaderElement(idL, 20, 20);
-        id.prepareComponent();
-        this.basePanel.add(id);
-
-        Checkbox checkboxJ = new Checkbox(true);
-        TableHeaderElement checkbox = new TableHeaderElement(checkboxJ, 20, 20);
-        checkbox.prepareComponent();
-        this.basePanel.add(checkbox);
-
-        JLabel nameL = new JLabel("Name");
-        nameL.setForeground(Colors.TEXT.getColor());
-        nameL.setFont(Fonts.TEXT.loadFont());
-        TableHeaderElement name = new TableHeaderElement(nameL, 200, Integer.MAX_VALUE);
-        name.prepareComponent();
-        this.basePanel.add(name);
-
-        JLabel datumL = new JLabel("Datum");
-        datumL.setForeground(Colors.TEXT.getColor());
-        datumL.setFont(Fonts.TEXT.loadFont());
-        TableHeaderElement datum = new TableHeaderElement(datumL, 20, Integer.MAX_VALUE);
-        datum.prepareComponent();
-        this.basePanel.add(datum);
+        for(TableHeaderElement element : this.headerElements){
+            this.basePanel.add(element);
+        }
 
         this.add(basePanel, BorderLayout.CENTER);
     }

@@ -10,6 +10,7 @@ import javax.swing.SwingConstants;
 
 import de.timonexus.planora.ui.Component;
 import de.timonexus.planora.ui.table.Table;
+import de.timonexus.planora.ui.table.tableHeader.TableModel;
 import de.timonexus.planora.utils.RoundedPanel;
 import de.timonexus.planora.utils.enums.Colors;
 import de.timonexus.planora.utils.enums.Fonts;
@@ -25,13 +26,13 @@ public class PageTableContainer extends JPanel implements Component{
     private final Component table;
 
     // constructor
-    public PageTableContainer(String nPageName){
+    public PageTableContainer(String nPageName, TableModel nTableModel){
         this.basePanel = new RoundedPanel();
         this.titlePanel = new JPanel();
         this.titleLabel = new JLabel();
 
         this.pageName = nPageName;
-        this.table = new Table();
+        this.table = new Table(nTableModel);
     }
 
 	@Override

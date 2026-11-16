@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 import de.timonexus.planora.ui.Component;
 import de.timonexus.planora.ui.table.tableHeader.TableHeader;
+import de.timonexus.planora.ui.table.tableHeader.TableModel;
 import de.timonexus.planora.utils.RoundedPanel;
 import de.timonexus.planora.utils.enums.Colors;
 
@@ -15,11 +16,13 @@ public class Table extends JPanel implements Component{
     // attributes
     private final RoundedPanel basePanel;
 	private final Component tableHeader;
+	private final TableModel tableModel;
 
     // constructor
-    public Table(){
+    public Table(TableModel nTableModel){
+		this.tableModel = nTableModel;
         this.basePanel = new RoundedPanel();
-		this.tableHeader = new TableHeader();
+		this.tableHeader = new TableHeader(this.tableModel.getHeaderElements());
     }
 
 	@Override

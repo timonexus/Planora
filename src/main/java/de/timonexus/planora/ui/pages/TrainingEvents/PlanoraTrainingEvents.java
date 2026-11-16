@@ -19,7 +19,7 @@ public class PlanoraTrainingEvents extends JPanel implements DefaultPage{
     
     public PlanoraTrainingEvents(){
         this.header = new PageHeader();
-        this.tableCard = new PageTableContainer("Ausbildungen");
+        this.tableCard = new PageTableContainer("Ausbildungen", new PlanoraTrainingEventsModel());
     }
 
     @Override 
