@@ -44,6 +44,10 @@ public enum Icons {
     EXPORT_DARK("/icons/export_dark.png", 20),
     FILTER_BRIGHT("/icons/filter_bright.png", 20),
     FILTER_DARK("/icons/filter_dark.png", 20),
+    CHECKBOX_CHECKED_BRIGHT("/icons/checkbox_checked_bright.png", 20),
+    CHECKBOX_CHECKED_DARK("/icons/checkbox_checked_dark.png", 20),
+    CHECKBOX_BRIGHT("/icons/checkbox_bright.png", 20),
+    CHECKBOX_DARK("/icons/checkbox_bright.png", 20),
     ;
 
     private final String path;

@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import de.timonexus.planora.ui.Component;
 import de.timonexus.planora.ui.table.tableHeader.tableHeaderElement.TableHeaderElement;
+import de.timonexus.planora.utils.Checkbox;
 import de.timonexus.planora.utils.RoundedPanel;
 import de.timonexus.planora.utils.enums.Colors;
 import de.timonexus.planora.utils.enums.Fonts;
@@ -47,9 +48,7 @@ public class TableHeader extends JPanel implements Component{
         id.prepareComponent();
         this.basePanel.add(id);
 
-        JCheckBox checkboxJ = new JCheckBox();
-        checkboxJ.setOpaque(false);
-        checkboxJ.setForeground(Colors.MENUES.getColor());
+        Checkbox checkboxJ = new Checkbox(true);
         TableHeaderElement checkbox = new TableHeaderElement(checkboxJ, 20, 20);
         checkbox.prepareComponent();
         this.basePanel.add(checkbox);
