@@ -1,6 +1,7 @@
 package de.timonexus.planora.ui.pages.pageHeader.pageHeaderButton;
 
 import java.awt.BorderLayout;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -39,6 +40,7 @@ public class PageHeaderButton extends JPanel implements Component{
         this.setMaximumSize(new Dimension((int) PageHeaderButtonValues.WIDTH.getValue(), (int) PageHeaderButtonValues.HEIGHT.getValue()));
         this.setOpaque(false);
         this.setLayout(new BorderLayout());
+        this.setCursor(new Cursor(Cursor.HAND_CURSOR));
 	}
 
 	@Override
