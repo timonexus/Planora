@@ -1,7 +1,10 @@
 package de.timonexus.planora.utils;
 
 import java.awt.BorderLayout;
+import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -29,6 +32,15 @@ public class Checkbox extends JPanel{
         this.setOpaque(false);
 
         this.setLayout(new BorderLayout());
+        this.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+        this.addMouseListener(new MouseAdapter() {  
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                isChecked = !isChecked;
+                skinPanel();
+            }
+        });
 
         JLabel icon;
         if(isChecked){
