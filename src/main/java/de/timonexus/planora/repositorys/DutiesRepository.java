@@ -1,0 +1,43 @@
+package de.timonexus.planora.repositorys;
+
+import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import de.timonexus.planora.database.QueryResult;
+import de.timonexus.planora.models.Dutie;
+import de.timonexus.planora.models.Model;
+
+public class DutiesRepository implements Repository{
+
+    @Override
+    public Model[] loadAll() {
+
+        List<Model> models = new ArrayList<>();
+
+        try (QueryResult query = this.querySQL(
+                this.readSqlFile("sql/Duties/LoadAll.sql"))) {
+
+            ResultSet resultSet = query.getResultSet();
+
+            while (resultSet.next()) {
+
+                models.add(new Dutie(
+                    resultSet.getInt("id"),
+                    resultSet.getString("date"),
+                    resultSet.getString("time_kleine"),
+                    resultSet.getString("time_große"),
+                    ""
+                ));
+            }
+
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
+
+        return models.toArray(new Model[0]);
+    }
+    
+}
