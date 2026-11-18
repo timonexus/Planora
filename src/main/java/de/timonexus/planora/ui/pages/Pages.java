@@ -3,6 +3,7 @@ package de.timonexus.planora.ui.pages;
 import javax.swing.JLabel;
 
 import de.timonexus.planora.ui.pages.Badges.PlanoraBadges;
+import de.timonexus.planora.ui.pages.Calendar.PlanoraCalendar;
 import de.timonexus.planora.ui.pages.Categories.PlanoraCategories;
 import de.timonexus.planora.ui.pages.Dienste.PlanoraDuties;
 import de.timonexus.planora.ui.pages.Groups.PlanoraGroups;
@@ -18,7 +19,7 @@ import de.timonexus.planora.utils.enums.Icons;
 public enum Pages {
 
     STARTSEITE("Startseite", Icons.STARTSEITE_BRIGHT, Icons.STARTSEITE_DARK, new PlanoraHome(), true),
-    KALENDER("Kalender", Icons.CALENDAR_BRIGHT, Icons.CALENDAR_DARK, new PlanoraHome(), false),
+    KALENDER("Kalender", Icons.CALENDAR_BRIGHT, Icons.CALENDAR_DARK, new PlanoraCalendar(), false),
     DIENST("Dienste", Icons.DUTIE_BRIGHT, Icons.DUTIE_DARK, new PlanoraDuties(), false),
     AUSBILDUNGEN("Ausbildungen", Icons.TRAININGEVENTS_BRIGHT, Icons.TRAININGEVENTS_DARK, new PlanoraTrainingEvents(), false),
     KATEGORIEN("Kategorien", Icons.CATEGORIES_BRIGHT, Icons.CATEGORIES_DARK, new PlanoraCategories(), false),

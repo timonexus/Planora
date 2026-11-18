@@ -14,7 +14,6 @@ public class DutieTableModel implements TableModel{
 	public List<TableElement> getColumns() {
         return List.of(
             new TableElement(TableObject.CHECKBOX, "", 0, 30, 30, 30),
-            new TableElement(TableObject.PANEL, "ID", 1, 100, 50, 200),
             new TableElement(TableObject.PANEL, "Datum", 2, 500, 300, Integer.MAX_VALUE),
             new TableElement(TableObject.PANEL, "Uhrzeit (kleine)", 3, 300, 200, 400),
             new TableElement(TableObject.PANEL, "Uhrzeit (große)", 4, 300, 200, 400),
@@ -39,10 +38,6 @@ public class DutieTableModel implements TableModel{
         switch (nColumnID) {
             case 0:
                 return "";
-
-            case 1:
-                return String.valueOf(nModel.getID());
-
             case 2:
                 return String.valueOf(nModel.getDate());
             case 3:
