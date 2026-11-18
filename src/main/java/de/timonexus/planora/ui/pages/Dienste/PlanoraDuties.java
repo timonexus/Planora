@@ -5,6 +5,9 @@ import java.awt.BorderLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+import de.timonexus.planora.models.tableModels.DutieTableModel;
+import de.timonexus.planora.service.DefaultPageService;
+import de.timonexus.planora.service.Duties.DutiesService;
 import de.timonexus.planora.ui.Component;
 import de.timonexus.planora.ui.pages.DefaultPage;
 import de.timonexus.planora.ui.pages.pageHeader.PageHeader;
@@ -16,10 +19,12 @@ public class PlanoraDuties extends JPanel implements DefaultPage{
     // attributes
     private final Component header;
     private final Component tableCard;
+    private final DefaultPageService service;
     
     public PlanoraDuties(){
         this.header = new PageHeader();
-        this.tableCard = new PageTableContainer("Dienste", new PlanoraDutiesModel());
+        this.service = new DutiesService();
+        this.tableCard = new PageTableContainer("Dienste", this.service.loadAll(), new DutieTableModel());
     }
 
     @Override 

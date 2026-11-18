@@ -5,24 +5,30 @@ import java.awt.BorderLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+import de.timonexus.planora.models.Model;
+import de.timonexus.planora.models.tableModels.TableModel;
 import de.timonexus.planora.ui.Component;
-import de.timonexus.planora.ui.table.tableHeader.TableHeader;
-import de.timonexus.planora.ui.table.tableHeader.TableModel;
 import de.timonexus.planora.utils.RoundedPanel;
 import de.timonexus.planora.utils.enums.Colors;
 
 public class Table extends JPanel implements Component{
 
-    // attributes
-    private final RoundedPanel basePanel;
-	private final Component tableHeader;
+	// attributes
+	private final RoundedPanel basePanel;
 	private final TableModel tableModel;
+	private Model[] lines;
+
+	private Component tableHeader;
+	private Component tablebody;
 
     // constructor
-    public Table(TableModel nTableModel){
+    public Table(Model[] nLines, TableModel nTableModel){
+		this.lines = nLines;
 		this.tableModel = nTableModel;
-        this.basePanel = new RoundedPanel();
-		this.tableHeader = new TableHeader(this.tableModel.getHeaderElements());
+		this.basePanel = new RoundedPanel();
+
+		this.tableHeader = new TableHeader(this.tableModel);
+		this.tablebody = new TableBody(this.lines, this.tableModel);
     }
 
 	@Override
@@ -39,17 +45,21 @@ public class Table extends JPanel implements Component{
 
 	@Override
 	public void addParts() {
-        this.add(this.basePanel, BorderLayout.CENTER);
+
 	}
 
 	@Override
 	public void prepareComponents() {
 		this.tableHeader.prepareComponent();
+		this.tablebody.prepareComponent();
 	}
 
 	@Override
 	public void addComponents() {
 		this.basePanel.add((JPanel) this.tableHeader, BorderLayout.NORTH);
+		this.basePanel.add((JPanel) this.tablebody, BorderLayout.CENTER);
+
+		this.add(this.basePanel, BorderLayout.CENTER);
 	}
 
 	@Override
@@ -57,9 +67,9 @@ public class Table extends JPanel implements Component{
 	}
 
     private void skinBasePanel(){
-        this.basePanel.setBackground(Colors.APP_BAR.getColor());
-        this.basePanel.setRadius(15);
-        this.basePanel.setLayout(new BorderLayout());
+		this.basePanel.setBackground(Colors.APP_BAR.getColor());
+		this.basePanel.setRadius(15);
+		this.basePanel.setLayout(new BorderLayout());
     }
     
 }

@@ -8,18 +8,15 @@ import javax.swing.JPanel;
 import de.timonexus.planora.ui.Component;
 import de.timonexus.planora.ui.pages.DefaultPage;
 import de.timonexus.planora.ui.pages.pageHeader.PageHeader;
-import de.timonexus.planora.ui.pages.pageTableContainer.PageTableContainer;
 import de.timonexus.planora.utils.enums.Colors;
 
 public class PlanoraTopics extends JPanel implements DefaultPage{
 
     // attributes
     private final Component header;
-    private final Component tableCard;
     
     public PlanoraTopics(){
         this.header = new PageHeader();
-        this.tableCard = new PageTableContainer("Themen", new PlanoraTopicsModel());
     }
 
     @Override 
@@ -32,13 +29,11 @@ public class PlanoraTopics extends JPanel implements DefaultPage{
     @Override 
     public void prepareComponents(){
         this.header.prepareComponent();
-        this.tableCard.prepareComponent();
 
     }
 
     @Override 
     public void addComponents(){
         this.add((JPanel) this.header, BorderLayout.NORTH);
-        this.add((JPanel) this.tableCard, BorderLayout.CENTER);
     }
 }
