@@ -23,8 +23,8 @@ public class PlanoraDuties extends JPanel implements DefaultPage{
     
     public PlanoraDuties(){
         this.header = new PageHeader();
-        this.service = new DutiesService();
-        this.tableCard = new PageTableContainer("Dienste", this.service.loadAll(), new DutieTableModel());
+        this.service = new DutiesService(this);
+        this.tableCard = new PageTableContainer("Dienste", this.service.loadAll(), new DutieTableModel(), this.service);
     }
 
     @Override 
@@ -45,5 +45,13 @@ public class PlanoraDuties extends JPanel implements DefaultPage{
     public void addComponents(){
         this.add((JPanel) this.header, BorderLayout.NORTH);
         this.add((JPanel) this.tableCard, BorderLayout.CENTER);
+    }
+
+    public void refresh(){
+
+        this.prepareComponents();
+
+        this.revalidate();
+        this.repaint();
     }
 }

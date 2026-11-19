@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 import de.timonexus.planora.models.Model;
 import de.timonexus.planora.models.tableModels.TableModel;
+import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.ui.table.tableLineList.DatenElement;
 
 public class TableLine extends JPanel implements DatenElement{
@@ -14,11 +15,13 @@ public class TableLine extends JPanel implements DatenElement{
     // attributes
     private Model model;
     private final TableModel tableModel;
+    private final DefaultPageService service;
 
     // constructor
-    public TableLine(Model nModel, TableModel nTableModel){
+    public TableLine(Model nModel, TableModel nTableModel, DefaultPageService nService){
         this.tableModel = nTableModel;
         this.model = nModel;
+        this.service = nService;
 
         getTableLine();
     }
@@ -28,7 +31,7 @@ public class TableLine extends JPanel implements DatenElement{
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
         for(TableElement element : tableModel.getTableElements(model)){
-            JPanel object = element.getDefaultTableObject().getObject(element.getValue());
+            JPanel object = element.getDefaultTableObject().getObject(element.getValue(), this.service);
             object.setPreferredSize(new Dimension(element.getWidth(), 50));
             object.setMaximumSize(new Dimension(element.getMaxWidth(), 50));
             object.setMinimumSize(new Dimension(element.getMinWidth(), 50));

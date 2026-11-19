@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 import de.timonexus.planora.models.Model;
 import de.timonexus.planora.models.tableModels.TableModel;
+import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.ui.Component;
 import de.timonexus.planora.ui.table.tableLineList.TableLineList;
 
@@ -16,11 +17,13 @@ public class TableBody extends JPanel implements Component{
     private Model[] lines;
     private final TableModel tableModel;
     private TableLineList tableLineList;
+    private final DefaultPageService service;
 
     // constructor
-    public TableBody(Model[] nLines, TableModel nTableModel){
+    public TableBody(Model[] nLines, TableModel nTableModel, DefaultPageService nService){
         this.lines = nLines;
         this.tableModel = nTableModel;
+        this.service = nService;
 
         this.tableLineList = new TableLineList();
     }
@@ -59,7 +62,7 @@ public class TableBody extends JPanel implements Component{
         }else{
             this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
             for(Model model : lines){
-                TableLine currentTableLine = new TableLine(model, this.tableModel);
+                TableLine currentTableLine = new TableLine(model, this.tableModel, this.service);
                 currentTableLine.setOpaque(false);
                 this.add(currentTableLine);
                 this.tableLineList.einfügen(currentTableLine);

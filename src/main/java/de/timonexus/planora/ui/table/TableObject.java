@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.utils.Checkbox;
 import de.timonexus.planora.utils.enums.Colors;
 import de.timonexus.planora.utils.enums.Fonts;
@@ -16,7 +17,7 @@ public enum TableObject {
     PANEL,
     CHECKBOX;
 
-    public JPanel getObject(String nValue){
+    public JPanel getObject(String nValue, DefaultPageService nService){
         JPanel panel = new JPanel();
         panel.setOpaque(false);
         panel.setLayout(new BorderLayout());
@@ -31,7 +32,7 @@ public enum TableObject {
                 panel.add(label, BorderLayout.CENTER);
                 break;
             case CHECKBOX:
-                Checkbox checkbox = new Checkbox();
+                Checkbox checkbox = new Checkbox(nService);
                 panel.add(checkbox, BorderLayout.CENTER);
                 break;
         }

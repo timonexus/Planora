@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 import de.timonexus.planora.models.Model;
 import de.timonexus.planora.models.tableModels.TableModel;
+import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.ui.Component;
 import de.timonexus.planora.utils.RoundedPanel;
 import de.timonexus.planora.utils.enums.Colors;
@@ -22,13 +23,13 @@ public class Table extends JPanel implements Component{
 	private Component tablebody;
 
     // constructor
-    public Table(Model[] nLines, TableModel nTableModel){
+    public Table(Model[] nLines, TableModel nTableModel, DefaultPageService nService){
 		this.lines = nLines;
 		this.tableModel = nTableModel;
 		this.basePanel = new RoundedPanel();
 
-		this.tableHeader = new TableHeader(this.tableModel);
-		this.tablebody = new TableBody(this.lines, this.tableModel);
+		this.tableHeader = new TableHeader(this.tableModel, nService);
+		this.tablebody = new TableBody(this.lines, this.tableModel, nService);
     }
 
 	@Override

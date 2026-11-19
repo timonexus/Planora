@@ -10,19 +10,22 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.utils.enums.Icons;
 
 public class Checkbox extends JPanel{
     
     // attributes
     private boolean isChecked;
+    private final DefaultPageService service;
 
     // constructor
-    public Checkbox(){
-        this(false);
+    public Checkbox(DefaultPageService nService){
+        this(false, nService);
     }
-    public Checkbox(boolean n_isChecked){
+    public Checkbox(boolean n_isChecked, DefaultPageService nService){
         this.isChecked = n_isChecked;
+        this.service = nService;
         skinPanel();
     }
 
@@ -39,6 +42,7 @@ public class Checkbox extends JPanel{
             public void mouseClicked(MouseEvent e) {
                 isChecked = !isChecked;
                 skinPanel();
+                service.refreshTable();
             }
         });
 

@@ -35,4 +35,10 @@ public class PlanoraCategories extends JPanel implements DefaultPage{
     public void addComponents(){
         this.add((JPanel) this.header, BorderLayout.NORTH);
     }
+
+	@Override
+	public void refresh() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'refresh'");
+	}
 }
