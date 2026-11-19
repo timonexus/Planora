@@ -29,5 +29,11 @@ public class PlanoraCalendar extends JPanel implements DefaultPage{
     public void addComponents(){
         this.add(new JLabel("Kalender"), BorderLayout.NORTH);
     }
+
+	@Override
+	public void refresh() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'refresh'");
+	}
     
 }

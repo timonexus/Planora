@@ -30,5 +30,11 @@ public class PlanoraSettings extends JPanel implements DefaultPage{
     public void addComponents(){
         this.add(new JLabel("Einstellungen"), BorderLayout.NORTH);
     }
+
+	@Override
+	public void refresh() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'refresh'");
+	}
     
 }

@@ -11,4 +11,5 @@ public interface DefaultPage {
     void skinPage();
     void prepareComponents();
     void addComponents();
+    public void refresh();
 }
