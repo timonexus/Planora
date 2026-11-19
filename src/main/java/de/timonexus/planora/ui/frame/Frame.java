@@ -1,5 +1,6 @@
 package de.timonexus.planora.ui.frame;
 
+import de.timonexus.planora.ui.formulars.Formular;
 import de.timonexus.planora.ui.pages.DefaultPage;
 
 public interface Frame{
@@ -15,5 +16,8 @@ public interface Frame{
 
     public void setPage(DefaultPage nDefaultPage);
     public void refresh();
+
+    public void showFormularPane(Formular nFormular);
+    public void hideFormularPane();
 
 }

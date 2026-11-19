@@ -1,5 +1,7 @@
 package de.timonexus.planora.ui.pages;
 
+import de.timonexus.planora.ui.frame.Frame;
+
 public interface DefaultPage {
     
     default void preparePage(){
@@ -12,4 +14,6 @@ public interface DefaultPage {
     void prepareComponents();
     void addComponents();
     public void refresh();
+
+    public void setFrame(Frame nFrame);
 }

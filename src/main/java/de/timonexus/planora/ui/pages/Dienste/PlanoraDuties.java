@@ -9,6 +9,7 @@ import de.timonexus.planora.models.tableModels.DutieTableModel;
 import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.service.Duties.DutiesService;
 import de.timonexus.planora.ui.Component;
+import de.timonexus.planora.ui.frame.Frame;
 import de.timonexus.planora.ui.pages.DefaultPage;
 import de.timonexus.planora.ui.pages.pageHeader.PageHeader;
 import de.timonexus.planora.ui.pages.pageTableContainer.PageTableContainer;
@@ -19,6 +20,7 @@ public class PlanoraDuties extends JPanel implements DefaultPage{
     // attributes
     private final Component header;
     private final Component tableCard;
+    private Frame frame;
     private final DefaultPageService service;
     
     public PlanoraDuties(){
@@ -54,4 +56,12 @@ public class PlanoraDuties extends JPanel implements DefaultPage{
         this.revalidate();
         this.repaint();
     }
+
+	@Override
+	public void setFrame(Frame nFrame) {
+        this.frame = nFrame;
+        this.service.setFrame(this.frame);
+
+        refresh();
+	}
 }

@@ -5,6 +5,8 @@ import java.awt.BorderLayout;
 import javax.swing.*;
 
 import de.timonexus.planora.ui.Component;
+import de.timonexus.planora.ui.formulars.Formular;
+import de.timonexus.planora.ui.formulars.LayeredPane;
 import de.timonexus.planora.ui.pages.DefaultPage;
 import de.timonexus.planora.ui.pages.Pages;
 import de.timonexus.planora.ui.sidebar.PlanoraSidebar;
@@ -16,14 +18,14 @@ public class PlanoraFrame extends JFrame implements Frame{
     // attributes
     private final Component sidebar;
     private DefaultPage page;
-    private final JLayeredPane formularPane;
+    private final Component formularPane;
 
     // constructor
     public PlanoraFrame(){
         this.sidebar = new PlanoraSidebar(this);
         this.page = loadActivePage();
 
-        this.formularPane = new JLayeredPane();
+        this.formularPane = new LayeredPane();
     }
 
     @Override
@@ -41,6 +43,7 @@ public class PlanoraFrame extends JFrame implements Frame{
     public void prepareComponents(){
         this.sidebar.prepareComponent();
         this.page.preparePage();
+        this.formularPane.prepareComponent();
     }
 
     @Override
@@ -91,8 +94,11 @@ public class PlanoraFrame extends JFrame implements Frame{
         return pages.getPage();
     }
 
-    private void skinLayeredPane(){
-        this.formularPane.setLayout(null);
+    public void showFormularPane(Formular nFormular){
+        this.add((JLayeredPane) this.formularPane, BorderLayout.CENTER);
+    }
+    public void hideFormularPane(){
+        this.remove((JLayeredPane) this.formularPane);
     }
     
 }
