@@ -16,11 +16,14 @@ public class PlanoraFrame extends JFrame implements Frame{
     // attributes
     private final Component sidebar;
     private DefaultPage page;
+    private final JLayeredPane formularPane;
 
     // constructor
     public PlanoraFrame(){
         this.sidebar = new PlanoraSidebar(this);
         this.page = loadActivePage();
+
+        this.formularPane = new JLayeredPane();
     }
 
     @Override
@@ -86,6 +89,10 @@ public class PlanoraFrame extends JFrame implements Frame{
     private DefaultPage loadActivePage(){
         Pages pages = Pages.getActivePage();
         return pages.getPage();
+    }
+
+    private void skinLayeredPane(){
+        this.formularPane.setLayout(null);
     }
     
 }

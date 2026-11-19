@@ -5,12 +5,14 @@ import de.timonexus.planora.repositorys.DutiesRepository;
 import de.timonexus.planora.repositorys.Repository;
 import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.ui.pages.DefaultPage;
+import de.timonexus.planora.ui.table.Table;
 
 public class DutiesService implements DefaultPageService{
 
     // attributes
     private final Repository repository;
     private final DefaultPage page;
+    private Table table;
 
     // constructor
     public DutiesService(DefaultPage nPage){
@@ -24,6 +26,19 @@ public class DutiesService implements DefaultPageService{
 	}
 
     public void refreshTable(){
-        this.page.refresh();
+        this.table.refresh();
+    }
+
+    @Override
+    public void setTable(Table nTable) {
+        this.table = nTable;
+    }
+
+    public void addSelectedLine(int nId){
+        this.table.addSelectedLine(nId);
+    }
+
+    public void removeSelectedLine(int nId){
+        this.table.removeSelectedLine(nId);
     }
 }

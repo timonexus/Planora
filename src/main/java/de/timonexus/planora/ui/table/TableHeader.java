@@ -19,11 +19,13 @@ public class TableHeader extends JPanel implements Component{
     private final TableModel tableModel;
     private final RoundedPanel basePanel;
     private final DefaultPageService service;
+    private final List<Integer> selectedLines;
 
     // constuctor
-    public TableHeader(TableModel nTableModel, DefaultPageService nService){
+    public TableHeader(TableModel nTableModel, DefaultPageService nService, List<Integer> nSelectedLines){
         this.tableModel = nTableModel;
         this.service = nService;
+        this.selectedLines = nSelectedLines;
 
         this.basePanel = new RoundedPanel();
     }
@@ -68,7 +70,7 @@ public class TableHeader extends JPanel implements Component{
         this.basePanel.removeAll();
         List<TableElement> columns = this.tableModel.getColumns();
         for(TableElement column : columns){
-            JPanel object = column.getDefaultTableObject().getObject(column.getValue(), this.service);
+            JPanel object = column.getDefaultTableObject().getObject(column.getValue(), this.service, -1, this.selectedLines.contains(-1));
             object.setPreferredSize(new Dimension(column.getWidth(), 50));
             object.setMaximumSize(new Dimension(column.getMaxWidth(), 50));
             object.setMinimumSize(new Dimension(column.getMinWidth(), 50));

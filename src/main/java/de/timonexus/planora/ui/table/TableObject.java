@@ -17,7 +17,7 @@ public enum TableObject {
     PANEL,
     CHECKBOX;
 
-    public JPanel getObject(String nValue, DefaultPageService nService){
+    public JPanel getObject(String nValue, DefaultPageService nService, int nLineId, boolean n_isChecked){
         JPanel panel = new JPanel();
         panel.setOpaque(false);
         panel.setLayout(new BorderLayout());
@@ -32,7 +32,7 @@ public enum TableObject {
                 panel.add(label, BorderLayout.CENTER);
                 break;
             case CHECKBOX:
-                Checkbox checkbox = new Checkbox(nService);
+                Checkbox checkbox = new Checkbox(nService, nLineId, n_isChecked);
                 panel.add(checkbox, BorderLayout.CENTER);
                 break;
         }

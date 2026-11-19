@@ -1,6 +1,8 @@
 package de.timonexus.planora.ui.table;
 
 import java.awt.BorderLayout;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -18,6 +20,8 @@ public class Table extends JPanel implements Component{
 	private final RoundedPanel basePanel;
 	private final TableModel tableModel;
 	private Model[] lines;
+	private final DefaultPageService service;
+	private final List<Integer> selectedLines;
 
 	private Component tableHeader;
 	private Component tablebody;
@@ -27,9 +31,12 @@ public class Table extends JPanel implements Component{
 		this.lines = nLines;
 		this.tableModel = nTableModel;
 		this.basePanel = new RoundedPanel();
+		this.service = nService;
+		this.service.setTable(this);
+		this.selectedLines = new ArrayList<>();
 
-		this.tableHeader = new TableHeader(this.tableModel, nService);
-		this.tablebody = new TableBody(this.lines, this.tableModel, nService);
+		this.tableHeader = new TableHeader(this.tableModel, nService, this.selectedLines);
+		this.tablebody = new TableBody(this.lines, this.tableModel, nService, this.selectedLines);
     }
 
 	@Override
@@ -51,12 +58,16 @@ public class Table extends JPanel implements Component{
 
 	@Override
 	public void prepareComponents() {
+
 		this.tableHeader.prepareComponent();
 		this.tablebody.prepareComponent();
 	}
 
 	@Override
 	public void addComponents() {
+		this.basePanel.removeAll();
+		this.removeAll();
+
 		this.basePanel.add((JPanel) this.tableHeader, BorderLayout.NORTH);
 		this.basePanel.add((JPanel) this.tablebody, BorderLayout.CENTER);
 
@@ -65,6 +76,12 @@ public class Table extends JPanel implements Component{
 
 	@Override
 	public void refresh() {
+		this.tableHeader = new TableHeader(this.tableModel, this.service, this.selectedLines);
+		this.tablebody = new TableBody(this.lines, this.tableModel, this.service, this.selectedLines);
+		
+		this.prepareComponents();
+		this.addComponents();
+
 	}
 
     private void skinBasePanel(){
@@ -72,5 +89,12 @@ public class Table extends JPanel implements Component{
 		this.basePanel.setRadius(15);
 		this.basePanel.setLayout(new BorderLayout());
     }
-    
+
+	public void addSelectedLine(int nId) {
+		this.selectedLines.add(nId);
+	}
+
+	public void removeSelectedLine(int nId) {
+		this.selectedLines.remove(Integer.valueOf(nId));
+	}
 }

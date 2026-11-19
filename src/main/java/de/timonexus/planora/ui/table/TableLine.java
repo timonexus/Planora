@@ -16,12 +16,14 @@ public class TableLine extends JPanel implements DatenElement{
     private Model model;
     private final TableModel tableModel;
     private final DefaultPageService service;
+    private boolean isChecked;
 
     // constructor
-    public TableLine(Model nModel, TableModel nTableModel, DefaultPageService nService){
+    public TableLine(Model nModel, TableModel nTableModel, DefaultPageService nService, boolean nIsChecked){
         this.tableModel = nTableModel;
         this.model = nModel;
         this.service = nService;
+        this.isChecked = nIsChecked;
 
         getTableLine();
     }
@@ -31,7 +33,7 @@ public class TableLine extends JPanel implements DatenElement{
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
         for(TableElement element : tableModel.getTableElements(model)){
-            JPanel object = element.getDefaultTableObject().getObject(element.getValue(), this.service);
+            JPanel object = element.getDefaultTableObject().getObject(element.getValue(), this.service, this.model.getID(), this.isChecked);
             object.setPreferredSize(new Dimension(element.getWidth(), 50));
             object.setMaximumSize(new Dimension(element.getMaxWidth(), 50));
             object.setMinimumSize(new Dimension(element.getMinWidth(), 50));
