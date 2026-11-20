@@ -2,7 +2,6 @@ package de.timonexus.planora.ui.formulars;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
