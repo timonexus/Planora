@@ -2,6 +2,7 @@ package de.timonexus.planora.ui.pages;
 
 import javax.swing.JLabel;
 
+import de.timonexus.planora.ui.pages.Ausbilder.PlanoraAusbilder;
 import de.timonexus.planora.ui.pages.Badges.PlanoraBadges;
 import de.timonexus.planora.ui.pages.Calendar.PlanoraCalendar;
 import de.timonexus.planora.ui.pages.Categories.PlanoraCategories;
@@ -11,7 +12,6 @@ import de.timonexus.planora.ui.pages.Help.PlanoraHelp;
 import de.timonexus.planora.ui.pages.Home.PlanoraHome;
 import de.timonexus.planora.ui.pages.Settings.PlanoraSettings;
 import de.timonexus.planora.ui.pages.Support.PlanoraSupport;
-import de.timonexus.planora.ui.pages.Teachers.PlanoraTeachers;
 import de.timonexus.planora.ui.pages.Topics.PlanoraTopics;
 import de.timonexus.planora.ui.pages.TrainingEvents.PlanoraTrainingEvents;
 import de.timonexus.planora.utils.enums.Icons;
@@ -25,7 +25,7 @@ public enum Pages {
     KATEGORIEN("Kategorien", Icons.CATEGORIES_BRIGHT, Icons.CATEGORIES_DARK, new PlanoraCategories(), false),
     THEMEN("Themen", Icons.TOPICS_BRIGHT, Icons.TOPICS_DARK, new PlanoraTopics(), false),
     GRUPPEN("Gruppen",Icons.GROUPS_BRIGHT, Icons.GROUPS_DARK, new PlanoraGroups(), false),
-    AUSBILDER("Ausbilder", Icons.TEACHER_BRIGHT, Icons.TEACHER_DARK, new PlanoraTeachers(), false),
+    AUSBILDER("Ausbilder", Icons.TEACHER_BRIGHT, Icons.TEACHER_DARK, new PlanoraAusbilder(), false),
     ABZEICHEN("Abzeichen", Icons.BAGDES_BRIGHT, Icons.BADGES_DARK, new PlanoraBadges(), false),
 
 

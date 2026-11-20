@@ -23,6 +23,7 @@ public class DatabaseInitializer {
     // Register all SQL files
     private void registerFiles() {
         files.add("sql/Duties/CreateTable.sql");
+        files.add("sql/Ausbilder/CreateTable.sql");
     }
 
     // Initialize database tables
