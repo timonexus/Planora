@@ -1,15 +1,25 @@
 package de.timonexus.planora.service.utilServices;
 
 import de.timonexus.planora.models.Model;
+import de.timonexus.planora.repositorys.Repository;
+import de.timonexus.planora.repositorys.utilRepositorys.DienstAusbilder_UR;
 import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.ui.frame.Frame;
 import de.timonexus.planora.ui.table.Table;
 
 public class DienstAusbilder_US implements DefaultPageService{
 
+    // attributes
+    private final Repository repository;
+
+    // constructor
+    public DienstAusbilder_US(){
+        this.repository = new DienstAusbilder_UR();
+    }
+
 	@Override
 	public Model[] loadAll() {
-        return new Model[0];
+        return this.repository.loadAll();
 	}
 
 	@Override

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.timonexus.planora.models.Model;
-import de.timonexus.planora.models.Models.Dutie;
 import de.timonexus.planora.models.tableModels.TableModel;
 import de.timonexus.planora.models.utilModels.DienstAusbilder_UM;
 import de.timonexus.planora.ui.table.TableElement;
@@ -27,7 +26,7 @@ public class DienstAusbilder_UTM implements TableModel{
         List<TableElement> result = new ArrayList<>();
 
         for(TableElement column : columns){
-            column.setValue(this.getValue(column.getColumnId(), (Dutie) nModel));
+            column.setValue(this.getValue(column.getColumnId(), (DienstAusbilder_UM) nModel));
             result.add(column);
         }
 

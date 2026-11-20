@@ -52,7 +52,8 @@ public class DutiesFormular extends RoundedPanel implements Formular{
         this.firstInputLine = new JPanel();
         this.secondInputLine = new JPanel();
 
-        this.table = new Table(new Model[0], new DienstAusbilder_UTM(), new DienstAusbilder_US());
+        DienstAusbilder_US dienstAusbilder_Service = new DienstAusbilder_US();
+        this.table = new Table(dienstAusbilder_Service.loadAll(), new DienstAusbilder_UTM(), dienstAusbilder_Service);
         this.table.prepareComponent();
 
         skinComponent();
@@ -65,7 +66,7 @@ public class DutiesFormular extends RoundedPanel implements Formular{
     private void skinComponent(){
         this.setLayout(new BorderLayout());
         this.setPreferredSize(new Dimension(740, 620));
-        this.setBackground(Colors.APP_BAR.getColor());
+        this.setBackground(Colors.CARDS.getColor());
         this.setRadius(15);
         this.setRoundedBorder(Colors.TEXT_DISABLED.getColor(), 1, BorderPlacement.OUTSIDE);
         this.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));

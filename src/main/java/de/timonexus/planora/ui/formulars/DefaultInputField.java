@@ -102,7 +102,7 @@ public class DefaultInputField extends JPanel{
         searchField.setForeground(Colors.TEXT_SECONDARY.getColor());
         searchField.setCaretColor(Colors.TEXT.getColor());
         searchField.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 10));
-        searchField.setFont(Fonts.TEXT.loadFont());
+        searchField.setFont(searchField.getFont().deriveFont(14f));
 
         configureSearchFieldListener();
     }
