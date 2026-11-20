@@ -39,5 +39,35 @@ public class DutiesRepository implements Repository{
 
         return models.toArray(new Model[0]);
     }
+
+    @Override
+    public void safe(Model nValues) {
+        int id = nValues.getID();
+        Dutie values = (Dutie) nValues;
+        if(id > 0){
+            try {
+				this.executeSQL(this.readSqlFile("sql/Duties/Update.sql"), values.getDate(), values.getUhrzeit_kleine(), values.getUhrzeit_große(), id);
+			} catch (SQLException | IOException e) {
+				e.printStackTrace();
+			}
+        }else{
+            try {
+				this.executeSQL(this.readSqlFile("sql/Duties/Insert.sql"), values.getDate(), values.getUhrzeit_kleine(), values.getUhrzeit_große());
+			} catch (SQLException | IOException e) {
+				e.printStackTrace();
+			}
+        }
+    }
+
+    @Override
+    public void delete(List<Integer> nLineIds) {
+        for(int id : nLineIds){
+            try {
+				this.executeSQL(this.readSqlFile("sql/Duties/Delete.sql"), id);
+			} catch (SQLException | IOException e) {
+				e.printStackTrace();
+			}
+        }
+    }
     
 }

@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.BorderFactory;
 import javax.swing.*;
 
+import de.timonexus.planora.ui.frame.Frame;
 import de.timonexus.planora.ui.pages.DefaultPage;
 import de.timonexus.planora.utils.enums.Colors;
 
@@ -33,8 +34,10 @@ public class PlanoraHome extends JPanel implements DefaultPage{
 
 	@Override
 	public void refresh() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'refresh'");
+	}
+
+	@Override
+	public void setFrame(Frame nFrame) {
 	}
     
 }

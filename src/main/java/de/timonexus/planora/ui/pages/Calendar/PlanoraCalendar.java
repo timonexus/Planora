@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.*;
 
+import de.timonexus.planora.ui.frame.Frame;
 import de.timonexus.planora.ui.pages.DefaultPage;
 import de.timonexus.planora.utils.enums.Colors;
 
@@ -34,6 +35,12 @@ public class PlanoraCalendar extends JPanel implements DefaultPage{
 	public void refresh() {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'refresh'");
+	}
+
+	@Override
+	public void setFrame(Frame nFrame) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'setFrame'");
 	}
     
 }

@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-
+import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.ui.Component;
 import de.timonexus.planora.utils.RoundedPanel;
 import de.timonexus.planora.utils.RoundedPanel.BorderPlacement;
@@ -24,15 +24,22 @@ public class PageHeaderButton extends JPanel implements Component{
     private JLabel iconLabel;
     private Icons icon;
     private boolean highlighted;
+    private final DefaultPageService service;
+    private final Task task;
 
     // constructor
-    public PageHeaderButton(Icons nIcon, boolean nHighlighted){
+    public PageHeaderButton(Icons nIcon, boolean nHighlighted, DefaultPageService nService, Task nTask){
         this.basePanel = new RoundedPanel();
 
         this.icon = nIcon;
         this.highlighted = nHighlighted;
 
+        this.service = nService;
+        this.task = nTask;
+
         this.iconLabel = this.icon.getIconLabel();
+
+        addMouseListeners();
     }
 
 	@Override
@@ -47,8 +54,6 @@ public class PageHeaderButton extends JPanel implements Component{
 	public void skinParts() {
         skinBasePanel();
         skinIconLabel();
-
-        addMouseListeners();
 	}
 
 	@Override
@@ -132,7 +137,17 @@ public class PageHeaderButton extends JPanel implements Component{
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println("Geklickt");
+                switch (task) {
+                    case ADD:
+                        service.openFormular();
+                        break;
+                    case DELETE:
+                        service.delete();
+                        break;
+                
+                    default:
+                        break;
+                }
             }
         };
 

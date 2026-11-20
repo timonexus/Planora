@@ -1,13 +1,17 @@
 package de.timonexus.planora.ui.pages.pageHeader.pageHeaderButtonContainer;
 
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
+import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.ui.Component;
 import de.timonexus.planora.ui.pages.pageHeader.pageHeaderButton.PageHeaderButton;
+import de.timonexus.planora.ui.pages.pageHeader.pageHeaderButton.Task;
 import de.timonexus.planora.utils.enums.Icons;
 
 public class PageHeaderButtonContainer extends JPanel implements Component{
@@ -20,15 +24,15 @@ public class PageHeaderButtonContainer extends JPanel implements Component{
     private final Component buttonAdd;
 
     // constructor
-    public PageHeaderButtonContainer(){
-        this.buttonExport = new PageHeaderButton(Icons.EXPORT_BRIGHT, false);
-        this.buttonEdit = new PageHeaderButton(Icons.EDIT_BRIGHT, false);
-        this.buttonDelete = new PageHeaderButton(Icons.DELETE_BRIGHT, false);
-        this.buttonFilter = new PageHeaderButton(Icons.FILTER_BRIGHT, false);
-        this.buttonAdd = new PageHeaderButton(Icons.ADD_DARK, true);
+    public PageHeaderButtonContainer(DefaultPageService nService){
+        this.buttonExport = new PageHeaderButton(Icons.EXPORT_BRIGHT, false, nService, Task.EXPORT);
+        this.buttonEdit = new PageHeaderButton(Icons.EDIT_BRIGHT, false, nService, Task.EDIT);
+        this.buttonDelete = new PageHeaderButton(Icons.DELETE_BRIGHT, false, nService, Task.DELETE);
+        this.buttonFilter = new PageHeaderButton(Icons.FILTER_BRIGHT, false, nService, Task.FIlTER);
+        this.buttonAdd = new PageHeaderButton(Icons.ADD_DARK, true, nService, Task.ADD);
     }
 
-	@Override
+        @Override
 	public void designComponent() {
         this.setPreferredSize(new Dimension((int) PageHeaderButtonContainerValues.WIDTH.getValue(), (int) PageHeaderButtonContainerValues.HEIGHT.getValue()));
         this.setOpaque(false);
@@ -69,6 +73,5 @@ public class PageHeaderButtonContainer extends JPanel implements Component{
 
 	@Override
 	public void refresh() {
-	}
-    
+	}              
 }

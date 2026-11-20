@@ -48,6 +48,8 @@ public enum Icons {
     CHECKBOX_CHECKED_DARK("/icons/checkbox_checked_dark.png", 20),
     CHECKBOX_BRIGHT("/icons/checkbox_bright.png", 20),
     CHECKBOX_DARK("/icons/checkbox_bright.png", 20),
+    CLOSE_BRIGHT("/icons/close_bright.png", 20),
+    CLOSE_DARK("/icons/close_dark.png", 20),
     ;
 
     private final String path;
