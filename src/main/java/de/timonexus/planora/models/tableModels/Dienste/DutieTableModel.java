@@ -1,10 +1,11 @@
-package de.timonexus.planora.models.tableModels;
+package de.timonexus.planora.models.tableModels.Dienste;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import de.timonexus.planora.models.Dutie;
 import de.timonexus.planora.models.Model;
+import de.timonexus.planora.models.tableModels.TableModel;
 import de.timonexus.planora.ui.table.TableElement;
 import de.timonexus.planora.ui.table.TableObject;
 

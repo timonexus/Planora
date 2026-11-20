@@ -2,6 +2,7 @@ package de.timonexus.planora.ui.formulars;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -102,7 +103,7 @@ public class AusbilderFormular extends RoundedPanel implements Formular{
             this.inputID.getContent().isEmpty()
                 ? 0
                 : Integer.parseInt(this.inputID.getContent()),
-            this.inputName.getContent()
+            this.inputName.getContent(), List.of()
         );
         return this.model;
 	}

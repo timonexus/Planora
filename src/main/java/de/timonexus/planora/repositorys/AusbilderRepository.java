@@ -17,7 +17,7 @@ public class AusbilderRepository implements Repository{
         try (QueryResult query = this.querySQL(this.readSqlFile("sql/Ausbilder/LoadAll.sql"))){
             ResultSet resultSet = query.getResultSet();
             while (resultSet.next()) {
-                models.add(new Ausbilder(resultSet.getInt("id"), resultSet.getString("name")));
+                models.add(new Ausbilder(resultSet.getInt("id"), resultSet.getString("name"), List.of()));
             }
             
         } catch (Exception e) {
@@ -61,7 +61,7 @@ public class AusbilderRepository implements Repository{
         try (QueryResult query = this.querySQL(this.readSqlFile("sql/Ausbilder/Search.sql"), nText, nText)){
             ResultSet resultSet = query.getResultSet();
             while(resultSet.next()){
-                models.add(new Ausbilder(resultSet.getInt("id"), resultSet.getString("name")));
+                models.add(new Ausbilder(resultSet.getInt("id"), resultSet.getString("name"), List.of()));
             }
         } catch (Exception e) {
             e.printStackTrace();

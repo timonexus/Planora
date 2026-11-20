@@ -5,7 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-import de.timonexus.planora.models.tableModels.AusbilderTableModel;
+import de.timonexus.planora.models.tableModels.Ausbilder.AusbilderTableModel;
 import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.service.Ausbilder.AusbilderService;
 import de.timonexus.planora.ui.Component;

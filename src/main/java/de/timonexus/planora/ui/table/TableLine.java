@@ -35,9 +35,9 @@ public class TableLine extends JPanel implements DatenElement{
 
         for(TableElement element : tableModel.getTableElements(model)){
             JPanel object = element.getDefaultTableObject().getObject(element.getValue(), this.service, this.model.getID(), this.isChecked);
-            object.setPreferredSize(new Dimension(element.getWidth(), 50));
-            object.setMaximumSize(new Dimension(element.getMaxWidth(), 50));
-            object.setMinimumSize(new Dimension(element.getMinWidth(), 50));
+            object.setPreferredSize(new Dimension(element.getWidth(), 40));
+            object.setMaximumSize(new Dimension(element.getMaxWidth(), 40));
+            object.setMinimumSize(new Dimension(element.getMinWidth(), 40));
             if(this.isChecked){
                 object.setOpaque(true);
                 object.setBackground(Colors.DIALOGS.getColor());
