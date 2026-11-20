@@ -18,6 +18,8 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
+
+import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.ui.Component;
 import de.timonexus.planora.utils.RoundedPanel;
 import de.timonexus.planora.utils.enums.Colors;
@@ -31,9 +33,11 @@ public class PageHeaderSearchbar extends JPanel implements Component{
     private final JLabel iconLabel;
     private final JTextField searchField;
     private final Timer searchTimer;
+    private final DefaultPageService service;
 
     // constructor
-    public PageHeaderSearchbar(){
+    public PageHeaderSearchbar(DefaultPageService nService){
+        this.service = nService;
         this.basePanel = new RoundedPanel();
         this.iconPanel = new JPanel();
         this.iconLabel = Icons.SEARCH_BRIGHT.getIconLabel();
@@ -153,6 +157,7 @@ public class PageHeaderSearchbar extends JPanel implements Component{
 
                 if (text.isBlank()) {
                     searchTimer.stop();
+                    service.refreshTable();
                     return;
                 }
 
@@ -184,7 +189,7 @@ public class PageHeaderSearchbar extends JPanel implements Component{
     }
 
     private void executeSearch(){
-        System.out.println("Suchen...");
+        this.service.search(this.searchField.getText());
     }
     
     private void configureHoverListener() {
