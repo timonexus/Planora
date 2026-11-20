@@ -14,10 +14,10 @@ public class DienstAusbilder_UTM implements TableModel{
 	@Override
 	public List<TableElement> getColumns() {
         return List.of(
-            new TableElement("Name", 0, 400, 400, Integer.MAX_VALUE),
-            new TableElement("Kleine", 1, 30, 30, 30),
-            new TableElement("Große", 2, 30, 30, 30),
-            new TableElement("Komplett", 3, 30, 30, 30)
+            new TableElement("Name", 0, 100, 100, Integer.MAX_VALUE),
+            new TableElement("Kleine", 1, 100, 100, 100),
+            new TableElement("Große", 2, 100, 100, 100),
+            new TableElement("Komplett", 3, 100, 100, 100)
         );
 	}
 

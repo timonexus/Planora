@@ -10,7 +10,10 @@ import javax.swing.JPanel;
 
 import de.timonexus.planora.models.Model;
 import de.timonexus.planora.models.Models.Dutie;
+import de.timonexus.planora.models.tableModels.utilTables.DienstAusbilder_UTM;
 import de.timonexus.planora.service.DefaultPageService;
+import de.timonexus.planora.service.utilServices.DienstAusbilder_US;
+import de.timonexus.planora.ui.table.Table;
 import de.timonexus.planora.utils.RoundedPanel;
 import de.timonexus.planora.utils.enums.Colors;
 
@@ -30,6 +33,8 @@ public class DutiesFormular extends RoundedPanel implements Formular{
     private JPanel firstInputLine;
     private JPanel secondInputLine;
 
+    private Table table;
+
     private Model model;
 
     // constructor
@@ -39,13 +44,16 @@ public class DutiesFormular extends RoundedPanel implements Formular{
         this.btnSpeichern = new FormularButton(this, nService, onClose);
 
         this.inputBase = new JPanel();
-        this.firstInputLine = new JPanel();
         this.inputID = new DefaultInputField("ID", "z.B. 01", 60);
         this.inputDate = new DefaultInputField("Datum", "2026-11-19", Integer.MAX_VALUE);
         this.inputTimeGroße = new DefaultInputField("Uhrzeit - Große", "16:47", Integer.MAX_VALUE);
         this.inputTimeKleine = new DefaultInputField("Uhrzeit - Kleine", "16:47", Integer.MAX_VALUE);
 
+        this.firstInputLine = new JPanel();
         this.secondInputLine = new JPanel();
+
+        this.table = new Table(new Model[0], new DienstAusbilder_UTM(), new DienstAusbilder_US());
+        this.table.prepareComponent();
 
         skinComponent();
         skinInputBase();
@@ -56,7 +64,7 @@ public class DutiesFormular extends RoundedPanel implements Formular{
 
     private void skinComponent(){
         this.setLayout(new BorderLayout());
-        this.setPreferredSize(new Dimension(440, 320));
+        this.setPreferredSize(new Dimension(740, 620));
         this.setBackground(Colors.APP_BAR.getColor());
         this.setRadius(15);
         this.setRoundedBorder(Colors.TEXT_DISABLED.getColor(), 1, BorderPlacement.OUTSIDE);
@@ -77,10 +85,13 @@ public class DutiesFormular extends RoundedPanel implements Formular{
         this.inputBase.setOpaque(false);
         this.inputBase.setLayout(new BoxLayout(this.inputBase, BoxLayout.Y_AXIS));
 
-        this.inputBase.add(Box.createVerticalStrut(20));
+        this.inputBase.add(Box.createVerticalStrut(24));
         this.inputBase.add(this.firstInputLine);
-        this.inputBase.add(Box.createVerticalStrut(20));
+        this.inputBase.add(Box.createVerticalStrut(16));
         this.inputBase.add(this.secondInputLine);
+        this.inputBase.add(Box.createVerticalStrut(24));
+        this.inputBase.add(this.table);
+        this.inputBase.add(Box.createVerticalStrut(32));
     }
 
     private void skinFirstInputLine(){
@@ -103,7 +114,7 @@ public class DutiesFormular extends RoundedPanel implements Formular{
         nInputLine.setOpaque(false);
         nInputLine.setLayout(new BoxLayout(nInputLine, BoxLayout.X_AXIS));
         nInputLine.setMaximumSize(new Dimension(Integer.MAX_VALUE, 60));
-        nInputLine.setAlignmentX(LEFT_ALIGNMENT);
+        nInputLine.setAlignmentX(CENTER_ALIGNMENT);
 
         return nInputLine;
     }
