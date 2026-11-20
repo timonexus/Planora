@@ -1,7 +1,5 @@
 package de.timonexus.planora.service.Duties;
 
-import java.util.List;
-
 import de.timonexus.planora.models.Model;
 import de.timonexus.planora.repositorys.DutiesRepository;
 import de.timonexus.planora.repositorys.Repository;
@@ -15,14 +13,12 @@ public class DutiesService implements DefaultPageService{
 
     // attributes
     private final Repository repository;
-    private final DefaultPage page;
     private Frame frame;
     private Table table;
 
     // constructor
     public DutiesService(DefaultPage nPage){
         this.repository = new DutiesRepository();
-        this.page = nPage;
     }
 
 	@Override
