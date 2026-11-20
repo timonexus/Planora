@@ -76,9 +76,12 @@ public class Table extends JPanel implements Component{
 
 	@Override
 	public void refresh() {
+		this.lines = this.service.loadAll();
 		this.tableHeader = new TableHeader(this.tableModel, this.service, this.selectedLines);
 		this.tablebody = new TableBody(this.lines, this.tableModel, this.service, this.selectedLines);
 		
+		this.removeAll();
+
 		this.prepareComponents();
 		this.addComponents();
 
@@ -92,6 +95,14 @@ public class Table extends JPanel implements Component{
 
 	public void addSelectedLine(int nId) {
 		this.selectedLines.add(nId);
+	}
+
+	public List<Integer> getSelectedLines() {
+		return selectedLines;
+	}
+
+	public void resetSelectedLines(){
+		this.selectedLines.clear();
 	}
 
 	public void removeSelectedLine(int nId) {
