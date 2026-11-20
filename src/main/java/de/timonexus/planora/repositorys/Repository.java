@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import de.timonexus.planora.database.Database;
 import de.timonexus.planora.database.QueryResult;
@@ -15,6 +16,8 @@ import de.timonexus.planora.models.Model;
 public interface Repository {
 
     Model[] loadAll();
+    void safe(Model nValues);
+    void delete(List<Integer> nLineIds);
 
     default QueryResult querySQL(String nSQL) throws SQLException {
 
@@ -43,6 +46,22 @@ public interface Repository {
                     inputStream.readAllBytes(),
                     StandardCharsets.UTF_8
             );
+        }
+    }
+
+    default int executeSQL(String sql, Object... values)
+            throws SQLException {
+
+        try (
+            Connection connection = Database.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql)
+        ) {
+
+            for (int i = 0; i < values.length; i++) {
+                statement.setObject(i + 1, values[i]);
+            }
+
+            return statement.executeUpdate();
         }
     }
 
