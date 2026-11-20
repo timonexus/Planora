@@ -69,5 +69,32 @@ public class DutiesRepository implements Repository{
 			}
         }
     }
+
+    @Override
+    public Model[] search(String nText) {
+
+        List<Model> models = new ArrayList<>();
+
+        try (QueryResult query = this.querySQL(this.readSqlFile("sql/Duties/Search.sql"), nText, nText, nText, nText)) {
+
+            ResultSet resultSet = query.getResultSet();
+
+            while (resultSet.next()) {
+
+                models.add(new Dutie(
+                    resultSet.getInt("id"),
+                    resultSet.getString("date"),
+                    resultSet.getString("time_kleine"),
+                    resultSet.getString("time_große"),
+                    ""
+                ));
+            }
+
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
+
+        return models.toArray(new Model[0]);
+    }
     
 }

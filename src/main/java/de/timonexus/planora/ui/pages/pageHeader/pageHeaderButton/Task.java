@@ -6,5 +6,5 @@ public enum Task {
     EDIT,
     DELETE,
     EXPORT,
-    FIlTER;
+    FILTER;
 }

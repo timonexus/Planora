@@ -132,6 +132,11 @@ public class DefaultInputField extends JPanel{
 
     }
 
+    public void setText(String nText){
+        this.searchField.setText(nText);
+        this.searchField.setForeground(Colors.TEXT.getColor());
+    }
+
     public String getContent() {
         String content = this.searchField.getText();
 

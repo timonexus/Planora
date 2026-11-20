@@ -26,7 +26,7 @@ public class PageHeaderButtonContainer extends JPanel implements Component{
         this.buttonExport = new PageHeaderButton(Icons.EXPORT_BRIGHT, false, nService, Task.EXPORT);
         this.buttonEdit = new PageHeaderButton(Icons.EDIT_BRIGHT, false, nService, Task.EDIT);
         this.buttonDelete = new PageHeaderButton(Icons.DELETE_BRIGHT, false, nService, Task.DELETE);
-        this.buttonFilter = new PageHeaderButton(Icons.FILTER_BRIGHT, false, nService, Task.FIlTER);
+        this.buttonFilter = new PageHeaderButton(Icons.FILTER_BRIGHT, false, nService, Task.FILTER);
         this.buttonAdd = new PageHeaderButton(Icons.ADD_DARK, true, nService, Task.ADD);
     }
 

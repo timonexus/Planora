@@ -18,6 +18,7 @@ public interface Repository {
     Model[] loadAll();
     void safe(Model nValues);
     void delete(List<Integer> nLineIds);
+    Model[] search(String nText);
 
     default QueryResult querySQL(String nSQL) throws SQLException {
 
@@ -62,6 +63,27 @@ public interface Repository {
             }
 
             return statement.executeUpdate();
+        }
+    }
+
+    default QueryResult querySQL(String sql, Object... values) throws SQLException {
+
+        Connection connection = Database.getConnection();
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            for (int i = 0; i < values.length; i++) {
+                statement.setObject(i + 1, values[i]);
+            }
+
+            ResultSet resultSet = statement.executeQuery();
+
+            return new QueryResult(connection, statement, resultSet);
+
+        } catch (SQLException e) {
+            connection.close();
+            throw e;
         }
     }
 

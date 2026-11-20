@@ -5,6 +5,7 @@ import de.timonexus.planora.repositorys.DutiesRepository;
 import de.timonexus.planora.repositorys.Repository;
 import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.ui.formulars.DutiesFormular;
+import de.timonexus.planora.ui.formulars.ViewFormulars.ViewDutie;
 import de.timonexus.planora.ui.frame.Frame;
 import de.timonexus.planora.ui.pages.DefaultPage;
 import de.timonexus.planora.ui.table.Table;
@@ -31,6 +32,19 @@ public class DutiesService implements DefaultPageService{
         this.repository.delete(this.table.getSelectedLines());
         this.table.resetSelectedLines();
         this.refreshTable();
+    }
+
+    @Override
+    public void edit() {
+        DutiesFormular formular = new DutiesFormular(this, () -> this.closeFormular());
+        formular.setData(this.table.loadSelectedLine());
+        this.table.resetSelectedLines();
+        this.frame.showFormularPane(formular);
+    }
+
+    @Override
+    public void search(String nText) {
+        this.table.refresh(this.repository.search(nText));
     }
 
     public void refreshTable(){
@@ -69,5 +83,10 @@ public class DutiesService implements DefaultPageService{
     @Override
     public void closeFormular() {
         this.frame.hideFormularPane();
+    }
+
+    @Override 
+    public void showModel(int nLineId){
+        this.frame.showFormularPane(new ViewDutie(this, () -> this.closeFormular(), ((Table) this.table).loadLine(nLineId)));
     }
 }

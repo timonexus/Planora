@@ -22,7 +22,7 @@ public class PageHeader extends JPanel implements Component{
     // constructor
     public PageHeader(DefaultPageService nService){
         this.basePanel = new RoundedPanel();
-        this.searchbar = new PageHeaderSearchbar();
+        this.searchbar = new PageHeaderSearchbar(nService);
         this.buttonContainer = new PageHeaderButtonContainer(nService);
     }
 
@@ -40,6 +40,7 @@ public class PageHeader extends JPanel implements Component{
 
 	@Override
 	public void addParts() {
+        this.removeAll();
         this.add(this.basePanel, BorderLayout.CENTER);
 	}
 
@@ -51,8 +52,9 @@ public class PageHeader extends JPanel implements Component{
 
 	@Override
 	public void addComponents() {
-        this.basePanel.add((JPanel) this.searchbar, BorderLayout.WEST);
-        this.basePanel.add((JPanel) this.buttonContainer, BorderLayout.EAST);
+                this.basePanel.removeAll();
+                this.basePanel.add((JPanel) this.searchbar, BorderLayout.WEST);
+                this.basePanel.add((JPanel) this.buttonContainer, BorderLayout.EAST);
 	}
 
 	@Override

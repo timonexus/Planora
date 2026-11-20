@@ -9,6 +9,7 @@ import de.timonexus.planora.models.Model;
 import de.timonexus.planora.models.tableModels.TableModel;
 import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.ui.table.tableLineList.DatenElement;
+import de.timonexus.planora.utils.enums.Colors;
 
 public class TableLine extends JPanel implements DatenElement{
 
@@ -37,6 +38,10 @@ public class TableLine extends JPanel implements DatenElement{
             object.setPreferredSize(new Dimension(element.getWidth(), 50));
             object.setMaximumSize(new Dimension(element.getMaxWidth(), 50));
             object.setMinimumSize(new Dimension(element.getMinWidth(), 50));
+            if(this.isChecked){
+                object.setOpaque(true);
+                object.setBackground(Colors.DIALOGS.getColor());
+            }
             this.add(object);
         }
 	}

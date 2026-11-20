@@ -144,6 +144,15 @@ public class PageHeaderButton extends JPanel implements Component{
                     case DELETE:
                         service.delete();
                         break;
+                    case EXPORT:
+                        System.out.println("Export...");
+                        break;
+                    case FILTER:
+                        System.out.println("Filtern...");
+                        break;
+                    case EDIT:
+                        service.edit();
+                        break;
                 
                     default:
                         break;

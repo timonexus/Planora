@@ -30,6 +30,8 @@ public class DutiesFormular extends RoundedPanel implements Formular{
     private JPanel firstInputLine;
     private JPanel secondInputLine;
 
+    private Model model;
+
     // constructor
     public DutiesFormular(DefaultPageService nService, Runnable nOnClose){
         this.onClose = nOnClose;
@@ -106,8 +108,16 @@ public class DutiesFormular extends RoundedPanel implements Formular{
         return nInputLine;
     }
 
+    private void fillFormular(){
+        Dutie dutie = (Dutie) this.model;
+        this.inputID.setText(String.valueOf(dutie.getID()));
+        this.inputDate.setText(dutie.getDate());
+        this.inputTimeKleine.setText(dutie.getUhrzeit_kleine());
+        this.inputTimeGroße.setText(dutie.getUhrzeit_große());
+    }
+
     public Model getData() {
-        return new Dutie(
+        this.model = new Dutie(
             this.inputID.getContent().isEmpty()
                 ? 0
                 : Integer.parseInt(this.inputID.getContent()),
@@ -116,5 +126,11 @@ public class DutiesFormular extends RoundedPanel implements Formular{
             this.inputTimeGroße.getContent(),
             ""
         );
+        return this.model;
+    }
+
+    public void setData(Model nModel){
+        this.model = nModel;
+        fillFormular();
     }
 }

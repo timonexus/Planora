@@ -18,6 +18,12 @@ public interface DefaultPageService {
 
     public void delete();
 
+    public void edit();
+
+    public void search(String nText);
+
+    public void showModel(int nLineId);
+
 
     public void setFrame(Frame nFrame);
     public void openFormular(/*values */);

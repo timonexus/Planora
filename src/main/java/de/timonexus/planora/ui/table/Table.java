@@ -87,6 +87,18 @@ public class Table extends JPanel implements Component{
     	this.repaint();
 	}
 
+	public void refresh(Model[] nModels) {
+		this.lines = nModels;
+		this.tableHeader = new TableHeader(this.tableModel, this.service, this.selectedLines);
+		this.tablebody = new TableBody(this.lines, this.tableModel, this.service, this.selectedLines);
+
+		this.prepareComponents();
+		this.addComponents();
+
+		this.revalidate();
+    	this.repaint();
+	}
+
     private void skinBasePanel(){
 		this.basePanel.setBackground(Colors.APP_BAR.getColor());
 		this.basePanel.setRadius(15);
@@ -107,5 +119,23 @@ public class Table extends JPanel implements Component{
 
 	public void removeSelectedLine(int nId) {
 		this.selectedLines.remove(Integer.valueOf(nId));
+	}
+
+	public Model loadSelectedLine(){
+		for(Model model : lines){
+			if(model.getID() == selectedLines.get(0)){
+				return model;
+			}
+		}
+		return null;
+	}
+
+	public Model loadLine(int nLineId){
+		for(Model model : lines){
+			if(model.getID() == nLineId){
+				return model;
+			}
+		}
+		return null;
 	}
 }
