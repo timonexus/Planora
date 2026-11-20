@@ -1,0 +1,121 @@
+package de.timonexus.planora.ui.formulars;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.util.List;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JPanel;
+
+import de.timonexus.planora.models.Dutie;
+import de.timonexus.planora.models.Model;
+import de.timonexus.planora.service.DefaultPageService;
+import de.timonexus.planora.utils.RoundedPanel;
+import de.timonexus.planora.utils.enums.Colors;
+
+public class DutiesFormular extends RoundedPanel implements Formular{
+    
+    // attributes
+    private final Runnable onClose;
+    private final FormularHeader header;
+    private final FormularButton btnSpeichern;
+
+    private final JPanel inputBase;
+    private final DefaultInputField inputID;
+    private final DefaultInputField inputDate;
+    private final DefaultInputField inputTimeGroße;
+    private final DefaultInputField inputTimeKleine;
+
+    private JPanel firstInputLine;
+    private JPanel secondInputLine;
+
+    // constructor
+    public DutiesFormular(DefaultPageService nService, Runnable nOnClose){
+        this.onClose = nOnClose;
+        this.header = new FormularHeader("Neuer Dienst", onClose);
+        this.btnSpeichern = new FormularButton(this, nService, onClose);
+
+        this.inputBase = new JPanel();
+        this.firstInputLine = new JPanel();
+        this.inputID = new DefaultInputField("ID", "z.B. 01", 60);
+        this.inputDate = new DefaultInputField("Datum", "2026-11-19", Integer.MAX_VALUE);
+        this.inputTimeGroße = new DefaultInputField("Uhrzeit - Große", "16:47", Integer.MAX_VALUE);
+        this.inputTimeKleine = new DefaultInputField("Uhrzeit - Kleine", "16:47", Integer.MAX_VALUE);
+
+        this.secondInputLine = new JPanel();
+
+        skinComponent();
+        skinInputBase();
+        skinFirstInputLine();
+        skinSecondInputLine();
+        addComponents();
+    }
+
+    private void skinComponent(){
+        this.setLayout(new BorderLayout());
+        this.setPreferredSize(new Dimension(440, 320));
+        this.setBackground(Colors.APP_BAR.getColor());
+        this.setRadius(15);
+        this.setRoundedBorder(Colors.TEXT_DISABLED.getColor(), 1, BorderPlacement.OUTSIDE);
+        this.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+    }
+
+    private void addComponents(){
+        this.add(this.header, BorderLayout.NORTH);
+        this.add(this.inputBase, BorderLayout.CENTER);
+        this.add(this.btnSpeichern, BorderLayout.SOUTH);
+    }
+
+    public void close(){
+        onClose.run();
+    }
+
+    private void skinInputBase(){
+        this.inputBase.setOpaque(false);
+        this.inputBase.setLayout(new BoxLayout(this.inputBase, BoxLayout.Y_AXIS));
+
+        this.inputBase.add(Box.createVerticalStrut(20));
+        this.inputBase.add(this.firstInputLine);
+        this.inputBase.add(Box.createVerticalStrut(20));
+        this.inputBase.add(this.secondInputLine);
+    }
+
+    private void skinFirstInputLine(){
+        this.firstInputLine = skinInputLines(firstInputLine);
+
+        this.firstInputLine.add(this.inputID);
+        this.firstInputLine.add(Box.createHorizontalStrut(10));
+        this.firstInputLine.add(this.inputDate);
+    }
+
+    private void skinSecondInputLine(){
+        this.secondInputLine = skinInputLines(secondInputLine);
+
+        this.secondInputLine.add(this.inputTimeKleine);
+        this.secondInputLine.add(Box.createHorizontalStrut(10));
+        this.secondInputLine.add(this.inputTimeGroße);
+    }
+
+    private JPanel skinInputLines(JPanel nInputLine){
+        nInputLine.setOpaque(false);
+        nInputLine.setLayout(new BoxLayout(nInputLine, BoxLayout.X_AXIS));
+        nInputLine.setMaximumSize(new Dimension(Integer.MAX_VALUE, 60));
+        nInputLine.setAlignmentX(LEFT_ALIGNMENT);
+
+        return nInputLine;
+    }
+
+    public Model getData() {
+        return new Dutie(
+            this.inputID.getContent().isEmpty()
+                ? 0
+                : Integer.parseInt(this.inputID.getContent()),
+            this.inputDate.getContent(),
+            this.inputTimeKleine.getContent(),
+            this.inputTimeGroße.getContent(),
+            ""
+        );
+    }
+}
