@@ -1,9 +1,12 @@
 package de.timonexus.planora.service.Duties;
 
+import java.util.List;
+
 import de.timonexus.planora.models.Model;
 import de.timonexus.planora.repositorys.DutiesRepository;
 import de.timonexus.planora.repositorys.Repository;
 import de.timonexus.planora.service.DefaultPageService;
+import de.timonexus.planora.ui.formulars.DutiesFormular;
 import de.timonexus.planora.ui.frame.Frame;
 import de.timonexus.planora.ui.pages.DefaultPage;
 import de.timonexus.planora.ui.table.Table;
@@ -27,8 +30,21 @@ public class DutiesService implements DefaultPageService{
         return this.repository.loadAll();
 	}
 
+    @Override
+    public void delete(){
+        this.repository.delete(this.table.getSelectedLines());
+        this.table.resetSelectedLines();
+        this.refreshTable();
+    }
+
     public void refreshTable(){
         this.table.refresh();
+    }
+
+    @Override
+    public void safe(Model nValues) {
+        this.repository.safe(nValues);
+        this.refreshTable();
     }
 
     @Override
@@ -51,7 +67,7 @@ public class DutiesService implements DefaultPageService{
 
     @Override
     public void openFormular() {
-        this.frame.showFormularPane(null);
+        this.frame.showFormularPane(new DutiesFormular(this, () -> this.closeFormular()));
     }
 
     @Override

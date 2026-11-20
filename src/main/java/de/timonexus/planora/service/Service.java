@@ -1,6 +1,5 @@
 package de.timonexus.planora.service;
 
-import de.timonexus.planora.ui.frame.Frame;
 import de.timonexus.planora.ui.pages.Pages;
 
 public interface Service {

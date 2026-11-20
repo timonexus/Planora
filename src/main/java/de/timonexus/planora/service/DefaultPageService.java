@@ -1,5 +1,7 @@
 package de.timonexus.planora.service;
 
+import java.util.List;
+
 import de.timonexus.planora.models.Model;
 import de.timonexus.planora.ui.frame.Frame;
 import de.timonexus.planora.ui.table.Table;
@@ -13,6 +15,10 @@ public interface DefaultPageService {
 
     public void addSelectedLine(int nId);
     public void removeSelectedLine(int nId);
+
+    public void safe(Model nValues);
+
+    public void delete();
 
 
     public void setFrame(Frame nFrame);
