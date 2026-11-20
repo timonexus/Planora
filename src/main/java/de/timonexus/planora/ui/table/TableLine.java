@@ -34,7 +34,7 @@ public class TableLine extends JPanel implements DatenElement{
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
         for(TableElement element : tableModel.getTableElements(model)){
-            JPanel object = element.getDefaultTableObject().getObject(element.getValue(), this.service, this.model.getID(), this.isChecked);
+            JPanel object = TableObject.getObject(element.getValue() instanceof Boolean ? this.isChecked : element.getValue(), this.service, this.model.getID(), this.isChecked);
             object.setPreferredSize(new Dimension(element.getWidth(), 40));
             object.setMaximumSize(new Dimension(element.getMaxWidth(), 40));
             object.setMinimumSize(new Dimension(element.getMinWidth(), 40));

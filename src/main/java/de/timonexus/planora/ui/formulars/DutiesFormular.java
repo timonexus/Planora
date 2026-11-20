@@ -8,8 +8,8 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
-import de.timonexus.planora.models.Dutie;
 import de.timonexus.planora.models.Model;
+import de.timonexus.planora.models.Models.Dutie;
 import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.utils.RoundedPanel;
 import de.timonexus.planora.utils.enums.Colors;

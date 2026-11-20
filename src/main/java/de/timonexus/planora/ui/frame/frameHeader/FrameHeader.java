@@ -3,19 +3,15 @@ package de.timonexus.planora.ui.frame.frameHeader;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 import de.timonexus.planora.ui.frame.WindowAnimator;
 import de.timonexus.planora.utils.enums.Colors;
-import de.timonexus.planora.utils.enums.Fonts;
 
 public class FrameHeader extends JPanel {
 
@@ -24,7 +20,6 @@ public class FrameHeader extends JPanel {
     private Point dragPoint;
 
     private boolean maximized;
-    private final Color titleColor = new Color(190, 190, 190);
 
     private final WindowAnimator windowAnimator;
 
@@ -81,18 +76,6 @@ public class FrameHeader extends JPanel {
         panel.add(maximizeButton);
 
         return panel;
-    }
-
-    private JLabel createTitle() {
-        JLabel title = new JLabel(
-            "Planora",
-            SwingConstants.CENTER
-        );
-
-        title.setForeground(titleColor);
-        title.setFont(Fonts.TEXT.loadFont());
-
-        return title;
     }
 
     private void toggleMaximize() {

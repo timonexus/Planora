@@ -227,4 +227,8 @@ public class PlanoraFrame extends JFrame implements Frame {
     public void openWindow(){
         this.windowAnimator.open();
     }
+
+    public FrameResizer getFrameResizer() {
+        return frameResizer;
+    }
 }

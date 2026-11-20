@@ -5,7 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-import de.timonexus.planora.models.tableModels.Dienste.DutieTableModel;
+import de.timonexus.planora.models.tableModels.tableModels.DutieTableModel;
 import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.service.Duties.DutiesService;
 import de.timonexus.planora.ui.Component;

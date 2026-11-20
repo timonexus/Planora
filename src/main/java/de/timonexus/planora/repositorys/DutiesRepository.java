@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.timonexus.planora.database.QueryResult;
-import de.timonexus.planora.models.Dutie;
 import de.timonexus.planora.models.Model;
+import de.timonexus.planora.models.Models.Dutie;
 
 public class DutiesRepository implements Repository{
 
