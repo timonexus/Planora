@@ -1,6 +1,7 @@
 package de.timonexus.planora.ui.table;
 
-import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.util.List;
 
 import javax.swing.BoxLayout;
@@ -60,8 +61,8 @@ public class TableBody extends JPanel implements Component{
     private void fillTable(){
         this.removeAll();
         if(lines.length == 0){
-            this.setLayout(new BorderLayout());
-            this.add(new TableIsEmpty(), BorderLayout.CENTER);
+            this.setLayout(new GridBagLayout());
+            this.add(new TableIsEmpty(), new GridBagConstraints());
         }else{
             this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
             for(Model model : lines){

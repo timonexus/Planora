@@ -79,12 +79,12 @@ public class Table extends JPanel implements Component{
 		this.lines = this.service.loadAll();
 		this.tableHeader = new TableHeader(this.tableModel, this.service, this.selectedLines);
 		this.tablebody = new TableBody(this.lines, this.tableModel, this.service, this.selectedLines);
-		
-		this.removeAll();
 
 		this.prepareComponents();
 		this.addComponents();
 
+		this.revalidate();
+    	this.repaint();
 	}
 
     private void skinBasePanel(){

@@ -71,9 +71,9 @@ public class TableIsEmpty extends JPanel {
             Colors.MENUES.getColor()
         );
 
-        this.tableIsEmpty.setPreferredSize(
-            new Dimension(300, 300)
-        );
+        this.tableIsEmpty.setPreferredSize(new Dimension(300, 300));
+        this.tableIsEmpty.setMinimumSize(new Dimension(300, 300));
+        this.tableIsEmpty.setMaximumSize(new Dimension(300, 300));
     }
 
 
