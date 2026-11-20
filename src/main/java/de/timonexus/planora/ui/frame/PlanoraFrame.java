@@ -2,6 +2,10 @@
 package de.timonexus.planora.ui.frame;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -9,6 +13,8 @@ import javax.swing.JPanel;
 import de.timonexus.planora.ui.Component;
 import de.timonexus.planora.ui.formulars.Formular;
 import de.timonexus.planora.ui.formulars.LayeredPane;
+import de.timonexus.planora.ui.frame.frameHeader.FrameHeader;
+import de.timonexus.planora.ui.frame.frameHeader.FrameResizer;
 import de.timonexus.planora.ui.pages.DefaultPage;
 import de.timonexus.planora.ui.pages.Pages;
 import de.timonexus.planora.ui.sidebar.PlanoraSidebar;
@@ -19,13 +25,25 @@ public class PlanoraFrame extends JFrame implements Frame {
 
     // attributes
     private final Component sidebar;
+    private final FrameHeader header;
     private DefaultPage page;
     private final LayeredPane formularPane;
+    private FrameResizer frameResizer;
+    private final WindowAnimator windowAnimator;
 
     // constructor
     public PlanoraFrame() {
 
         this.sidebar = new PlanoraSidebar(this);
+        this.windowAnimator = new WindowAnimator(this);
+        this.header = new FrameHeader(this, this.windowAnimator);
+        this.frameResizer = new FrameResizer(this, () -> {
+            this.sidebar.refresh();
+            this.page.refresh();
+
+            this.revalidate();
+            this.repaint();
+        });
 
         this.page = loadActivePage();
         this.page.setFrame(this);
@@ -48,6 +66,7 @@ public class PlanoraFrame extends JFrame implements Frame {
             (String) FrameValues.TITLE.getValue()
         );
 
+
         this.setSize(
             (int) FrameValues.WIDTH.getValue(),
             (int) FrameValues.HEIGHT.getValue()
@@ -67,7 +86,35 @@ public class PlanoraFrame extends JFrame implements Frame {
             Logo.DEFAULT_LOGO.getImageForTaskbar()
         );
 
+        this.setUndecorated(true);
+        this.setBackground(new Color(0, 0, 0, 0));
+
+        this.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                updateWindowShape();
+            }
+        });
+
+        this.updateWindowShape();
+
         this.setLayout(new BorderLayout());
+    }
+
+    private void updateWindowShape() {
+        int width = this.getWidth();
+        int height = this.getHeight();
+
+        if (width > 0 && height > 0) {
+            this.setShape(new RoundRectangle2D.Double(
+                0,
+                0,
+                width,
+                height,
+                24,
+                24
+            ));
+        }
     }
 
     @Override
@@ -89,6 +136,8 @@ public class PlanoraFrame extends JFrame implements Frame {
             (JPanel) this.page,
             BorderLayout.CENTER
         );
+
+        this.add(this.header, BorderLayout.NORTH);
     }
 
     @Override
@@ -173,5 +222,9 @@ public class PlanoraFrame extends JFrame implements Frame {
         this.formularPane.setVisible(false);
 
         this.formularPane.removeFormular();
+    }
+
+    public void openWindow(){
+        this.windowAnimator.open();
     }
 }
