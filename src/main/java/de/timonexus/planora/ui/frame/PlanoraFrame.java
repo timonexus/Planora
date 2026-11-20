@@ -1,8 +1,10 @@
+
 package de.timonexus.planora.ui.frame;
 
 import java.awt.BorderLayout;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import de.timonexus.planora.ui.Component;
 import de.timonexus.planora.ui.formulars.Formular;
@@ -13,92 +15,163 @@ import de.timonexus.planora.ui.sidebar.PlanoraSidebar;
 import de.timonexus.planora.utils.enums.Colors;
 import de.timonexus.planora.utils.enums.Logo;
 
-public class PlanoraFrame extends JFrame implements Frame{
+public class PlanoraFrame extends JFrame implements Frame {
 
     // attributes
     private final Component sidebar;
     private DefaultPage page;
-    private final Component formularPane;
+    private final LayeredPane formularPane;
 
     // constructor
-    public PlanoraFrame(){
+    public PlanoraFrame() {
+
         this.sidebar = new PlanoraSidebar(this);
+
         this.page = loadActivePage();
+        this.page.setFrame(this);
 
         this.formularPane = new LayeredPane();
+
+        this.formularPane.prepareComponent();
+
+        // Formular-Ebene über den gesamten Inhalt legen
+        this.setGlassPane(this.formularPane);
+
+        // Anfangs ist das Formular ausgeblendet
+        this.formularPane.setVisible(false);
     }
 
     @Override
     public void skinFrame() {
-        this.setTitle((String) FrameValues.TITLE.getValue());
-        this.setSize((int) FrameValues.WIDTH.getValue(), (int) FrameValues.HEIGHT.getValue());
+
+        this.setTitle(
+            (String) FrameValues.TITLE.getValue()
+        );
+
+        this.setSize(
+            (int) FrameValues.WIDTH.getValue(),
+            (int) FrameValues.HEIGHT.getValue()
+        );
+
         this.setLocationRelativeTo(null);
-        this.getContentPane().setBackground(Colors.BASE.getColor());
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setIconImage(Logo.DEFAULT_LOGO.getImageForTaskbar());
+
+        this.getContentPane().setBackground(
+            Colors.BASE.getColor()
+        );
+
+        this.setDefaultCloseOperation(
+            JFrame.EXIT_ON_CLOSE
+        );
+
+        this.setIconImage(
+            Logo.DEFAULT_LOGO.getImageForTaskbar()
+        );
+
         this.setLayout(new BorderLayout());
     }
 
-    @Override 
-    public void prepareComponents(){
+    @Override
+    public void prepareComponents() {
+
         this.sidebar.prepareComponent();
         this.page.preparePage();
-        this.formularPane.prepareComponent();
     }
 
     @Override
     public void addComponents() {
-        this.add((JPanel)this.sidebar, BorderLayout.WEST);
-        this.add((JPanel) this.page, BorderLayout.CENTER);
+
+        this.add(
+            (JPanel) this.sidebar,
+            BorderLayout.WEST
+        );
+
+        this.add(
+            (JPanel) this.page,
+            BorderLayout.CENTER
+        );
     }
 
     @Override
     public void refresh() {
+
         DefaultPage newPage = loadActivePage();
 
-        if (newPage == page) {
+        if (newPage == this.page) {
             return;
         }
 
-        if (page != null) {
-            this.remove( (JPanel) page);
+        if (this.page != null) {
+            this.remove((JPanel) this.page);
         }
 
-        page = newPage;
-        page.preparePage();
+        this.page = newPage;
 
-        this.add((JPanel) page, BorderLayout.CENTER);
+        this.page.setFrame(this);
+        this.page.preparePage();
 
-        revalidate();
-        repaint();
+        this.add(
+            (JPanel) this.page,
+            BorderLayout.CENTER
+        );
+
+        this.revalidate();
+        this.repaint();
 
         this.sidebar.refresh();
     }
 
-    // getter
+    // --------------------------------------------------
+    // Getter
+    // --------------------------------------------------
+
     public Component getSidebar() {
-        return sidebar;
-    }
-    public DefaultPage getPage() {
-        return page;
+        return this.sidebar;
     }
 
-    // setter
-    @Override 
+    public DefaultPage getPage() {
+        return this.page;
+    }
+
+    // --------------------------------------------------
+    // Setter
+    // --------------------------------------------------
+
+    @Override
     public void setPage(DefaultPage page) {
         this.page = page;
     }
 
-    private DefaultPage loadActivePage(){
+    // --------------------------------------------------
+    // Page
+    // --------------------------------------------------
+
+    private DefaultPage loadActivePage() {
+
         Pages pages = Pages.getActivePage();
+
         return pages.getPage();
     }
 
-    public void showFormularPane(Formular nFormular){
-        this.add((JLayeredPane) this.formularPane, BorderLayout.CENTER);
+    // --------------------------------------------------
+    // Formular
+    // --------------------------------------------------
+
+    public void showFormularPane(Formular nFormular) {
+
+        this.formularPane.setFormular(
+            (javax.swing.JComponent) nFormular
+        );
+
+        this.formularPane.setVisible(true);
+
+        this.formularPane.revalidate();
+        this.formularPane.repaint();
     }
-    public void hideFormularPane(){
-        this.remove((JLayeredPane) this.formularPane);
+
+    public void hideFormularPane() {
+
+        this.formularPane.setVisible(false);
+
+        this.formularPane.removeFormular();
     }
-    
 }
