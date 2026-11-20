@@ -39,9 +39,10 @@ public class PlanoraSidebar extends JPanel implements Component{
 	@Override
 	public void designComponent() {
         this.setPreferredSize(new Dimension((int) SidebarValues.WIDTH.getValue(), (int) SidebarValues.HEIGHT.getValue()));
-        this.setOpaque(false);
+        this.setOpaque(true);
+		this.setBackground(Colors.BASE.getColor());
 		this.setLayout(new BorderLayout());
-    	this.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+    	this.setBorder(BorderFactory.createEmptyBorder(0, 20, 20, 20));
 
 		skinBasePanel();
     }

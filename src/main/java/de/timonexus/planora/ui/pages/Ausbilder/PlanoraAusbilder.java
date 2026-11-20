@@ -5,7 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-import de.timonexus.planora.models.tableModels.Ausbilder.AusbilderTableModel;
+import de.timonexus.planora.models.tableModels.tableModels.AusbilderTableModel;
 import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.service.Ausbilder.AusbilderService;
 import de.timonexus.planora.ui.Component;
@@ -33,7 +33,7 @@ public class PlanoraAusbilder extends JPanel implements DefaultPage{
     public void skinPage(){
         this.setBackground(Colors.BASE.getColor());
 		this.setLayout(new BorderLayout());
-    	this.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 20));
+    	this.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 20));
     }
 
     @Override 

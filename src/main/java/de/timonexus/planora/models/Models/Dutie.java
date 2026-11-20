@@ -1,4 +1,6 @@
-package de.timonexus.planora.models;
+package de.timonexus.planora.models.Models;
+
+import de.timonexus.planora.models.Model;
 
 public class Dutie implements Model{
 

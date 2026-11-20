@@ -10,4 +10,6 @@ public interface TableModel {
     List<TableElement> getColumns();
 
     List<TableElement> getTableElements(Model nModel);
+
+    Object getValue(int nColumnID, Model nModel);
 }

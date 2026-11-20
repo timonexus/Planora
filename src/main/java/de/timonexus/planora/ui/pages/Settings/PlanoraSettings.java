@@ -40,8 +40,6 @@ public class PlanoraSettings extends JPanel implements DefaultPage{
 
 	@Override
 	public void setFrame(Frame nFrame) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'setFrame'");
 	}
     
 }

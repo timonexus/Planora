@@ -5,7 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-import de.timonexus.planora.models.tableModels.Dienste.DutieTableModel;
+import de.timonexus.planora.models.tableModels.tableModels.DutieTableModel;
 import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.service.Duties.DutiesService;
 import de.timonexus.planora.ui.Component;
@@ -34,7 +34,7 @@ public class PlanoraDuties extends JPanel implements DefaultPage{
     public void skinPage(){
         this.setBackground(Colors.BASE.getColor());
 		this.setLayout(new BorderLayout());
-    	this.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 20));
+    	this.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 20));
     }
 
     @Override 

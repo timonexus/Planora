@@ -39,6 +39,7 @@ public class Application {
             }
 
             planoraFrame.setVisible(true);
+            planoraFrame.openWindow();
 
             System.out.println("[INFO] Application successfully started");
         });
