@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
+import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.ui.Component;
 import de.timonexus.planora.ui.pages.pageHeader.pageHeaderButtonContainer.PageHeaderButtonContainer;
 import de.timonexus.planora.ui.pages.pageHeader.pageHeaderSearchbar.PageHeaderSearchbar;
@@ -19,10 +20,10 @@ public class PageHeader extends JPanel implements Component{
     private final Component buttonContainer;
 
     // constructor
-    public PageHeader(){
+    public PageHeader(DefaultPageService nService){
         this.basePanel = new RoundedPanel();
         this.searchbar = new PageHeaderSearchbar();
-        this.buttonContainer = new PageHeaderButtonContainer();
+        this.buttonContainer = new PageHeaderButtonContainer(nService);
     }
 
 	@Override
