@@ -8,7 +8,8 @@ import java.io.InputStream;
 public enum Fonts {
     LOGO("/fonts/montserrat/Montserrat-Black.ttf", 800, 20),
     TITLE("/fonts/inter/Inter_28pt-Medium.ttf", 500, 30),
-    TEXT("/fonts/inter/Inter_28pt-Medium.ttf", 400, 16)
+    TEXT("/fonts/inter/Inter_28pt-Medium.ttf", 400, 16),
+    TEXT_SECOND("/fonts/inter/Inter_28pt-Medium.ttf", 400, 24)
     ;
 
     // attributes
