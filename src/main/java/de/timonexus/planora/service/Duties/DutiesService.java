@@ -5,6 +5,7 @@ import de.timonexus.planora.repositorys.DutiesRepository;
 import de.timonexus.planora.repositorys.Repository;
 import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.ui.formulars.DutiesFormular;
+import de.timonexus.planora.ui.formulars.Dienste.DienstAnlegenFormular;
 import de.timonexus.planora.ui.formulars.ViewFormulars.ViewDutie;
 import de.timonexus.planora.ui.frame.Frame;
 import de.timonexus.planora.ui.pages.DefaultPage;
@@ -77,7 +78,9 @@ public class DutiesService implements DefaultPageService{
 
     @Override
     public void openFormular() {
-        this.frame.showFormularPane(new DutiesFormular(this, () -> this.closeFormular()));
+        DienstAnlegenFormular dienstAnlegenFormular = new DienstAnlegenFormular(this, () -> this.closeFormular());
+        dienstAnlegenFormular.prepareComponent();
+        this.frame.showFormularPane(dienstAnlegenFormular);
     }
 
     @Override

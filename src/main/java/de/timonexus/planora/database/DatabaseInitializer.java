@@ -24,6 +24,7 @@ public class DatabaseInitializer {
     private void registerFiles() {
         files.add("sql/Duties/CreateTable.sql");
         files.add("sql/Ausbilder/CreateTable.sql");
+        files.add("sql/utilTables/DienstAusbilder_UT/CreateTable.sql");
     }
 
     // Initialize database tables
