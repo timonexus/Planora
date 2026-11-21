@@ -21,15 +21,11 @@ public class DienstAnlegenFormular extends RoundedPanel implements Formular, Com
     private final FormularHeader header;
     private final DienstAnlegenBody body;
 
-    private int step;
-
     // constructor
     public DienstAnlegenFormular(DefaultPageService nService, Runnable nOnClose){
         this.onClose = nOnClose;
         this.header = new FormularHeader("Neuer Dienst", this.onClose);
-        this.body = new DienstAnlegenBody();
-
-        this.step = 1;
+        this.body = new DienstAnlegenBody(nService);
     }
 
 	@Override
@@ -40,7 +36,7 @@ public class DienstAnlegenFormular extends RoundedPanel implements Formular, Com
 	@Override
 	public void designComponent() {
         this.setLayout(new BorderLayout());
-        this.setPreferredSize(new Dimension(440, 320));
+        this.setPreferredSize(new Dimension(440, 380));
         this.setBackground(Colors.APP_BAR.getColor());
         this.setRadius(15);
         this.setRoundedBorder(Colors.TEXT_DISABLED.getColor(), 1, BorderPlacement.OUTSIDE);

@@ -11,7 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.utils.RoundedPanel;
 import de.timonexus.planora.utils.RoundedPanel.BorderPlacement;
 import de.timonexus.planora.utils.enums.Colors;
@@ -22,15 +21,11 @@ public class FormularButton extends JPanel{
     // attributes
     private final RoundedPanel basePanel;
     private final JLabel label;
-    private final Runnable onClose;
-    private final Formular formular;
-    private final DefaultPageService service;
+    private final Runnable onClick;
 
     // constructor
-    public FormularButton(Formular nFormular, DefaultPageService nService, Runnable nOnClose){
-        this.onClose = nOnClose;
-        this.formular = nFormular;
-        this.service = nService;
+    public FormularButton(Runnable nOnClick){
+        this.onClick = nOnClick;
 
         this.basePanel = new RoundedPanel();
         this.label = new JLabel("Speichern");
@@ -103,8 +98,7 @@ public class FormularButton extends JPanel{
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                service.safe(formular.getData());
-                onClose.run();
+                onClick.run();
             }
         };
 
