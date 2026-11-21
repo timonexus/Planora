@@ -10,6 +10,7 @@ import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.ui.Component;
 import de.timonexus.planora.ui.formulars.Formular;
 import de.timonexus.planora.ui.formulars.FormularHeader;
+import de.timonexus.planora.ui.formulars.Dienste.dienstAnlegenBody.DienstAnlegenBody;
 import de.timonexus.planora.utils.RoundedPanel;
 import de.timonexus.planora.utils.enums.Colors;
 
@@ -18,11 +19,17 @@ public class DienstAnlegenFormular extends RoundedPanel implements Formular, Com
     // attributes
     private final Runnable onClose;
     private final FormularHeader header;
+    private final DienstAnlegenBody body;
+
+    private int step;
 
     // constructor
     public DienstAnlegenFormular(DefaultPageService nService, Runnable nOnClose){
         this.onClose = nOnClose;
         this.header = new FormularHeader("Neuer Dienst", this.onClose);
+        this.body = new DienstAnlegenBody();
+
+        this.step = 1;
     }
 
 	@Override
@@ -50,11 +57,13 @@ public class DienstAnlegenFormular extends RoundedPanel implements Formular, Com
 
 	@Override
 	public void prepareComponents() {
+        this.body.prepareComponent();
 	}
 
 	@Override
 	public void addComponents() {
         this.add(this.header, BorderLayout.NORTH);
+        this.add(this.body, BorderLayout.CENTER);
 	}
 
 	@Override
