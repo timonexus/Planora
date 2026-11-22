@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 
+import de.timonexus.planora.models.Model;
 import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.ui.Component;
 import de.timonexus.planora.ui.formulars.FormularButton;
@@ -40,6 +41,10 @@ public class DienstAnlegenBody extends JPanel implements Component{
 	private void increaseStep(){
 		this.step++;
 		this.stepDisplay.setCurrentStep(this.step);
+	}
+
+	public void setData(Model nModel){
+		this.firstStep.setData(nModel);
 	}
 
 	@Override

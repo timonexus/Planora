@@ -28,6 +28,10 @@ public class DienstAnlegenFormular extends RoundedPanel implements Formular, Com
         this.body = new DienstAnlegenBody(nService);
     }
 
+	public void setData(Model nModel){
+		this.body.setData(nModel);
+	}
+
 	@Override
 	public Model getData() {
         return null;
