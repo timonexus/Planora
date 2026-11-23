@@ -1,4 +1,4 @@
-package de.timonexus.planora.models.utilModels;
+package de.timonexus.planora.models.Models.utilModels;
 
 import de.timonexus.planora.models.Model;
 

@@ -36,7 +36,8 @@ public class DienstAnlegenBody extends JPanel implements Component{
 
 	private void safe(){
 		this.service.safe(this.firstStep.getData());
-		this.secondStep = new SecondStep(((DutiesService) this.service).getDienstId());
+		this.secondStep = new SecondStep(((DutiesService) this.service).getDienstId() == 0 ? this.firstStep.getData().getID() : ((DutiesService) this.service).getDienstId(), this.firstStep.getData().getID() == 0 ? true : false);
+		this.secondStep.prepareComponent();
 		this.increaseStep();
 		this.refresh();
 	}

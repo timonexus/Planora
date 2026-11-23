@@ -11,7 +11,7 @@ import de.timonexus.planora.models.Models.Ausbilder;
 public class AusbilderRepository implements Repository{
 
 	@Override
-	public Model[] loadAll() {
+	public Model[] loadAll(int nId) {
         List<Model> models = new ArrayList<>();
 
         try (QueryResult query = this.querySQL(this.readSqlFile("sql/Ausbilder/LoadAll.sql"))){

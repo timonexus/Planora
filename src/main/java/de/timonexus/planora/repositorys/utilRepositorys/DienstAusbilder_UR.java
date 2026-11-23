@@ -6,7 +6,7 @@ import java.util.List;
 
 import de.timonexus.planora.database.QueryResult;
 import de.timonexus.planora.models.Model;
-import de.timonexus.planora.models.utilModels.DienstAusbilder_UM;
+import de.timonexus.planora.models.Models.utilModels.DienstAusbilder_UM;
 import de.timonexus.planora.repositorys.Repository;
 
 public class DienstAusbilder_UR implements Repository{
@@ -20,11 +20,11 @@ public class DienstAusbilder_UR implements Repository{
     }
 
 	@Override
-	public Model[] loadAll() {
+	public Model[] loadAll(int nId) {
         List<Model> models = new ArrayList<>();
 
         if(this.dienstId == 0){
-            try(QueryResult query = this.querySQL(this.readSqlFile("sql/Ausbilder/LoadAll.sql"))){
+            try(QueryResult query = this.querySQL(this.readSqlFile("sql/utilTables/DienstAusbilder_UT/LoadAll.sql"), nId)){
                 ResultSet resultSet = query.getResultSet();
                 while (resultSet.next()){
                     models.add(new DienstAusbilder_UM(0, 0, resultSet.getInt("id"), resultSet.getString("name"), false, false));
@@ -33,7 +33,7 @@ public class DienstAusbilder_UR implements Repository{
                 e.printStackTrace();
             }
         }else{
-            try(QueryResult query = this.querySQL(this.readSqlFile("sql/Ausbilder/LoadAll.sql"))){
+            try(QueryResult query = this.querySQL(this.readSqlFile("sql/utilTables/DienstAusbilder_UT/LoadAll.sql"), dienstId)){
                 ResultSet resultSet = query.getResultSet();
                 while (resultSet.next()){
                     models.add(new DienstAusbilder_UM(resultSet.getInt("id"), resultSet.getInt("idDienst"), resultSet.getInt("idAusbilder"), resultSet.getString("ausbilderName"), resultSet.getBoolean("participationYounger"), resultSet.getBoolean("participationOlder")));

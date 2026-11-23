@@ -16,7 +16,7 @@ import de.timonexus.planora.models.Model;
 
 public interface Repository {
 
-    Model[] loadAll();
+    Model[] loadAll(int nId);
     int safe(Model nValues);
     void delete(List<Integer> nLineIds);
     Model[] search(String nText);

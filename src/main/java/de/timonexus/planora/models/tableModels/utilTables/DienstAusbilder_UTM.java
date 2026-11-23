@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.timonexus.planora.models.Model;
+import de.timonexus.planora.models.Models.utilModels.DienstAusbilder_UM;
 import de.timonexus.planora.models.tableModels.TableModel;
-import de.timonexus.planora.models.utilModels.DienstAusbilder_UM;
 import de.timonexus.planora.ui.table.TableElement;
 
 public class DienstAusbilder_UTM implements TableModel{

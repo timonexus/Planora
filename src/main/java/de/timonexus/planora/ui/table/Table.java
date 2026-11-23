@@ -23,6 +23,8 @@ public class Table extends JPanel implements Component{
 	private final DefaultPageService service;
 	private final List<Integer> selectedLines;
 
+	private int id;
+
 	private Component tableHeader;
 	private Component tablebody;
 
@@ -76,7 +78,7 @@ public class Table extends JPanel implements Component{
 
 	@Override
 	public void refresh() {
-		this.lines = this.service.loadAll();
+		this.lines = this.service.loadAll(id);
 		this.tableHeader = new TableHeader(this.tableModel, this.service, this.selectedLines);
 		this.tablebody = new TableBody(this.lines, this.tableModel, this.service, this.selectedLines);
 
@@ -137,5 +139,10 @@ public class Table extends JPanel implements Component{
 			}
 		}
 		return null;
+	}
+
+	public void setId(int nId){
+		this.id = nId;
+		this.refresh();
 	}
 }

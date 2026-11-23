@@ -13,7 +13,7 @@ import de.timonexus.planora.models.Models.Dutie;
 public class DutiesRepository implements Repository{
 
     @Override
-    public Model[] loadAll() {
+    public Model[] loadAll(int nId) {
 
         List<Model> models = new ArrayList<>();
 
