@@ -96,6 +96,12 @@ public class Table extends JPanel implements Component{
 		this.selectedLines.add(nId);
 	}
 
+	public void addAllLines(){
+		for(Model model : lines){
+			this.selectedLines.add(model.getID());
+		}
+	}
+
 	public List<Integer> getSelectedLines() {
 		return selectedLines;
 	}

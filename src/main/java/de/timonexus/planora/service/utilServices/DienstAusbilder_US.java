@@ -37,6 +37,14 @@ public class DienstAusbilder_US implements DefaultPageService{
 	}
 
 	@Override
+	public void addAllLines() {
+	}
+
+	@Override
+	public void removeAllLines() {
+	}
+
+	@Override
 	public void addSelectedLine(int nId) {
 	}
 

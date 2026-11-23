@@ -13,6 +13,8 @@ public interface DefaultPageService {
 
     public void addSelectedLine(int nId);
     public void removeSelectedLine(int nId);
+    public void addAllLines();
+    public void removeAllLines();
 
     public void safe(Model nValues);
 

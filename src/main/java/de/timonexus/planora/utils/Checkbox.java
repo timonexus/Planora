@@ -115,8 +115,10 @@ public class Checkbox extends JPanel {
 
         if (this.isChecked) {
             this.service.addSelectedLine(this.id);
+            if(this.id == -1) this.service.addAllLines();
         } else {
             this.service.removeSelectedLine(this.id);
+            if(this.id == -1) this.service.removeAllLines();
         }
     }
 

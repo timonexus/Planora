@@ -77,6 +77,16 @@ public class DutiesService implements DefaultPageService{
     }
 
     @Override
+    public void addAllLines() {
+        this.table.addAllLines();
+    }
+
+    @Override
+    public void removeAllLines() {
+        this.table.resetSelectedLines();
+    }
+
+    @Override
     public void setFrame(Frame nFrame) {
         this.frame = nFrame;
     }

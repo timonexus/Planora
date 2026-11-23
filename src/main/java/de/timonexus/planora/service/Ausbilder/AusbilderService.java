@@ -46,6 +46,16 @@ public class AusbilderService implements DefaultPageService{
 	}
 
 	@Override
+	public void addAllLines() {
+		this.table.addAllLines();
+	}
+
+    @Override
+    public void removeAllLines() {
+        this.table.resetSelectedLines();
+    }
+
+	@Override
 	public void safe(Model nValues) {
 		this.repository.safe(nValues);
 		this.refreshTable();
