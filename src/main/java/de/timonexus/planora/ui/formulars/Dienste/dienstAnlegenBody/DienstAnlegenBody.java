@@ -19,37 +19,41 @@ public class DienstAnlegenBody extends JPanel implements Component{
 	private SecondStep secondStep;
 
 	private final DefaultPageService service;
+	private final Runnable onClose;
 
 	private FormularButton button;
 
 	private int step;
 
 	// constructor
-	public DienstAnlegenBody(DefaultPageService nService){
+	public DienstAnlegenBody(DefaultPageService nService, Runnable nOnClose){
 		this.service = nService;
 		this.stepDisplay = new StepDisplay(3, 1);
 		this.firstStep = new FirstStep();
 		this.button = new FormularButton(this::safe);
 
 		this.step = 1;
+		this.onClose = nOnClose;
 	}
 
 	private void safe() {
+		if(this.step == 1){
+			boolean isNew = this.firstStep.getData().getID() == 0;
+			this.service.safe(this.firstStep.getData());
+			int dienstId = ((DutiesService) this.service).getDienstId();
+			if (dienstId == 0) {
+				dienstId = this.firstStep.getData().getID();
+			}
+			this.secondStep = new SecondStep(dienstId, isNew);
 
-		boolean isNew = this.firstStep.getData().getID() == 0;
-
-		this.service.safe(this.firstStep.getData());
-
-		int dienstId = ((DutiesService) this.service).getDienstId();
-
-		if (dienstId == 0) {
-			dienstId = this.firstStep.getData().getID();
+			this.increaseStep();
+			this.refresh();
+		}else if(this.step == 2){
+			this.increaseStep();
+			this.refresh();
+		}else if(this.step == 3){
+			this.onClose.run();
 		}
-
-		this.secondStep = new SecondStep(dienstId, isNew);
-
-		this.increaseStep();
-		this.refresh();
 	}
 
 	private void increaseStep(){

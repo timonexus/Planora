@@ -25,7 +25,7 @@ public class DienstAnlegenFormular extends RoundedPanel implements Formular, Com
     public DienstAnlegenFormular(DefaultPageService nService, Runnable nOnClose){
         this.onClose = nOnClose;
         this.header = new FormularHeader("Neuer Dienst", this.onClose);
-        this.body = new DienstAnlegenBody(nService);
+        this.body = new DienstAnlegenBody(nService, this.onClose);
     }
 
 	public void setData(Model nModel){
