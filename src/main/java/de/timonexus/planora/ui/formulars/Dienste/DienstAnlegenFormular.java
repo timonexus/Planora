@@ -40,7 +40,7 @@ public class DienstAnlegenFormular extends RoundedPanel implements Formular, Com
 	@Override
 	public void designComponent() {
         this.setLayout(new BorderLayout());
-        this.setPreferredSize(new Dimension(440, 380));
+        this.setPreferredSize(new Dimension(440, 480));
         this.setBackground(Colors.APP_BAR.getColor());
         this.setRadius(15);
         this.setRoundedBorder(Colors.TEXT_DISABLED.getColor(), 1, BorderPlacement.OUTSIDE);

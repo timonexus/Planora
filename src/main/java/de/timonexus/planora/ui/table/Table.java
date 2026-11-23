@@ -79,26 +79,11 @@ public class Table extends JPanel implements Component{
 	@Override
 	public void refresh() {
 		this.lines = this.service.loadAll(id);
-		this.tableHeader = new TableHeader(this.tableModel, this.service, this.selectedLines);
-		this.tablebody = new TableBody(this.lines, this.tableModel, this.service, this.selectedLines);
-
-		this.prepareComponents();
-		this.addComponents();
-
-		this.revalidate();
-    	this.repaint();
+		((TableBody) this.tablebody).setLines(this.lines);
 	}
 
 	public void refresh(Model[] nModels) {
-		this.lines = nModels;
-		this.tableHeader = new TableHeader(this.tableModel, this.service, this.selectedLines);
-		this.tablebody = new TableBody(this.lines, this.tableModel, this.service, this.selectedLines);
-
-		this.prepareComponents();
-		this.addComponents();
-
-		this.revalidate();
-    	this.repaint();
+		((TableBody) this.tablebody).setLines(nModels);
 	}
 
     private void skinBasePanel(){

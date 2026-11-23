@@ -14,6 +14,7 @@ public class DienstAusbilder_US implements DefaultPageService{
 
     // attributes
     private final Repository repository;
+	private Table table;
 
     // constructor
     public DienstAusbilder_US(){
@@ -27,10 +28,12 @@ public class DienstAusbilder_US implements DefaultPageService{
 
 	@Override
 	public void refreshTable() {
+		this.table.refresh();
 	}
 
 	@Override
 	public void setTable(Table nTable) {
+		this.table = nTable;
 	}
 
 	@Override

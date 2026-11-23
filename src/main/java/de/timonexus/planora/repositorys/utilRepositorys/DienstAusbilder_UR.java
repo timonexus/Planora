@@ -14,7 +14,6 @@ public class DienstAusbilder_UR implements Repository{
 	@Override
 	public Model[] loadAll(int nId) {
         List<Model> models = new ArrayList<>();
-        System.out.println(nId);
         try(QueryResult query = this.querySQL(this.readSqlFile("sql/utilTables/DienstAusbilder_UT/LoadAll.sql"), nId)){
             ResultSet resultSet = query.getResultSet();
             while (resultSet.next()){
@@ -29,7 +28,6 @@ public class DienstAusbilder_UR implements Repository{
 
 	public Model[] loadAllId(int nId) {
         List<Model> models = new ArrayList<>();
-        System.out.println(nId);
         try(QueryResult query = this.querySQL(this.readSqlFile("sql/utilTables/DienstAusbilder_UT/LoadAll_id.sql"), nId)){
             ResultSet resultSet = query.getResultSet();
             while (resultSet.next()){

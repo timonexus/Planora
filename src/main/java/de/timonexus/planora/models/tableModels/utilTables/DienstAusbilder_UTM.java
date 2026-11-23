@@ -14,9 +14,9 @@ public class DienstAusbilder_UTM implements TableModel{
 	@Override
 	public List<TableElement> getColumns() {
         return List.of(
-            new TableElement("Name", 0, 100, 100, Integer.MAX_VALUE, null),
-            new TableElement("Kleine", 1, 100, 100, 100, value -> this.changeValues(value, 1)),
-            new TableElement("Große", 2, 100, 100, 100, value -> this.changeValues(value, 2)),
+            new TableElement("Name", 0, 80, 80, Integer.MAX_VALUE, null),
+            new TableElement("Kleine", 1, 70, 70, 70, value -> this.changeValues(value, 1)),
+            new TableElement("Große", 2, 70, 70, 70, value -> this.changeValues(value, 2)),
             new TableElement("Komplett", 3, 100, 100, 100, value -> this.changeValues(value, 3))
         );
 	}

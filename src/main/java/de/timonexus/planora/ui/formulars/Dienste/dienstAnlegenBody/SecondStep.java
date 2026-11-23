@@ -35,6 +35,7 @@ public class SecondStep extends JPanel implements Component{
 		this.tableModel = new DienstAusbilder_UTM();
 		this.table = new Table(this.service.loadAll(nDienstId), tableModel, service);
 		this.table.setId(nDienstId);
+		this.service.setTable(this.table);
 
 		if(nDienstId != 0 && isNew){
 			fillDatabase();
