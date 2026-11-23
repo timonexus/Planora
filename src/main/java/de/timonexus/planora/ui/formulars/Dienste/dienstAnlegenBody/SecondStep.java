@@ -17,80 +17,97 @@ import de.timonexus.planora.service.utilServices.DienstAusbilder_US;
 import de.timonexus.planora.ui.Component;
 import de.timonexus.planora.ui.table.Table;
 
-public class SecondStep extends JPanel implements Component{
+public class SecondStep extends JPanel implements Component {
 
-    // attributes
     private final int dienstId;
+    private final boolean isNew;
+
     private final Repository repositoryDienstAusbilder;
-	private final DefaultPageService service;
-	private final Table table;
-	private final DienstAusbilder_UTM tableModel;
+    private final DefaultPageService service;
 
-    // constructor
-    public SecondStep(int nDienstId, boolean isNew){
+    private final Table table;
 
-        this.dienstId = nDienstId;
+    public SecondStep(int dienstId, boolean isNew) {
+
+        this.dienstId = dienstId;
+        this.isNew = isNew;
+
         this.repositoryDienstAusbilder = new DienstAusbilder_UR();
-		this.service = new DienstAusbilder_US();
-		this.tableModel = new DienstAusbilder_UTM();
-		this.table = new Table(this.service.loadAll(nDienstId), tableModel, service);
-		this.table.setId(nDienstId);
-		this.service.setTable(this.table);
+        this.service = new DienstAusbilder_US();
 
-		if(nDienstId != 0 && isNew){
-			fillDatabase();
-		}
+        this.table = new Table(
+            new Model[0],
+            new DienstAusbilder_UTM(),
+            this.service
+        );
+
+        this.table.setId(dienstId);
     }
 
-    // initialize Data
     private void fillDatabase() {
+
         Repository repositoryAusbilder = new AusbilderRepository();
-        Model[] ausbilder = repositoryAusbilder.loadAll(this.dienstId);
+
+        Model[] ausbilder = repositoryAusbilder.loadAll(dienstId);
 
         for (Model model : ausbilder) {
-            Ausbilder ausbilder_temp = (Ausbilder) model;
+
+            Ausbilder ausbilderTemp = (Ausbilder) model;
+
             repositoryDienstAusbilder.safe(
                 new DienstAusbilder_UM(
                     0,
                     dienstId,
-                    ausbilder_temp.getID(),
+                    ausbilderTemp.getID(),
                     false,
                     false
                 )
             );
         }
-
-		this.table.refresh(this.service.loadAll(this.dienstId));
     }
 
-	@Override
-	public void designComponent() {
-        this.setOpaque(false);
-		this.setLayout(new BorderLayout());
-		this.setBorder(new EmptyBorder(20, 20, 20, 20));
-	}
+    private void loadTableData() {
+        Model[] models = service.loadAll(dienstId);
+        table.refresh(models);
+    }
 
-	@Override
-	public void skinParts() {
-	}
+    @Override
+    public void designComponent() {
+        setOpaque(false);
+        setLayout(new BorderLayout());
+        setBorder(new EmptyBorder(20, 20, 20, 20));
+    }
 
-	@Override
-	public void addParts() {
-	}
+    @Override
+    public void skinParts() {
+    }
 
-	@Override
-	public void prepareComponents() {
-		this.table.prepareComponent();
-	}
+    @Override
+    public void addParts() {
+    }
 
-	@Override
-	public void addComponents() {
-		this.add(this.table, BorderLayout.CENTER);
-	}
+    @Override
+    public void prepareComponents() {
 
-	@Override
-	public void refresh() {
-		this.prepareComponent();
-	}
-    
+        if (isNew) {
+            fillDatabase();
+        }
+
+        loadTableData();
+
+        table.prepareComponent();
+    }
+
+    @Override
+    public void addComponents() {
+        removeAll();
+        add(table, BorderLayout.CENTER);
+    }
+
+    @Override
+    public void refresh() {
+        loadTableData();
+        revalidate();
+        repaint();
+    }
 }

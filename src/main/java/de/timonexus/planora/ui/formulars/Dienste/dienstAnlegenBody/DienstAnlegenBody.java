@@ -34,10 +34,20 @@ public class DienstAnlegenBody extends JPanel implements Component{
 		this.step = 1;
 	}
 
-	private void safe(){
+	private void safe() {
+
+		boolean isNew = this.firstStep.getData().getID() == 0;
+
 		this.service.safe(this.firstStep.getData());
-		this.secondStep = new SecondStep(((DutiesService) this.service).getDienstId() == 0 ? this.firstStep.getData().getID() : ((DutiesService) this.service).getDienstId(), this.firstStep.getData().getID() == 0 ? true : false);
-		this.secondStep.prepareComponent();
+
+		int dienstId = ((DutiesService) this.service).getDienstId();
+
+		if (dienstId == 0) {
+			dienstId = this.firstStep.getData().getID();
+		}
+
+		this.secondStep = new SecondStep(dienstId, isNew);
+
 		this.increaseStep();
 		this.refresh();
 	}
@@ -67,21 +77,35 @@ public class DienstAnlegenBody extends JPanel implements Component{
 
 	@Override
 	public void prepareComponents() {
+
 		this.stepDisplay.prepareComponent();
-		this.firstStep.prepareComponent();
+
+		if (this.step == 1) {
+			this.firstStep.prepareComponent();
+
+		} else if (this.step == 2 && this.secondStep != null) {
+			this.secondStep.prepareComponent();
+		}
 	}
 
 	@Override
 	public void addComponents() {
+
 		this.removeAll();
 
 		this.add(this.stepDisplay, BorderLayout.NORTH);
-		if(this.step == 1){
+
+		if (this.step == 1) {
 			this.add(this.firstStep, BorderLayout.CENTER);
-		}else if(this.step == 2){
+
+		} else if (this.step == 2 && this.secondStep != null) {
 			this.add(this.secondStep, BorderLayout.CENTER);
 		}
+
 		this.add(this.button, BorderLayout.SOUTH);
+
+		this.revalidate();
+		this.repaint();
 	}
 
 	@Override

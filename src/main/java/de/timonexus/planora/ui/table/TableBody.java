@@ -27,13 +27,15 @@ public class TableBody extends JPanel implements Component {
 
     // Attributes
     private Model[] lines;
+
     private final TableModel tableModel;
     private TableLineList tableLineList;
+
     private final DefaultPageService service;
     private final List<Integer> selectedLines;
 
-    private JScrollPane scrollPane;
-    private JPanel contentPanel;
+    private final JScrollPane scrollPane;
+    private final JPanel contentPanel;
 
     // Constructor
     public TableBody(
@@ -48,6 +50,16 @@ public class TableBody extends JPanel implements Component {
         this.selectedLines = nSelectedLines;
 
         this.tableLineList = new TableLineList();
+
+        this.contentPanel = new JPanel();
+        this.contentPanel.setOpaque(false);
+        this.contentPanel.setLayout(
+                new BoxLayout(this.contentPanel, BoxLayout.Y_AXIS)
+        );
+
+        this.scrollPane = new JScrollPane(this.contentPanel);
+
+        this.configureScrollPane();
     }
 
     @Override
@@ -71,6 +83,8 @@ public class TableBody extends JPanel implements Component {
 
     @Override
     public void addComponents() {
+        this.removeAll();
+        this.add(this.scrollPane, BorderLayout.CENTER);
     }
 
     @Override
@@ -78,88 +92,31 @@ public class TableBody extends JPanel implements Component {
         this.fillTable();
     }
 
-    private void fillTable() {
+    private void configureScrollPane() {
 
-        // Aktuelle Scrollposition sichern
-        Point scrollPosition = this.scrollPane != null
-                ? this.scrollPane.getViewport().getViewPosition()
-                : new Point(0, 0);
+        this.scrollPane.setOpaque(false);
+        this.scrollPane.getViewport().setOpaque(false);
+        this.scrollPane.setBorder(null);
 
-        this.removeAll();
+        this.scrollPane.setHorizontalScrollBarPolicy(
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER
+        );
 
-        if (this.lines == null || this.lines.length == 0) {
+        this.scrollPane.setVerticalScrollBarPolicy(
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED
+        );
 
-            this.scrollPane = null;
-            this.contentPanel = null;
+        this.scrollPane.setWheelScrollingEnabled(true);
 
-            this.setLayout(new GridBagLayout());
-            this.add(new TableIsEmpty(), new GridBagConstraints());
-
-        } else {
-
-            this.setLayout(new BorderLayout());
-
-            this.contentPanel = new JPanel();
-            this.contentPanel.setOpaque(false);
-            this.contentPanel.setLayout(
-                    new BoxLayout(this.contentPanel, BoxLayout.Y_AXIS)
-            );
-
-            this.tableLineList = new TableLineList();
-
-            for (Model model : this.lines) {
-
-                TableLine currentTableLine = new TableLine(
-                        model,
-                        this.tableModel,
-                        this.service,
-                        this.selectedLines.contains(model.getID())
-                                || this.selectedLines.contains(-1)
-                );
-
-                currentTableLine.setOpaque(false);
-
-                this.contentPanel.add(currentTableLine);
-                this.tableLineList.einfügen(currentTableLine);
-            }
-
-            this.scrollPane = new JScrollPane(this.contentPanel);
-
-            this.scrollPane.setOpaque(false);
-            this.scrollPane.getViewport().setOpaque(false);
-            this.scrollPane.setBorder(null);
-
-            this.scrollPane.setHorizontalScrollBarPolicy(
-                    JScrollPane.HORIZONTAL_SCROLLBAR_NEVER
-            );
-
-            this.scrollPane.setVerticalScrollBarPolicy(
-                    JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED
-            );
-
-            this.configureScrollBar();
-
-            this.add(this.scrollPane, BorderLayout.CENTER);
-        }
-
-        this.revalidate();
-        this.repaint();
-
-        // Scrollposition nach dem Layout wiederherstellen
-        if (this.scrollPane != null) {
-            SwingUtilities.invokeLater(() -> {
-                this.scrollPane.getViewport().setViewPosition(scrollPosition);
-            });
-        }
-    }
-
-    private void configureScrollBar() {
-
+        // Scrollbar
         JScrollBar verticalBar = this.scrollPane.getVerticalScrollBar();
 
         verticalBar.setPreferredSize(new Dimension(5, 0));
         verticalBar.setOpaque(false);
         verticalBar.setBackground(Colors.APP_BAR.getColor());
+
+        verticalBar.setUnitIncrement(30);
+        verticalBar.setBlockIncrement(200);
 
         verticalBar.setUI(new BasicScrollBarUI() {
 
@@ -191,29 +148,104 @@ public class TableBody extends JPanel implements Component {
         });
     }
 
-    // Scrollposition auslesen
-    public Point getScrollPosition() {
-        if (this.scrollPane == null) {
-            return new Point(0, 0);
+    private void fillTable() {
+
+        Point oldPosition = this.getScrollPosition();
+
+        this.contentPanel.removeAll();
+        this.tableLineList = new TableLineList();
+
+        if (this.lines == null || this.lines.length == 0) {
+
+            JPanel emptyPanel = new JPanel(new GridBagLayout());
+            emptyPanel.setOpaque(false);
+
+            emptyPanel.add(
+                    new TableIsEmpty(),
+                    new GridBagConstraints()
+            );
+
+            this.contentPanel.add(emptyPanel);
+
+        } else {
+
+            for (Model model : this.lines) {
+
+                TableLine currentTableLine = new TableLine(
+                        model,
+                        this.tableModel,
+                        this.service,
+                        this.selectedLines.contains(model.getID())
+                                || this.selectedLines.contains(-1)
+                );
+
+                currentTableLine.setOpaque(false);
+
+                currentTableLine.setAlignmentX(LEFT_ALIGNMENT);
+
+                this.contentPanel.add(currentTableLine);
+                this.tableLineList.einfügen(currentTableLine);
+            }
         }
 
+        this.contentPanel.revalidate();
+        this.contentPanel.repaint();
+
+        this.scrollPane.revalidate();
+        this.scrollPane.repaint();
+
+        SwingUtilities.invokeLater(() -> {
+            this.restoreScrollPosition(oldPosition);
+        });
+    }
+
+    // Restore scroll position
+    private void restoreScrollPosition(Point position) {
+
+        if (position == null) {
+            return;
+        }
+
+        //JScrollBar bar = this.scrollPane.getVerticalScrollBar();
+
+        int maxY = Math.max(
+                0,
+                this.contentPanel.getHeight()
+                        - this.scrollPane.getViewport().getHeight()
+        );
+
+        int y = Math.min(position.y, maxY);
+
+        this.scrollPane.getViewport().setViewPosition(
+                new Point(0, y)
+        );
+    }
+
+    // Get scroll position
+    public Point getScrollPosition() {
         return this.scrollPane.getViewport().getViewPosition();
     }
 
-    // Scrollposition setzen
+    // Set scroll position
     public void setScrollPosition(Point position) {
-        if (this.scrollPane == null || position == null) {
+
+        if (position == null) {
             return;
         }
 
         SwingUtilities.invokeLater(() -> {
-            this.scrollPane.getViewport().setViewPosition(position);
+            this.restoreScrollPosition(position);
         });
     }
 
-    // Neue Daten setzen
+    // Set new lines
     public void setLines(Model[] lines) {
         this.lines = lines;
         this.refresh();
+    }
+
+    // Get table line list
+    public TableLineList getTableLineList() {
+        return this.tableLineList;
     }
 }
