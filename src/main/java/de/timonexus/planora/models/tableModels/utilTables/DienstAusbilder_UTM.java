@@ -6,6 +6,7 @@ import java.util.List;
 import de.timonexus.planora.models.Model;
 import de.timonexus.planora.models.Models.utilModels.DienstAusbilder_UM;
 import de.timonexus.planora.models.tableModels.TableModel;
+import de.timonexus.planora.service.utilServices.DienstAusbilder_US;
 import de.timonexus.planora.ui.table.TableElement;
 
 public class DienstAusbilder_UTM implements TableModel{
@@ -13,10 +14,10 @@ public class DienstAusbilder_UTM implements TableModel{
 	@Override
 	public List<TableElement> getColumns() {
         return List.of(
-            new TableElement("Name", 0, 100, 100, Integer.MAX_VALUE),
-            new TableElement("Kleine", 1, 100, 100, 100),
-            new TableElement("Große", 2, 100, 100, 100),
-            new TableElement("Komplett", 3, 100, 100, 100)
+            new TableElement("Name", 0, 100, 100, Integer.MAX_VALUE, null),
+            new TableElement("Kleine", 1, 100, 100, 100, value -> this.changeValues(value, 1)),
+            new TableElement("Große", 2, 100, 100, 100, value -> this.changeValues(value, 2)),
+            new TableElement("Komplett", 3, 100, 100, 100, value -> this.changeValues(value, 3))
         );
 	}
 
@@ -46,6 +47,11 @@ public class DienstAusbilder_UTM implements TableModel{
                 return dienstAusbilder_UM.isParticipationWhole();
         }
         return "";
+    }
+
+    private void changeValues(Integer nLineId, Integer nFieldId){
+        DienstAusbilder_US service = new DienstAusbilder_US();
+        service.change(nLineId, nFieldId);
     }
     
 }

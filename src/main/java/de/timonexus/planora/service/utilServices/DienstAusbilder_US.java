@@ -3,6 +3,7 @@ package de.timonexus.planora.service.utilServices;
 import java.util.List;
 
 import de.timonexus.planora.models.Model;
+import de.timonexus.planora.models.Models.utilModels.DienstAusbilder_UM;
 import de.timonexus.planora.repositorys.Repository;
 import de.timonexus.planora.repositorys.utilRepositorys.DienstAusbilder_UR;
 import de.timonexus.planora.service.DefaultPageService;
@@ -74,6 +75,31 @@ public class DienstAusbilder_US implements DefaultPageService{
 
 	@Override
 	public void closeFormular() {
+	}
+
+	public void change(int nLineId, int nFieldId){
+		DienstAusbilder_UM model = (DienstAusbilder_UM) ((DienstAusbilder_UR) this.repository).loadAllId(nLineId)[0];
+
+		switch (nFieldId) {
+			case 1:
+				model.setParticipationYounger(changeBool(model.isParticipationYounger()));
+				break;
+			case 2:
+				model.setParticipationOlder(changeBool(model.isParticipationOlder()));
+				break;
+			case 3:
+				model.setParticipationWhole(changeBool(model.isParticipationWhole()));
+				break;
+		
+			default:
+				break;
+		}
+
+		this.repository.safe(model);
+	}
+
+	private boolean changeBool(boolean value) {
+		return !value;
 	}
     
 }

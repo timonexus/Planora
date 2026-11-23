@@ -5,6 +5,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.function.Consumer;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,13 +21,16 @@ public class Checkbox extends JPanel {
     private final DefaultPageService service;
     private final int id;
 
+    private final Consumer<Integer> action;
+
     private JLabel icon;
 
     // constructor
-    public Checkbox(DefaultPageService nService, int nId, boolean n_isChecked) {
+    public Checkbox(DefaultPageService nService, int nId, boolean n_isChecked, Consumer<Integer> nAction) {
         this.isChecked = n_isChecked;
         this.id = nId;
         this.service = nService;
+        this.action = nAction;
 
         designPanel();
         createIcon();
@@ -78,7 +82,16 @@ public class Checkbox extends JPanel {
                 service.refreshTable();
             }
         });
+
+        this.icon.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                action.accept(id);
+            }
+        });
     }
+
+
 
     // getter
     public boolean isChecked() {

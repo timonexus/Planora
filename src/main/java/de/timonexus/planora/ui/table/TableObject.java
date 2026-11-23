@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.function.Consumer;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
@@ -18,14 +19,14 @@ import de.timonexus.planora.utils.enums.Fonts;
 
 public class TableObject {
     
-    public static JPanel getObject(Object nValue, DefaultPageService nService, int nLineId, boolean n_isChecked){
+    public static JPanel getObject(Object nValue, DefaultPageService nService, int nLineId, boolean n_isChecked, Consumer<Integer> nAction){
         JPanel panel = new JPanel();
         panel.setOpaque(false);
         panel.setLayout(new BorderLayout());
         panel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
 
         if(nValue instanceof Boolean){
-            Checkbox checkbox = new Checkbox(nService, nLineId,(boolean) nValue);
+            Checkbox checkbox = new Checkbox(nService, nLineId,(boolean) nValue, nAction);
             panel.add(checkbox, BorderLayout.CENTER);
         }else{
             panel.add(skinPanel((String) nValue, nService, nLineId, n_isChecked));

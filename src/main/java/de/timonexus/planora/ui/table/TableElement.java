@@ -1,5 +1,7 @@
 package de.timonexus.planora.ui.table;
 
+import java.util.function.Consumer;
+
 public class TableElement {
     
     // attributes
@@ -8,14 +10,16 @@ public class TableElement {
     private final int minWidth;
     private final int maxWidth;
     private int width;
+    private final Consumer<Integer> action;
 
     // constructor
-    public TableElement(Object nValue, int nColumnId, int nWidth, int nMinWidth, int nMaxWidth){
+    public TableElement(Object nValue, int nColumnId, int nWidth, int nMinWidth, int nMaxWidth, Consumer<Integer> nAction){
         this.value = nValue;
         this.columnId = nColumnId;
         this.width = nWidth;
         this.minWidth = nMinWidth;
         this.maxWidth = nMaxWidth;
+        this.action = nAction;
     }
 
     // getter
@@ -33,6 +37,9 @@ public class TableElement {
     }
     public int getWidth() {
         return width;
+    }
+    public Consumer<Integer> getAction() {
+        return action;
     }
 
     // setter

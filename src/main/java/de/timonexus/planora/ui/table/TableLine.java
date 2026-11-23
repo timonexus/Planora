@@ -35,7 +35,7 @@ public class TableLine extends JPanel implements DatenElement{
 
         for(TableElement element : tableModel.getTableElements(model)){
             // TODO: runnable übergeben um die Object-Event Method individuell zu steuern
-            JPanel object = TableObject.getObject(element.getValue() instanceof Boolean ? this.isChecked : element.getValue(), this.service, this.model.getID(), this.isChecked);
+            JPanel object = TableObject.getObject(element.getValue() instanceof Boolean ? this.isChecked : element.getValue(), this.service, this.model.getID(), this.isChecked, element.getAction());
             object.setPreferredSize(new Dimension(element.getWidth(), 40));
             object.setMaximumSize(new Dimension(element.getMaxWidth(), 40));
             object.setMinimumSize(new Dimension(element.getMinWidth(), 40));
