@@ -1,4 +1,4 @@
-package de.timonexus.planora.ui.formulars.Dienste.dienstAnlegenBody;
+package de.timonexus.planora.ui.formulars.Dienste.dienstAnlegen.dienstAnlegenBody;
 
 import java.awt.Dimension;
 
@@ -27,7 +27,7 @@ public class FirstStep extends JPanel implements Component{
     // constructor
     public FirstStep(){
         this.inputID = new DefaultInputField("ID", "z.B. 01", 60);
-        this.inputDate = new DefaultInputField("Datum", "2026-11-19", Integer.MAX_VALUE);
+        this.inputDate = new DefaultInputField("Datum", "19.11.2026", Integer.MAX_VALUE);
         this.inputTimeGroße = new DefaultInputField("Uhrzeit - Große", "16:47", Integer.MAX_VALUE);
         this.inputTimeKleine = new DefaultInputField("Uhrzeit - Kleine", "16:47", Integer.MAX_VALUE);
 

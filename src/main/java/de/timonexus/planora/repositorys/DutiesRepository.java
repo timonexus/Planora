@@ -88,7 +88,7 @@ public class DutiesRepository implements Repository{
                     resultSet.getString("date"),
                     resultSet.getString("time_kleine"),
                     resultSet.getString("time_große"),
-                    ""
+                    String.valueOf(resultSet.getInt("anwesenheitGesamt"))
                 ));
             }
 

@@ -1,4 +1,4 @@
-package de.timonexus.planora.ui.formulars.Dienste;
+package de.timonexus.planora.ui.formulars.Dienste.dienstAnlegen;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -10,7 +10,7 @@ import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.ui.Component;
 import de.timonexus.planora.ui.formulars.Formular;
 import de.timonexus.planora.ui.formulars.FormularHeader;
-import de.timonexus.planora.ui.formulars.Dienste.dienstAnlegenBody.DienstAnlegenBody;
+import de.timonexus.planora.ui.formulars.Dienste.dienstAnlegen.dienstAnlegenBody.DienstAnlegenBody;
 import de.timonexus.planora.utils.RoundedPanel;
 import de.timonexus.planora.utils.enums.Colors;
 

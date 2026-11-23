@@ -5,8 +5,8 @@ import de.timonexus.planora.repositorys.DutiesRepository;
 import de.timonexus.planora.repositorys.Repository;
 import de.timonexus.planora.repositorys.utilRepositorys.DienstAusbilder_UR;
 import de.timonexus.planora.service.DefaultPageService;
-import de.timonexus.planora.ui.formulars.Dienste.DienstAnlegenFormular;
-import de.timonexus.planora.ui.formulars.ViewFormulars.ViewDutie;
+import de.timonexus.planora.ui.formulars.Dienste.dienstAnlegen.DienstAnlegenFormular;
+import de.timonexus.planora.ui.formulars.Dienste.dienstAnzeigen.DienstAnzeigenFormular;
 import de.timonexus.planora.ui.frame.Frame;
 import de.timonexus.planora.ui.pages.DefaultPage;
 import de.timonexus.planora.ui.table.Table;
@@ -101,11 +101,12 @@ public class DutiesService implements DefaultPageService{
     @Override
     public void closeFormular() {
         this.frame.hideFormularPane();
+        this.table.refresh();
     }
 
     @Override 
     public void showModel(int nLineId){
-        this.frame.showFormularPane(new ViewDutie(this, () -> this.closeFormular(), ((Table) this.table).loadLine(nLineId)));
+        this.frame.showFormularPane(new DienstAnzeigenFormular(this, () -> this.closeFormular(), ((Table) this.table).loadLine(nLineId)));
     }
 
     public int getDienstId() {

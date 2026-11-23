@@ -1,4 +1,4 @@
-package de.timonexus.planora.ui.formulars.Dienste.dienstAnlegenBody;
+package de.timonexus.planora.ui.formulars.Dienste.dienstAnlegen.dienstAnlegenBody;
 
 import java.awt.BorderLayout;
 
