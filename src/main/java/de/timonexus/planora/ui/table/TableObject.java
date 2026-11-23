@@ -19,29 +19,30 @@ import de.timonexus.planora.utils.enums.Fonts;
 
 public class TableObject {
     
-    public static JPanel getObject(Object nValue, DefaultPageService nService, int nLineId, boolean n_isChecked, Consumer<Integer> nAction){
+    public static JPanel getObject(Object nValue, DefaultPageService nService, int nLineId, boolean n_isChecked, Consumer<Integer> nAction, int nOrientation){
         JPanel panel = new JPanel();
         panel.setOpaque(false);
         panel.setLayout(new BorderLayout());
-        panel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
 
         if(nValue instanceof Boolean){
-            Checkbox checkbox = new Checkbox(nService, nLineId,(boolean) nValue, nAction);
+            Checkbox checkbox = new Checkbox(nService, nLineId,(boolean) nValue, nAction, nOrientation);
             panel.add(checkbox, BorderLayout.CENTER);
         }else{
-            panel.add(skinPanel((String) nValue, nService, nLineId, n_isChecked));
+            panel.add(skinPanel((String) nValue, nService, nLineId, n_isChecked, nOrientation));
         }
 
         return panel;
     }
 
     // method for skinning panels
-    private static JLabel skinPanel(String nValue, DefaultPageService nService, int nLineId, boolean n_isChecked){
+    private static JLabel skinPanel(String nValue, DefaultPageService nService, int nLineId, boolean n_isChecked, int nOrientation){
         JLabel label = new JLabel(nValue);
         label.setForeground(Colors.TEXT.getColor());
         label.setFont(Fonts.TEXT.loadFont());
+        label.setHorizontalAlignment(nOrientation);
         label.setVerticalAlignment(SwingConstants.CENTER);
         label.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        label.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
         label.addMouseListener(new MouseAdapter() {
             private Timer clickTimer;
             @Override

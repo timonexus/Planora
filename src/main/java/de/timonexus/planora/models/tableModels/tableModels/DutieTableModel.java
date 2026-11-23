@@ -3,6 +3,8 @@ package de.timonexus.planora.models.tableModels.tableModels;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.SwingConstants;
+
 import de.timonexus.planora.models.Model;
 import de.timonexus.planora.models.Models.Dutie;
 import de.timonexus.planora.models.tableModels.TableModel;
@@ -13,11 +15,11 @@ public class DutieTableModel implements TableModel{
 	@Override
 	public List<TableElement> getColumns() {
         return List.of(
-            new TableElement(false, 0, 30, 30, 30, null),
-            new TableElement("Datum", 2, 500, 300, Integer.MAX_VALUE, null),
-            new TableElement("Uhrzeit (kleine)", 3, 300, 200, 400, null),
-            new TableElement("Uhrzeit (große)", 4, 300, 200, 400, null),
-            new TableElement("Anzahl Betreuer", 5, 300, 200, 400, null)
+            new TableElement(false, 0, 30, 30, 30, null, SwingConstants.CENTER),
+            new TableElement("Datum", 2, 500, 300, Integer.MAX_VALUE, null, SwingConstants.LEFT),
+            new TableElement("Uhrzeit (kleine)", 3, 300, 200, 400, null, SwingConstants.RIGHT),
+            new TableElement("Uhrzeit (große)", 4, 300, 200, 400, null, SwingConstants.RIGHT),
+            new TableElement("Anzahl Betreuer", 5, 300, 200, 400, null, SwingConstants.RIGHT)
         );
 	}
 

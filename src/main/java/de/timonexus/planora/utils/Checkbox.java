@@ -24,6 +24,8 @@ public class Checkbox extends JPanel {
     private final int id;
     private final Consumer<Integer> action;
 
+    private final int orientation;
+
     private JLabel icon;
 
     // Constructor
@@ -31,12 +33,14 @@ public class Checkbox extends JPanel {
             DefaultPageService nService,
             int nId,
             boolean nIsChecked,
-            Consumer<Integer> nAction
+            Consumer<Integer> nAction,
+            int nOrientation
     ) {
         this.isChecked = nIsChecked;
         this.id = nId;
         this.service = nService;
         this.action = nAction;
+        this.orientation = nOrientation;
 
         designPanel();
         createIcon();
@@ -56,8 +60,8 @@ public class Checkbox extends JPanel {
     private void createIcon() {
         this.icon = new JLabel();
 
-        this.icon.setHorizontalAlignment(SwingConstants.CENTER);
         this.icon.setVerticalAlignment(SwingConstants.CENTER);
+        this.icon.setHorizontalAlignment(this.orientation);
 
         this.add(this.icon, BorderLayout.CENTER);
     }

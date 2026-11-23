@@ -3,6 +3,8 @@ package de.timonexus.planora.models.tableModels.tableModels;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.SwingConstants;
+
 import de.timonexus.planora.models.Model;
 import de.timonexus.planora.models.Models.Ausbilder;
 import de.timonexus.planora.models.tableModels.TableModel;
@@ -13,9 +15,9 @@ public class AusbilderTableModel implements TableModel{
 	@Override
 	public List<TableElement> getColumns() {
         return List.of(
-            new TableElement(false, 0, 30, 30, 30, null),
-            new TableElement("Name", 1, 500, 300, Integer.MAX_VALUE, null),
-            new TableElement("Vorliebenanzahl", 2, 200, 200, 200, null)
+            new TableElement(false, 0, 30, 30, 30, null, SwingConstants.CENTER),
+            new TableElement("Name", 1, 500, 300, Integer.MAX_VALUE, null, SwingConstants.LEFT),
+            new TableElement("Vorliebenanzahl", 2, 200, 200, 200, null, SwingConstants.RIGHT)
         );
 	}
 

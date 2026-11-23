@@ -11,15 +11,17 @@ public class TableElement {
     private final int maxWidth;
     private int width;
     private final Consumer<Integer> action;
+    private final int orientation;
 
     // constructor
-    public TableElement(Object nValue, int nColumnId, int nWidth, int nMinWidth, int nMaxWidth, Consumer<Integer> nAction){
+    public TableElement(Object nValue, int nColumnId, int nWidth, int nMinWidth, int nMaxWidth, Consumer<Integer> nAction, int nOrientation){
         this.value = nValue;
         this.columnId = nColumnId;
         this.width = nWidth;
         this.minWidth = nMinWidth;
         this.maxWidth = nMaxWidth;
         this.action = nAction;
+        this.orientation = nOrientation;
     }
 
     // getter
@@ -40,6 +42,9 @@ public class TableElement {
     }
     public Consumer<Integer> getAction() {
         return action;
+    }
+    public int getOrientation() {
+        return orientation;
     }
 
     // setter

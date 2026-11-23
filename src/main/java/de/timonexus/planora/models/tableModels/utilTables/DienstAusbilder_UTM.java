@@ -3,6 +3,8 @@ package de.timonexus.planora.models.tableModels.utilTables;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.SwingConstants;
+
 import de.timonexus.planora.models.Model;
 import de.timonexus.planora.models.Models.utilModels.DienstAusbilder_UM;
 import de.timonexus.planora.models.tableModels.TableModel;
@@ -14,10 +16,10 @@ public class DienstAusbilder_UTM implements TableModel{
 	@Override
 	public List<TableElement> getColumns() {
         return List.of(
-            new TableElement("Name", 0, 80, 80, Integer.MAX_VALUE, null),
-            new TableElement("Kleine", 1, 70, 70, 70, value -> this.changeValues(value, 1)),
-            new TableElement("Große", 2, 70, 70, 70, value -> this.changeValues(value, 2)),
-            new TableElement("Komplett", 3, 100, 100, 100, value -> this.changeValues(value, 3))
+            new TableElement("Name", 0, 80, 80, Integer.MAX_VALUE, null, SwingConstants.LEFT),
+            new TableElement("Kleine", 1, 70, 70, 70, value -> this.changeValues(value, 1), SwingConstants.RIGHT),
+            new TableElement("Große", 2, 70, 70, 70, value -> this.changeValues(value, 2), SwingConstants.RIGHT),
+            new TableElement("Komplett", 3, 100, 100, 100, value -> this.changeValues(value, 3), SwingConstants.RIGHT)
         );
 	}
 

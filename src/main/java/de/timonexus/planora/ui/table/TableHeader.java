@@ -70,7 +70,7 @@ public class TableHeader extends JPanel implements Component{
         this.basePanel.removeAll();
         List<TableElement> columns = this.tableModel.getColumns();
         for(TableElement column : columns){
-            JPanel object = TableObject.getObject(column.getValue() instanceof Boolean ? this.selectedLines.contains(-1) : column.getValue(), this.service, -1, this.selectedLines.contains(-1), null);
+            JPanel object = TableObject.getObject(column.getValue() instanceof Boolean ? this.selectedLines.contains(-1) : column.getValue(), this.service, -1, this.selectedLines.contains(-1), null, column.getOrientation());
             object.setPreferredSize(new Dimension(column.getWidth(), 50));
             object.setMaximumSize(new Dimension(column.getMaxWidth(), 50));
             object.setMinimumSize(new Dimension(column.getMinWidth(), 50));
