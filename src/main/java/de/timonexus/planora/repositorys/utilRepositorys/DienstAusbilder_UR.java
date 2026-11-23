@@ -47,7 +47,7 @@ public class DienstAusbilder_UR implements Repository{
 	}
 
 	@Override
-	public void safe(Model nValues) {
+	public int safe(Model nValues) {
         int id = nValues.getID();
         DienstAusbilder_UM values = (DienstAusbilder_UM) nValues;
 
@@ -55,18 +55,20 @@ public class DienstAusbilder_UR implements Repository{
             if(id > 0){
                 this.executeSQL(this.readSqlFile("sql/Ausbilder/Update.sql"), values.getIdDienst(), values.getIdAusbilder(), values.isParticipationYounger(), values.isParticipationOlder(), values.isParticipationWhole(), id);
             }else{
-                this.executeSQL(this.readSqlFile("sql/Ausbilder/Insert.sql"), values.getIdDienst(), values.getIdAusbilder(), values.isParticipationYounger(), values.isParticipationOlder(), values.isParticipationWhole());     
+                this.executeSQL(this.readSqlFile("sql/utilTables/DienstAusbilder_UT/Insert.sql"), values.getIdAusbilder(), values.getIdDienst(), values.isParticipationYounger(), values.isParticipationOlder(), values.isParticipationWhole());     
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
+        return 0;
 	}
 
 	@Override
 	public void delete(List<Integer> nLineIds) {
         for(int id : nLineIds){
             try {
-				this.executeSQL(this.readSqlFile("sql/Ausbilder/Delete.sql"), id);
+				this.executeSQL(this.readSqlFile("sql/utilTables/DienstAusbilder_UT/Delete.sql"), id);
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -41,7 +41,7 @@ public class DutiesRepository implements Repository{
     }
 
     @Override
-    public void safe(Model nValues) {
+    public int safe(Model nValues) {
         int id = nValues.getID();
         Dutie values = (Dutie) nValues;
         if(id > 0){
@@ -52,11 +52,13 @@ public class DutiesRepository implements Repository{
 			}
         }else{
             try {
-				this.executeSQL(this.readSqlFile("sql/Duties/Insert.sql"), values.getDate(), values.getUhrzeit_kleine(), values.getUhrzeit_große());
+				return this.executeSQLWithGeneratedKey(this.readSqlFile("sql/Duties/Insert.sql"), values.getDate(), values.getUhrzeit_kleine(), values.getUhrzeit_große());
 			} catch (SQLException | IOException e) {
 				e.printStackTrace();
 			}
         }
+
+        return 0;
     }
 
     @Override

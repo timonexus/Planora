@@ -3,6 +3,7 @@ package de.timonexus.planora.service.Duties;
 import de.timonexus.planora.models.Model;
 import de.timonexus.planora.repositorys.DutiesRepository;
 import de.timonexus.planora.repositorys.Repository;
+import de.timonexus.planora.repositorys.utilRepositorys.DienstAusbilder_UR;
 import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.ui.formulars.Dienste.DienstAnlegenFormular;
 import de.timonexus.planora.ui.formulars.ViewFormulars.ViewDutie;
@@ -17,6 +18,8 @@ public class DutiesService implements DefaultPageService{
     private Frame frame;
     private Table table;
 
+    private int dienstId;
+
     // constructor
     public DutiesService(DefaultPage nPage){
         this.repository = new DutiesRepository();
@@ -29,6 +32,8 @@ public class DutiesService implements DefaultPageService{
 
     @Override
     public void delete(){
+		Repository repository_DienstAusbilder = new DienstAusbilder_UR();
+		repository_DienstAusbilder.delete(this.table.getSelectedLines());
         this.repository.delete(this.table.getSelectedLines());
         this.table.resetSelectedLines();
         this.refreshTable();
@@ -54,7 +59,7 @@ public class DutiesService implements DefaultPageService{
 
     @Override
     public void safe(Model nValues) {
-        this.repository.safe(nValues);
+        this.dienstId = this.repository.safe(nValues);
         this.refreshTable();
     }
 
@@ -91,5 +96,9 @@ public class DutiesService implements DefaultPageService{
     @Override 
     public void showModel(int nLineId){
         this.frame.showFormularPane(new ViewDutie(this, () -> this.closeFormular(), ((Table) this.table).loadLine(nLineId)));
+    }
+
+    public int getDienstId() {
+        return dienstId;
     }
 }

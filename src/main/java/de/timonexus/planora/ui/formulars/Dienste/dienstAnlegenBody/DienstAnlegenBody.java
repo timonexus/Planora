@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 
 import de.timonexus.planora.models.Model;
 import de.timonexus.planora.service.DefaultPageService;
+import de.timonexus.planora.service.Duties.DutiesService;
 import de.timonexus.planora.ui.Component;
 import de.timonexus.planora.ui.formulars.FormularButton;
 import de.timonexus.planora.utils.StepDisplay;
@@ -15,6 +16,7 @@ public class DienstAnlegenBody extends JPanel implements Component{
 	// attributes
 	private final StepDisplay stepDisplay;
 	private final FirstStep firstStep;
+	private SecondStep secondStep;
 
 	private final DefaultPageService service;
 
@@ -34,6 +36,7 @@ public class DienstAnlegenBody extends JPanel implements Component{
 
 	private void safe(){
 		this.service.safe(this.firstStep.getData());
+		this.secondStep = new SecondStep(((DutiesService) this.service).getDienstId());
 		this.increaseStep();
 		this.refresh();
 	}
@@ -74,6 +77,8 @@ public class DienstAnlegenBody extends JPanel implements Component{
 		this.add(this.stepDisplay, BorderLayout.NORTH);
 		if(this.step == 1){
 			this.add(this.firstStep, BorderLayout.CENTER);
+		}else if(this.step == 2){
+			this.add(this.secondStep, BorderLayout.CENTER);
 		}
 		this.add(this.button, BorderLayout.SOUTH);
 	}
