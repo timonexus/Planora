@@ -28,7 +28,7 @@ public class AusbilderRepository implements Repository{
 	}
 
 	@Override
-	public void safe(Model nValues) {
+	public int safe(Model nValues) {
         int id = nValues.getID();
         Ausbilder values = (Ausbilder) nValues;
 
@@ -41,6 +41,8 @@ public class AusbilderRepository implements Repository{
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        return 0;
 	}
 
 	@Override

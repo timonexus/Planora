@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS dienstAnwesenheit (
     idDienst INTEGER NOT NULL,
     anwesenheitKleine BOOLEAN NOT NULL,
     anwesenheitGroße BOOLEAN NOT NULL,
+    anwesenheitGesamt BOOLEAN NOT NULL,
 
     UNIQUE (idAusbilder, idDienst),
 

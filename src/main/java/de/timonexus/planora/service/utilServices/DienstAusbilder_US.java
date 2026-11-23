@@ -1,5 +1,7 @@
 package de.timonexus.planora.service.utilServices;
 
+import java.util.List;
+
 import de.timonexus.planora.models.Model;
 import de.timonexus.planora.repositorys.Repository;
 import de.timonexus.planora.repositorys.utilRepositorys.DienstAusbilder_UR;
@@ -52,6 +54,10 @@ public class DienstAusbilder_US implements DefaultPageService{
 	public void delete() {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'delete'");
+	}
+
+	public void delete(List<Integer> nIds){
+		this.repository.delete(nIds);
 	}
 
 	@Override
