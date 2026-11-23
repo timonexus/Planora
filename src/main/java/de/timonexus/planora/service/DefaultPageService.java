@@ -6,7 +6,7 @@ import de.timonexus.planora.ui.table.Table;
 
 public interface DefaultPageService {
 
-    Model[] loadAll();
+    Model[] loadAll(int nId);
 
     public void refreshTable();
     public void setTable(Table nTable);

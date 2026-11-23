@@ -21,8 +21,8 @@ public class AusbilderService implements DefaultPageService{
 	}
 
 	@Override
-	public Model[] loadAll() {
-		return this.repository.loadAll();
+	public Model[] loadAll(int nId) {
+		return this.repository.loadAll(nId);
 	}
 
 	@Override

@@ -23,6 +23,8 @@ public class Table extends JPanel implements Component{
 	private final DefaultPageService service;
 	private final List<Integer> selectedLines;
 
+	private int id;
+
 	private Component tableHeader;
 	private Component tablebody;
 
@@ -76,27 +78,12 @@ public class Table extends JPanel implements Component{
 
 	@Override
 	public void refresh() {
-		this.lines = this.service.loadAll();
-		this.tableHeader = new TableHeader(this.tableModel, this.service, this.selectedLines);
-		this.tablebody = new TableBody(this.lines, this.tableModel, this.service, this.selectedLines);
-
-		this.prepareComponents();
-		this.addComponents();
-
-		this.revalidate();
-    	this.repaint();
+		this.lines = this.service.loadAll(id);
+		((TableBody) this.tablebody).setLines(this.lines);
 	}
 
 	public void refresh(Model[] nModels) {
-		this.lines = nModels;
-		this.tableHeader = new TableHeader(this.tableModel, this.service, this.selectedLines);
-		this.tablebody = new TableBody(this.lines, this.tableModel, this.service, this.selectedLines);
-
-		this.prepareComponents();
-		this.addComponents();
-
-		this.revalidate();
-    	this.repaint();
+		((TableBody) this.tablebody).setLines(nModels);
 	}
 
     private void skinBasePanel(){
@@ -137,5 +124,10 @@ public class Table extends JPanel implements Component{
 			}
 		}
 		return null;
+	}
+
+	public void setId(int nId){
+		this.id = nId;
+		this.refresh();
 	}
 }

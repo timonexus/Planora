@@ -4,3 +4,4 @@ INSERT INTO duties (
     time_große
 )
 VALUES (?, ?, ?);
+SELECT LAST_INSERT_ID();

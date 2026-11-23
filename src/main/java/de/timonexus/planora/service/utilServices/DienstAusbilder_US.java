@@ -1,6 +1,9 @@
 package de.timonexus.planora.service.utilServices;
 
+import java.util.List;
+
 import de.timonexus.planora.models.Model;
+import de.timonexus.planora.models.Models.utilModels.DienstAusbilder_UM;
 import de.timonexus.planora.repositorys.Repository;
 import de.timonexus.planora.repositorys.utilRepositorys.DienstAusbilder_UR;
 import de.timonexus.planora.service.DefaultPageService;
@@ -11,6 +14,7 @@ public class DienstAusbilder_US implements DefaultPageService{
 
     // attributes
     private final Repository repository;
+	private Table table;
 
     // constructor
     public DienstAusbilder_US(){
@@ -18,76 +22,87 @@ public class DienstAusbilder_US implements DefaultPageService{
     }
 
 	@Override
-	public Model[] loadAll() {
-        return this.repository.loadAll();
+	public Model[] loadAll(int nId) {
+        return this.repository.loadAll(nId);
 	}
 
 	@Override
 	public void refreshTable() {
+		this.table.refresh();
 	}
 
 	@Override
 	public void setTable(Table nTable) {
+		this.table = nTable;
 	}
 
 	@Override
 	public void addSelectedLine(int nId) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'addSelectedLine'");
 	}
 
 	@Override
 	public void removeSelectedLine(int nId) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'removeSelectedLine'");
 	}
 
 	@Override
 	public void safe(Model nValues) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'safe'");
 	}
 
 	@Override
 	public void delete() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'delete'");
+	}
+
+	public void delete(List<Integer> nIds){
+		this.repository.delete(nIds);
 	}
 
 	@Override
 	public void edit() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'edit'");
 	}
 
 	@Override
 	public void search(String nText) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'search'");
 	}
 
 	@Override
 	public void showModel(int nLineId) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'showModel'");
 	}
 
 	@Override
 	public void setFrame(Frame nFrame) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'setFrame'");
 	}
 
 	@Override
 	public void openFormular() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'openFormular'");
 	}
 
 	@Override
 	public void closeFormular() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'closeFormular'");
+	}
+
+	public void change(int nLineId, int nFieldId){
+		DienstAusbilder_UM model = (DienstAusbilder_UM) ((DienstAusbilder_UR) this.repository).loadAllId(nLineId)[0];
+
+		switch (nFieldId) {
+			case 1:
+				model.setParticipationYounger(changeBool(model.isParticipationYounger()));
+				break;
+			case 2:
+				model.setParticipationOlder(changeBool(model.isParticipationOlder()));
+				break;
+			case 3:
+				model.setParticipationWhole(changeBool(model.isParticipationWhole()));
+				break;
+		
+			default:
+				break;
+		}
+
+		this.repository.safe(model);
+	}
+
+	private boolean changeBool(boolean value) {
+		return !value;
 	}
     
 }

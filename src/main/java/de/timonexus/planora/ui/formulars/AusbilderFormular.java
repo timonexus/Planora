@@ -26,15 +26,18 @@ public class AusbilderFormular extends RoundedPanel implements Formular{
     private final DefaultInputField inputID;
     private final DefaultInputField inputName;
 
+    private final DefaultPageService service;
+
     private Model model;
 
     private JPanel firstInputLine;
 
     // constructor
     public AusbilderFormular(DefaultPageService nService, Runnable nOnClose){
+        this.service = nService;
         this.onClose = nOnClose;
         this.header = new FormularHeader("Neuer Dienst", onClose);
-        this.btnSpeichern = new FormularButton(this, nService, onClose);
+        this.btnSpeichern = new FormularButton(this::safe);
 
         this.inputBase = new JPanel();
         this.firstInputLine = new JPanel();
@@ -106,6 +109,11 @@ public class AusbilderFormular extends RoundedPanel implements Formular{
             this.inputName.getContent(), List.of()
         );
         return this.model;
+	}
+
+	private void safe(){
+		this.service.safe(this.getData());
+        this.close();
 	}
 
     public void setData(Model nModel){

@@ -13,9 +13,9 @@ public class AusbilderTableModel implements TableModel{
 	@Override
 	public List<TableElement> getColumns() {
         return List.of(
-            new TableElement(false, 0, 30, 30, 30),
-            new TableElement("Name", 1, 500, 300, Integer.MAX_VALUE),
-            new TableElement("Vorliebenanzahl", 2, 200, 200, 200)
+            new TableElement(false, 0, 30, 30, 30, null),
+            new TableElement("Name", 1, 500, 300, Integer.MAX_VALUE, null),
+            new TableElement("Vorliebenanzahl", 2, 200, 200, 200, null)
         );
 	}
 

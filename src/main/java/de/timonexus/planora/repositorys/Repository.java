@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 import de.timonexus.planora.database.Database;
@@ -15,8 +16,8 @@ import de.timonexus.planora.models.Model;
 
 public interface Repository {
 
-    Model[] loadAll();
-    void safe(Model nValues);
+    Model[] loadAll(int nId);
+    int safe(Model nValues);
     void delete(List<Integer> nLineIds);
     Model[] search(String nText);
 
@@ -63,6 +64,36 @@ public interface Repository {
             }
 
             return statement.executeUpdate();
+        }
+    }
+
+    default int executeSQLWithGeneratedKey(
+            String sql,
+            Object... values
+    ) throws SQLException {
+
+        try (
+            Connection connection = Database.getConnection();
+            PreparedStatement statement = connection.prepareStatement(
+                sql,
+                Statement.RETURN_GENERATED_KEYS
+            )
+        ) {
+
+            for (int i = 0; i < values.length; i++) {
+                statement.setObject(i + 1, values[i]);
+            }
+
+            statement.executeUpdate();
+
+            try (ResultSet resultSet = statement.getGeneratedKeys()) {
+
+                if (resultSet.next()) {
+                    return resultSet.getInt(1);
+                }
+
+                throw new SQLException("Keine generierte ID zurückgegeben.");
+            }
         }
     }
 

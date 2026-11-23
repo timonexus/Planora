@@ -26,7 +26,7 @@ public class PlanoraAusbilder extends JPanel implements DefaultPage{
     public PlanoraAusbilder(){
         this.service = new AusbilderService();
         this.header = new PageHeader(this.service);
-        this.tableCard = new PageTableContainer("Ausbilder", this.service.loadAll(), new AusbilderTableModel(), this.service);
+        this.tableCard = new PageTableContainer("Ausbilder", this.service.loadAll(0), new AusbilderTableModel(), this.service);
     }
 
     @Override 

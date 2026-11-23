@@ -1,30 +1,19 @@
-package de.timonexus.planora.ui.formulars;
+package de.timonexus.planora.ui.formulars.Dienste.dienstAnlegenBody;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 import de.timonexus.planora.models.Model;
 import de.timonexus.planora.models.Models.Dutie;
-import de.timonexus.planora.models.tableModels.utilTables.DienstAusbilder_UTM;
-import de.timonexus.planora.service.DefaultPageService;
-import de.timonexus.planora.service.utilServices.DienstAusbilder_US;
-import de.timonexus.planora.ui.table.Table;
-import de.timonexus.planora.utils.RoundedPanel;
-import de.timonexus.planora.utils.enums.Colors;
+import de.timonexus.planora.ui.Component;
+import de.timonexus.planora.ui.formulars.DefaultInputField;
 
-public class DutiesFormular extends RoundedPanel implements Formular{
-    
+public class FirstStep extends JPanel implements Component{
+
     // attributes
-    private final Runnable onClose;
-    private final FormularHeader header;
-    private final FormularButton btnSpeichern;
-
-    private final JPanel inputBase;
     private final DefaultInputField inputID;
     private final DefaultInputField inputDate;
     private final DefaultInputField inputTimeGroße;
@@ -33,17 +22,10 @@ public class DutiesFormular extends RoundedPanel implements Formular{
     private JPanel firstInputLine;
     private JPanel secondInputLine;
 
-    private Table table;
-
     private Model model;
 
     // constructor
-    public DutiesFormular(DefaultPageService nService, Runnable nOnClose){
-        this.onClose = nOnClose;
-        this.header = new FormularHeader("Neuer Dienst", onClose);
-        this.btnSpeichern = new FormularButton(this, nService, onClose);
-
-        this.inputBase = new JPanel();
+    public FirstStep(){
         this.inputID = new DefaultInputField("ID", "z.B. 01", 60);
         this.inputDate = new DefaultInputField("Datum", "2026-11-19", Integer.MAX_VALUE);
         this.inputTimeGroße = new DefaultInputField("Uhrzeit - Große", "16:47", Integer.MAX_VALUE);
@@ -51,49 +33,43 @@ public class DutiesFormular extends RoundedPanel implements Formular{
 
         this.firstInputLine = new JPanel();
         this.secondInputLine = new JPanel();
-
-        DienstAusbilder_US dienstAusbilder_Service = new DienstAusbilder_US();
-        this.table = new Table(dienstAusbilder_Service.loadAll(), new DienstAusbilder_UTM(), dienstAusbilder_Service);
-        this.table.prepareComponent();
-
-        skinComponent();
-        skinInputBase();
-        skinFirstInputLine();
-        skinSecondInputLine();
-        addComponents();
     }
 
-    private void skinComponent(){
-        this.setLayout(new BorderLayout());
-        this.setPreferredSize(new Dimension(740, 620));
-        this.setBackground(Colors.CARDS.getColor());
-        this.setRadius(15);
-        this.setRoundedBorder(Colors.TEXT_DISABLED.getColor(), 1, BorderPlacement.OUTSIDE);
-        this.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+	@Override
+	public void designComponent() {
+        this.setOpaque(false);
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+	}
+
+	@Override
+	public void skinParts() {
+        this.skinFirstInputLine();
+        this.skinSecondInputLine();
+	}
+
+	@Override
+	public void addParts() {
+        this.add(Box.createVerticalStrut(24));
+        this.add(this.firstInputLine);
+        this.add(Box.createVerticalStrut(16));
+        this.add(this.secondInputLine);
+        this.add(Box.createVerticalStrut(32));
+	}
+
+	@Override
+	public void prepareComponents() {
+
     }
 
-    private void addComponents(){
-        this.add(this.header, BorderLayout.NORTH);
-        this.add(this.inputBase, BorderLayout.CENTER);
-        this.add(this.btnSpeichern, BorderLayout.SOUTH);
-    }
+	@Override
+	public void addComponents() {
+		
+	}
 
-    public void close(){
-        onClose.run();
-    }
-
-    private void skinInputBase(){
-        this.inputBase.setOpaque(false);
-        this.inputBase.setLayout(new BoxLayout(this.inputBase, BoxLayout.Y_AXIS));
-
-        this.inputBase.add(Box.createVerticalStrut(24));
-        this.inputBase.add(this.firstInputLine);
-        this.inputBase.add(Box.createVerticalStrut(16));
-        this.inputBase.add(this.secondInputLine);
-        this.inputBase.add(Box.createVerticalStrut(24));
-        this.inputBase.add(this.table);
-        this.inputBase.add(Box.createVerticalStrut(32));
-    }
+	@Override
+	public void refresh() {
+		
+	}
 
     private void skinFirstInputLine(){
         this.firstInputLine = skinInputLines(firstInputLine);
@@ -145,4 +121,5 @@ public class DutiesFormular extends RoundedPanel implements Formular{
         this.model = nModel;
         fillFormular();
     }
+    
 }

@@ -26,8 +26,7 @@ public class PlanoraDuties extends JPanel implements DefaultPage{
     public PlanoraDuties(){
         this.service = new DutiesService(this);
         this.header = new PageHeader(this.service);
-        this.tableCard = new PageTableContainer("Dienste", this.service.loadAll(), new DutieTableModel(), this.service);
-
+        this.tableCard = new PageTableContainer("Dienste", this.service.loadAll(0), new DutieTableModel(), this.service);
     }
 
     @Override 
