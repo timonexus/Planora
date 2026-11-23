@@ -26,7 +26,7 @@ public class DienstAnzeigenFormular extends RoundedPanel implements Formular, Co
     // constructor
     public DienstAnzeigenFormular(DefaultPageService nService, Runnable nOnClose, Model nModel){
         this.onClose = nOnClose;
-        this.header = new FormularHeader("Neuer Dienst", this.onClose);
+        this.header = new FormularHeader("Dienst", this.onClose);
         this.model = (Dutie) nModel;
 		this.body = new DienstAnzeigenBody(this.model);
 
