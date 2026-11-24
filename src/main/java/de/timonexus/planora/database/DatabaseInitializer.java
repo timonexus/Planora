@@ -25,6 +25,7 @@ public class DatabaseInitializer {
         files.add("sql/Duties/CreateTable.sql");
         files.add("sql/Ausbilder/CreateTable.sql");
         files.add("sql/utilTables/DienstAusbilder_UT/CreateTable.sql");
+        files.add("sql/Abzeichen/CreateTable.sql");
     }
 
     // Initialize database tables

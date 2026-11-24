@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS abzeichen(
+    id INTEGER PRIMARY KEY NOT NULL,
+    abzeichenName VARCHAR
+)

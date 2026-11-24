@@ -1,0 +1,1 @@
+INSERT INTO abzeichen (abzeichenName) VALUES (?);
