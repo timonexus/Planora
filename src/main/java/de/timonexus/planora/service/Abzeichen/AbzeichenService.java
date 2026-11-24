@@ -5,6 +5,7 @@ import de.timonexus.planora.repositorys.AbzeichenRepository;
 import de.timonexus.planora.repositorys.Repository;
 import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.ui.ToastSystem.ToastType;
+import de.timonexus.planora.ui.formulars.Abzeichen.AbzeichenAnlegen.AbzeichenAnlegenFormular;
 import de.timonexus.planora.ui.formulars.Deletion.AskingForDeletion;
 import de.timonexus.planora.ui.frame.Frame;
 import de.timonexus.planora.ui.table.Table;
@@ -66,19 +67,11 @@ public class AbzeichenService implements DefaultPageService{
     @Override
     public void delete() {
         AskingForDeletion dialog = new AskingForDeletion(
-			this.table.getSelectedLines().size(),
-
+			this.table.getSelectedLines().contains(-1) ? this.table.getSelectedLines().size() - 1 : this.table.getSelectedLines().size() ,
 			// Bestätigen
-			() -> {
-				// Hier deine Löschlogik aufrufen
-				deleteInDatabase();
-			},
-
+			() -> {deleteInDatabase();},
 			// Abbrechen
-			() -> {
-				// Dialog schließen
-				closeFormular();
-			}
+			() -> {closeFormular();}
 		);
 
 		this.frame.showFormularPane(dialog);
@@ -86,6 +79,7 @@ public class AbzeichenService implements DefaultPageService{
 
     private void deleteInDatabase(){
         int numberOfDeletions = this.table.getSelectedLines().size();
+        if(this.table.getSelectedLines().contains(-1)) numberOfDeletions--;
         this.repository.delete(this.table.getSelectedLines());
         this.table.resetSelectedLines();
         this.refreshTable();
@@ -95,7 +89,12 @@ public class AbzeichenService implements DefaultPageService{
 
     @Override
     public void edit() {
-        // must be implemented
+        AbzeichenAnlegenFormular formular = new AbzeichenAnlegenFormular(this, this::closeFormular);
+        formular.setData(this.table.loadSelectedLine());
+        formular.prepareComponent();
+
+        this.table.resetSelectedLines();
+        this.frame.showFormularPane(formular);
     }
 
     @Override
@@ -116,14 +115,15 @@ public class AbzeichenService implements DefaultPageService{
 
     @Override
     public void openFormular() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'openFormular'");
+        AbzeichenAnlegenFormular abzeichenAnlegenFormular = new AbzeichenAnlegenFormular(this, this::closeFormular);
+        abzeichenAnlegenFormular.prepareComponent();
+        this.frame.showFormularPane(abzeichenAnlegenFormular);
     }
 
     @Override
     public void closeFormular() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'closeFormular'");
+        this.frame.hideFormularPane();
+        this.table.refresh();
     }
     
 }

@@ -7,7 +7,6 @@ import javax.swing.SwingConstants;
 
 import de.timonexus.planora.models.Model;
 import de.timonexus.planora.models.Models.Abzeichen;
-import de.timonexus.planora.models.Models.Ausbilder;
 import de.timonexus.planora.models.tableModels.TableModel;
 import de.timonexus.planora.ui.table.TableElement;
 
@@ -28,7 +27,7 @@ public class Abzeichen_TM implements TableModel{
         List<TableElement> result = new ArrayList<>();
 
         for(TableElement column : columns){
-            column.setValue(this.getValue(column.getColumnId(), (Ausbilder) nModel));
+            column.setValue(this.getValue(column.getColumnId(), (Abzeichen) nModel));
             result.add(column);
         }
 

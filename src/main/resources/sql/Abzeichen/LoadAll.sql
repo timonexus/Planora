@@ -1,2 +1,3 @@
 SELECT *
-FROM abzeichen;
+FROM abzeichen
+ORDER BY abzeichenName ASC;
