@@ -3,7 +3,7 @@ package de.timonexus.planora.ui.pages;
 import javax.swing.JLabel;
 
 import de.timonexus.planora.ui.pages.Ausbilder.PlanoraAusbilder;
-import de.timonexus.planora.ui.pages.Badges.PlanoraBadges;
+import de.timonexus.planora.ui.pages.Badges.PlanoraAbzeichen;
 import de.timonexus.planora.ui.pages.Calendar.PlanoraCalendar;
 import de.timonexus.planora.ui.pages.Categories.PlanoraCategories;
 import de.timonexus.planora.ui.pages.Dienste.PlanoraDuties;
@@ -26,7 +26,7 @@ public enum Pages {
     THEMEN("Themen", Icons.TOPICS_BRIGHT, Icons.TOPICS_DARK, new PlanoraTopics(), false),
     GRUPPEN("Gruppen",Icons.GROUPS_BRIGHT, Icons.GROUPS_DARK, new PlanoraGroups(), false),
     AUSBILDER("Ausbilder", Icons.TEACHER_BRIGHT, Icons.TEACHER_DARK, new PlanoraAusbilder(), false),
-    ABZEICHEN("Abzeichen", Icons.BAGDES_BRIGHT, Icons.BADGES_DARK, new PlanoraBadges(), false),
+    ABZEICHEN("Abzeichen", Icons.BAGDES_BRIGHT, Icons.BADGES_DARK, new PlanoraAbzeichen(), false),
 
 
     EINSTELLUNGEN("Einstellungen", Icons.SETTINGS_BRIGHT, Icons.SETTINGS_DARK, new PlanoraSettings(), false),

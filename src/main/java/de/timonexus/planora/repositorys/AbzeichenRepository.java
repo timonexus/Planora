@@ -14,7 +14,7 @@ public class AbzeichenRepository implements Repository{
     public Model[] loadAll(int nId) {
         List<Model> models = new ArrayList<>();
 
-        try (QueryResult query = this.querySQL("sql/Abzeichen/LoadAll.sql")){
+        try (QueryResult query = this.querySQL(this.readSqlFile("sql/Abzeichen/LoadAll.sql"))){
             ResultSet resultSet = query.getResultSet();
             while(resultSet.next()){
                 models.add(new Abzeichen(resultSet.getInt("id"), resultSet.getString("abzeichenName"), 0));
@@ -48,7 +48,7 @@ public class AbzeichenRepository implements Repository{
     public void delete(List<Integer> nLineIds) {
         for(int id: nLineIds){
             try {
-                this.executeSQL(this.readSqlFile("sql/Aubzeichen/Delete.sql"), id);
+                this.executeSQL(this.readSqlFile("sql/Abzeichen/Delete.sql"), id);
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -57,8 +57,7 @@ public class AbzeichenRepository implements Repository{
 
     @Override
     public Model[] search(String nText) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'search'");
+        return null;
     }
     
 }

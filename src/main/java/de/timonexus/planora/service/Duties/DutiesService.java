@@ -72,7 +72,7 @@ public class DutiesService implements DefaultPageService{
         this.table.resetSelectedLines();
         this.frame.showFormularPane(dienstAnlegenFormular);
 
-        this.frame.showToast(ToastType.SUCCESS, "Der Dienst wurde erfolgreich bearbteitet.");
+        this.frame.showToast(ToastType.SUCCESS, "Der Dienst wurde erfolgreich bearbeitet.");
     }
 
     @Override
