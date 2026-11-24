@@ -11,6 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import de.timonexus.planora.ui.Component;
+import de.timonexus.planora.ui.ToastSystem.ToastManager;
+import de.timonexus.planora.ui.ToastSystem.ToastType;
 import de.timonexus.planora.ui.formulars.Formular;
 import de.timonexus.planora.ui.formulars.LayeredPane;
 import de.timonexus.planora.ui.frame.frameHeader.FrameHeader;
@@ -30,6 +32,7 @@ public class PlanoraFrame extends JFrame implements Frame {
     private final LayeredPane formularPane;
     private FrameResizer frameResizer;
     private final WindowAnimator windowAnimator;
+    private final ToastManager toastManager;
 
     // constructor
     public PlanoraFrame() {
@@ -52,11 +55,17 @@ public class PlanoraFrame extends JFrame implements Frame {
 
         this.formularPane.prepareComponent();
 
+        this.toastManager = new ToastManager(this);
+
         // Formular-Ebene über den gesamten Inhalt legen
         this.setGlassPane(this.formularPane);
 
         // Anfangs ist das Formular ausgeblendet
         this.formularPane.setVisible(false);
+    }
+
+    public void showToast(ToastType type, String message) {
+        this.toastManager.show(type, message);
     }
 
     @Override
@@ -226,6 +235,11 @@ public class PlanoraFrame extends JFrame implements Frame {
 
     public void openWindow(){
         this.windowAnimator.open();
+
+        this.showToast(
+            ToastType.SUCCESS,
+            "Planora wurde erfolgreich gestartet."
+        );
     }
 
     public FrameResizer getFrameResizer() {

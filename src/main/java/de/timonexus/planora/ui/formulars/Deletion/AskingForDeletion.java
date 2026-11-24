@@ -116,6 +116,7 @@ public class AskingForDeletion extends RoundedPanel implements Formular, Compone
         deleteButton.addActionListener(e -> {
             if (onConfirm != null) {
                 onConfirm.run();
+                onCancel.run();
             }
         });
 

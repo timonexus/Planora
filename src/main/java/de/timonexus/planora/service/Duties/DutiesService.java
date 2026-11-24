@@ -5,6 +5,7 @@ import de.timonexus.planora.repositorys.DutiesRepository;
 import de.timonexus.planora.repositorys.Repository;
 import de.timonexus.planora.repositorys.utilRepositorys.DienstAusbilder_UR;
 import de.timonexus.planora.service.DefaultPageService;
+import de.timonexus.planora.ui.ToastSystem.ToastType;
 import de.timonexus.planora.ui.formulars.Deletion.AskingForDeletion;
 import de.timonexus.planora.ui.formulars.Dienste.dienstAnlegen.DienstAnlegenFormular;
 import de.timonexus.planora.ui.formulars.Dienste.dienstAnzeigen.DienstAnzeigenFormular;
@@ -53,11 +54,14 @@ public class DutiesService implements DefaultPageService{
 	}
 
 	public void deleteInDatabase(){
+        int numberOfDeletions = this.table.getSelectedLines().size();
 		Repository repository_DienstAusbilder = new DienstAusbilder_UR();
 		repository_DienstAusbilder.delete(this.table.getSelectedLines());
         this.repository.delete(this.table.getSelectedLines());
         this.table.resetSelectedLines();
         this.refreshTable();
+
+        this.frame.showToast(ToastType.SUCCESS, numberOfDeletions + " wurden erfolgreich gelöscht.");
 	}
 
     @Override
@@ -67,6 +71,8 @@ public class DutiesService implements DefaultPageService{
         dienstAnlegenFormular.prepareComponent();
         this.table.resetSelectedLines();
         this.frame.showFormularPane(dienstAnlegenFormular);
+
+        this.frame.showToast(ToastType.SUCCESS, "Der Dienst wurde erfolgreich bearbteitet.");
     }
 
     @Override
@@ -82,6 +88,7 @@ public class DutiesService implements DefaultPageService{
     public void safe(Model nValues) {
         this.dienstId = this.repository.safe(nValues);
         this.refreshTable();
+        this.frame.showToast(ToastType.SUCCESS, "Der Dienst wurde erfolgreich gespeichert.");
     }
 
     @Override
