@@ -5,6 +5,7 @@ import de.timonexus.planora.repositorys.DutiesRepository;
 import de.timonexus.planora.repositorys.Repository;
 import de.timonexus.planora.repositorys.utilRepositorys.DienstAusbilder_UR;
 import de.timonexus.planora.service.DefaultPageService;
+import de.timonexus.planora.ui.formulars.Deletion.AskingForDeletion;
 import de.timonexus.planora.ui.formulars.Dienste.dienstAnlegen.DienstAnlegenFormular;
 import de.timonexus.planora.ui.formulars.Dienste.dienstAnzeigen.DienstAnzeigenFormular;
 import de.timonexus.planora.ui.frame.Frame;
@@ -30,14 +31,34 @@ public class DutiesService implements DefaultPageService{
         return this.repository.loadAll(nId);
 	}
 
-    @Override
-    public void delete(){
+	@Override
+	public void delete() {
+		AskingForDeletion dialog = new AskingForDeletion(
+			this.table.getSelectedLines().size(),
+
+			// Bestätigen
+			() -> {
+				// Hier deine Löschlogik aufrufen
+				deleteInDatabase();
+			},
+
+			// Abbrechen
+			() -> {
+				// Dialog schließen
+				closeFormular();
+			}
+		);
+
+		this.frame.showFormularPane(dialog);
+	}
+
+	public void deleteInDatabase(){
 		Repository repository_DienstAusbilder = new DienstAusbilder_UR();
 		repository_DienstAusbilder.delete(this.table.getSelectedLines());
         this.repository.delete(this.table.getSelectedLines());
         this.table.resetSelectedLines();
         this.refreshTable();
-    }
+	}
 
     @Override
     public void edit() {

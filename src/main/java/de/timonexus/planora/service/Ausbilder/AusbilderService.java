@@ -5,6 +5,7 @@ import de.timonexus.planora.repositorys.AusbilderRepository;
 import de.timonexus.planora.repositorys.Repository;
 import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.ui.formulars.AusbilderFormular;
+import de.timonexus.planora.ui.formulars.Deletion.AskingForDeletion;
 import de.timonexus.planora.ui.frame.Frame;
 import de.timonexus.planora.ui.table.Table;
 
@@ -63,6 +64,26 @@ public class AusbilderService implements DefaultPageService{
 
 	@Override
 	public void delete() {
+		AskingForDeletion dialog = new AskingForDeletion(
+			this.table.getSelectedLines().size(),
+
+			// Bestätigen
+			() -> {
+				// Hier deine Löschlogik aufrufen
+				deleteInDatabase();
+			},
+
+			// Abbrechen
+			() -> {
+				// Dialog schließen
+				closeFormular();
+			}
+		);
+
+		this.frame.showFormularPane(dialog);
+	}
+
+	public void deleteInDatabase(){
 		this.repository.delete(this.table.getSelectedLines());
 		this.table.resetSelectedLines();
 		this.refreshTable();
@@ -84,8 +105,6 @@ public class AusbilderService implements DefaultPageService{
 
 	@Override
 	public void showModel(int nLineId) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'showModel'");
 	}
 
 	@Override
