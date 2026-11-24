@@ -16,8 +16,6 @@ public class ToastManager {
     private ToastNotification currentToast;
     private Timer timer;
 
-    private static final int TOAST_WIDTH = 320;
-    private static final int TOAST_HEIGHT = 75;
     private static final int MARGIN = 10;
     private static final int DISPLAY_TIME = 9000;
 
