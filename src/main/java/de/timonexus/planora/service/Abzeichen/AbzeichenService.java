@@ -8,7 +8,6 @@ import de.timonexus.planora.repositorys.Repository;
 import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.ui.ToastSystem.ToastType;
 import de.timonexus.planora.ui.formulars.Abzeichen.AbzeichenAnlegen.AbzeichenAnlegenFormular;
-import de.timonexus.planora.ui.formulars.Deletion.AskingForDeletion;
 import de.timonexus.planora.ui.formulars.Deletion.DeletionNotice;
 import de.timonexus.planora.ui.frame.Frame;
 import de.timonexus.planora.ui.table.Table;
