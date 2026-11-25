@@ -1,62 +1,79 @@
 package de.timonexus.planora.ui.ToastSystem;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 
 import javax.swing.BorderFactory;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import de.timonexus.planora.ui.Component;
 import de.timonexus.planora.utils.RoundedPanel;
 import de.timonexus.planora.utils.enums.Colors;
-import de.timonexus.planora.utils.enums.Fonts;
 
-public class ToastNotification extends RoundedPanel {
+public class ToastNotification extends RoundedPanel implements Component{
+
+        private final JPanel icon;
+        private final JPanel text;
+        private final JPanel closeButton;
 
     public ToastNotification(ToastType type, String message) {
+        this.icon = new JPanel();
+        this.text = new JPanel();
+        this.closeButton = new JPanel();
+    }
 
-        setLayout(new BorderLayout(12, 0));
-        setPreferredSize(new Dimension(320, 75));
+    @Override
+    public void designComponent() {
+        this.setLayout(new BorderLayout());
+        this.setPreferredSize(new Dimension(320, 75));
+        this.setBackground(Colors.MENUES.getColor());
+        this.setRadius(15);
+        this.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        this.setRoundedBorder(Colors.TEXT_DISABLED.getColor(), 1, BorderPlacement.OUTSIDE);
+    }
 
-        setBackground(Colors.DIALOGS.getColor());
-        setRadius(14);
+    @Override
+    public void skinParts() {
+        skinIcon();
+    }
 
-        setBorder(BorderFactory.createEmptyBorder(
-                12, 14, 12, 14
-        ));
+    @Override
+    public void addParts() {
+        this.add(this.icon, BorderLayout.WEST);
+    }
 
-        // Accent
-        JPanel accent = new JPanel();
-        accent.setBackground(type.getColor());
-        accent.setPreferredSize(new Dimension(4, 0));
+    @Override
+    public void prepareComponents() {
+    }
 
-        // Text
-        JPanel textPanel = new JPanel();
-        textPanel.setOpaque(false);
-        textPanel.setLayout(new BorderLayout(0, 5));
+    @Override
+    public void addComponents() {
+    }
 
-        JLabel title = new JLabel(type.getTitle());
-        title.setForeground(Colors.TEXT.getColor());
-        title.setFont(
-                Fonts.TEXT.loadFont().deriveFont(Font.BOLD, 13f)
-        );
+    @Override
+    public void refresh() {
 
-        JLabel description = new JLabel(
-                "<html><div style='width:240px;'>"
-                        + message
-                        + "</div></html>"
-        );
+    }
 
-        description.setForeground(Colors.TEXT_SECONDARY.getColor());
-        description.setFont(
-                Fonts.TEXT.loadFont().deriveFont(11f)
-        );
+    private void skinIcon(){
+        this.icon.setOpaque(false);
+        this.icon.setPreferredSize(new Dimension(55, 55));
+        this.icon.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        this.icon.setLayout(new BorderLayout());
 
-        textPanel.add(title, BorderLayout.NORTH);
-        textPanel.add(description, BorderLayout.CENTER);
+        RoundedPanel roundedPanel = new RoundedPanel();
+        roundedPanel.setBackground(new Color(Colors.SUCCESS.getColor().getRed(), Colors.SUCCESS.getColor().getGreen(), Colors.SUCCESS.getColor().getBlue(), 50));
+        roundedPanel.setLayout(new BorderLayout());
+        roundedPanel.setRadius(200);
+        roundedPanel.setBorder(BorderFactory.createEmptyBorder(7, 7, 7, 7));
 
-        add(accent, BorderLayout.WEST);
-        add(textPanel, BorderLayout.CENTER);
+        RoundedPanel roundedPanelInner = new RoundedPanel();
+        roundedPanelInner.setBackground(Colors.SUCCESS.getColor());
+        roundedPanelInner.setLayout(new BorderLayout());
+        roundedPanelInner.setRadius(200);
+        roundedPanel.add(roundedPanelInner, BorderLayout.CENTER);
+
+        this.icon.add(roundedPanel, BorderLayout.CENTER);
     }
 }

@@ -46,6 +46,7 @@ public class ToastManager {
                 data.type(),
                 data.message()
         );
+        currentToast.prepareComponent();
 
         layeredPane.add(
                 currentToast,
