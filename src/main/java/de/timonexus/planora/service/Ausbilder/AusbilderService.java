@@ -5,7 +5,9 @@ import java.util.List;
 import de.timonexus.planora.models.Model;
 import de.timonexus.planora.repositorys.AusbilderRepository;
 import de.timonexus.planora.repositorys.Repository;
+import de.timonexus.planora.repositorys.utilRepositorys.DienstAusbilder_UR;
 import de.timonexus.planora.service.DefaultPageService;
+import de.timonexus.planora.ui.ToastSystem.ToastType;
 import de.timonexus.planora.ui.formulars.AusbilderFormular;
 import de.timonexus.planora.ui.formulars.Deletion.DeletionNotice;
 import de.timonexus.planora.ui.frame.Frame;
@@ -78,10 +80,15 @@ public class AusbilderService implements DefaultPageService{
 	}
 
 	public void deleteInDatabase(){
-		this.repository.delete(this.table.getSelectedLines());
+		int numberOfDeletions = this.getSelectedLines().size();
+		DienstAusbilder_UR dienstAusbilder_UR = new DienstAusbilder_UR();
+		dienstAusbilder_UR.deleteByAusbilderId(this.getSelectedLines());
+		this.repository.delete(this.getSelectedLines());
 		this.table.resetSelectedLines();
 		this.closeFormular();
 		this.refreshTable();
+
+	    this.frame.showToast(ToastType.SUCCESS, numberOfDeletions + " Ausbilder wurden erfolgreich gelöscht.");
 	}
 
 	@Override

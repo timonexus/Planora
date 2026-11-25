@@ -69,6 +69,16 @@ public class DienstAusbilder_UR implements Repository{
         }
 	}
 
+    public void deleteByAusbilderId(List<Integer> nLineIds){
+        for(int id : nLineIds){
+            try {
+                this.executeSQL(this.readSqlFile("sql/utilTables/DienstAusbilder_UT/DeleteByAusbilderId.sql"), id);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 	@Override
 	public Model[] search(String nText) {
         return new Model[0];
