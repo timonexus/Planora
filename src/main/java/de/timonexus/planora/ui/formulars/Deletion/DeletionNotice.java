@@ -25,6 +25,7 @@ public class DeletionNotice extends RoundedPanel implements Formular, Component{
 
     private final JPanel titlePanel;
     private final JPanel descriptionPanel;
+    private final JPanel buttonPanel;
 
     // constructor
     public DeletionNotice(DefaultPageService nService, String nClassName){
@@ -33,6 +34,7 @@ public class DeletionNotice extends RoundedPanel implements Formular, Component{
 
         this.titlePanel = new JPanel();
         this.descriptionPanel = new JPanel();
+        this.buttonPanel = new JPanel();
     }
 
     @Override
@@ -49,12 +51,14 @@ public class DeletionNotice extends RoundedPanel implements Formular, Component{
     public void skinParts() {
         skinTitle();
         skinDescription();
+        skinButtonPanel();
     }
 
     @Override
     public void addParts() {
         this.add(this.titlePanel, BorderLayout.NORTH);
         this.add(this.descriptionPanel, BorderLayout.CENTER);
+        this.add(this.buttonPanel, BorderLayout.SOUTH);
     }
 
     @Override
@@ -110,6 +114,10 @@ public class DeletionNotice extends RoundedPanel implements Formular, Component{
         gbc.anchor = GridBagConstraints.WEST;
 
         this.descriptionPanel.add(description, gbc);
+    }
+
+    private void skinButtonPanel(){
+
     }
     
 }
