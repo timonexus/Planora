@@ -1,5 +1,7 @@
 package de.timonexus.planora.service.Duties;
 
+import java.util.List;
+
 import de.timonexus.planora.models.Model;
 import de.timonexus.planora.repositorys.DutiesRepository;
 import de.timonexus.planora.repositorys.Repository;
@@ -31,6 +33,11 @@ public class DutiesService implements DefaultPageService{
 	public Model[] loadAll(int nId) {
         return this.repository.loadAll(nId);
 	}
+
+    @Override
+    public List<Integer> getSelectedLines() {
+        return this.table.getSelectedLines();
+    }
 
 	@Override
 	public void delete() {

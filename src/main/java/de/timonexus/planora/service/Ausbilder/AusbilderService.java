@@ -1,11 +1,13 @@
 package de.timonexus.planora.service.Ausbilder;
 
+import java.util.List;
+
 import de.timonexus.planora.models.Model;
 import de.timonexus.planora.repositorys.AusbilderRepository;
 import de.timonexus.planora.repositorys.Repository;
 import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.ui.formulars.AusbilderFormular;
-import de.timonexus.planora.ui.formulars.Deletion.AskingForDeletion;
+import de.timonexus.planora.ui.formulars.Deletion.DeletionNotice;
 import de.timonexus.planora.ui.frame.Frame;
 import de.timonexus.planora.ui.table.Table;
 
@@ -62,25 +64,17 @@ public class AusbilderService implements DefaultPageService{
 		this.refreshTable();
 	}
 
+    @Override
+    public List<Integer> getSelectedLines() {
+        return this.table.getSelectedLines();
+    }
+
 	@Override
 	public void delete() {
-		AskingForDeletion dialog = new AskingForDeletion(
-			this.table.getSelectedLines().size(),
+		DeletionNotice deletionNotice = new DeletionNotice(this, "Ausbilder");
+		deletionNotice.prepareComponent();
 
-			// Bestätigen
-			() -> {
-				// Hier deine Löschlogik aufrufen
-				deleteInDatabase();
-			},
-
-			// Abbrechen
-			() -> {
-				// Dialog schließen
-				closeFormular();
-			}
-		);
-
-		this.frame.showFormularPane(dialog);
+		this.frame.showFormularPane(deletionNotice);
 	}
 
 	public void deleteInDatabase(){

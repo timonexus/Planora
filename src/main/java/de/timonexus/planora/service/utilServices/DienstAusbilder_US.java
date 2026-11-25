@@ -36,6 +36,11 @@ public class DienstAusbilder_US implements DefaultPageService{
 		this.table = nTable;
 	}
 
+    @Override
+    public List<Integer> getSelectedLines() {
+        return this.table.getSelectedLines();
+    }
+
 	@Override
 	public void addAllLines() {
 	}

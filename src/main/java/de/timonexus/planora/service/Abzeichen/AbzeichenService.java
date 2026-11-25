@@ -1,5 +1,7 @@
 package de.timonexus.planora.service.Abzeichen;
 
+import java.util.List;
+
 import de.timonexus.planora.models.Model;
 import de.timonexus.planora.repositorys.AbzeichenRepository;
 import de.timonexus.planora.repositorys.Repository;
@@ -62,6 +64,11 @@ public class AbzeichenService implements DefaultPageService{
        this.repository.safe(nValues);
        this.refreshTable();
        this.frame.showToast(ToastType.SUCCESS, "Das Abzeichen wurde erfolgreich erstellt!");
+    }
+
+    @Override
+    public List<Integer> getSelectedLines() {
+        return this.table.getSelectedLines();
     }
 
     @Override
