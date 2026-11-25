@@ -80,6 +80,7 @@ public class AusbilderService implements DefaultPageService{
 	public void deleteInDatabase(){
 		this.repository.delete(this.table.getSelectedLines());
 		this.table.resetSelectedLines();
+		this.closeFormular();
 		this.refreshTable();
 	}
 

@@ -42,6 +42,12 @@ public class DienstAusbilder_US implements DefaultPageService{
     }
 
 	@Override
+	public void deleteInDatabase() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
 	public void addAllLines() {
 	}
 

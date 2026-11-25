@@ -8,7 +8,7 @@ import de.timonexus.planora.repositorys.Repository;
 import de.timonexus.planora.repositorys.utilRepositorys.DienstAusbilder_UR;
 import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.ui.ToastSystem.ToastType;
-import de.timonexus.planora.ui.formulars.Deletion.AskingForDeletion;
+import de.timonexus.planora.ui.formulars.Deletion.DeletionNotice;
 import de.timonexus.planora.ui.formulars.Dienste.dienstAnlegen.DienstAnlegenFormular;
 import de.timonexus.planora.ui.formulars.Dienste.dienstAnzeigen.DienstAnzeigenFormular;
 import de.timonexus.planora.ui.frame.Frame;
@@ -41,23 +41,10 @@ public class DutiesService implements DefaultPageService{
 
 	@Override
 	public void delete() {
-		AskingForDeletion dialog = new AskingForDeletion(
-			this.table.getSelectedLines().size(),
+        DeletionNotice deletionNotice = new DeletionNotice(this, "Dienst");
+        deletionNotice.prepareComponent();
 
-			// Bestätigen
-			() -> {
-				// Hier deine Löschlogik aufrufen
-				deleteInDatabase();
-			},
-
-			// Abbrechen
-			() -> {
-				// Dialog schließen
-				closeFormular();
-			}
-		);
-
-		this.frame.showFormularPane(dialog);
+		this.frame.showFormularPane(deletionNotice);
 	}
 
 	public void deleteInDatabase(){
@@ -66,6 +53,7 @@ public class DutiesService implements DefaultPageService{
 		repository_DienstAusbilder.delete(this.table.getSelectedLines());
         this.repository.delete(this.table.getSelectedLines());
         this.table.resetSelectedLines();
+        this.closeFormular();
         this.refreshTable();
 
         this.frame.showToast(ToastType.SUCCESS, numberOfDeletions + " wurden erfolgreich gelöscht.");

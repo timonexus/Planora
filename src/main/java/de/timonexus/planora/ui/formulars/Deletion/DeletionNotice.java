@@ -1,14 +1,21 @@
 package de.timonexus.planora.ui.formulars.Deletion;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
+import javax.swing.SwingConstants;
+
 import de.timonexus.planora.models.Model;
 import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.ui.Component;
@@ -40,10 +47,10 @@ public class DeletionNotice extends RoundedPanel implements Formular, Component{
     @Override
     public void designComponent() {
         this.setLayout(new BorderLayout());
-        this.setPreferredSize(new Dimension(350, 200));
+        this.setPreferredSize(new Dimension(350, 210));
         this.setBackground(Colors.CARDS.getColor());
         this.setRadius(20);
-        this.setRoundedBorder(Colors.TEXT_DISABLED.getColor(), 1, BorderPlacement.OUTSIDE);
+        this.setRoundedBorder(Colors.MENUES.getColor(), 1, BorderPlacement.OUTSIDE);
         this.setBorder(BorderFactory.createEmptyBorder(25, 25, 25, 25));
     }
 
@@ -117,7 +124,62 @@ public class DeletionNotice extends RoundedPanel implements Formular, Component{
     }
 
     private void skinButtonPanel(){
+        JPanel btn_abbrechen = skinDefaultButton("Abbrechen", false);
+        btn_abbrechen.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 10));
+        btn_abbrechen.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                service.closeFormular();
+            }
+        });
 
+        JPanel btn_bestätigen = skinDefaultButton("Löschen", true);
+        btn_bestätigen.setBorder(BorderFactory.createEmptyBorder(20, 10, 0, 0));
+        btn_bestätigen.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                service.deleteInDatabase();
+            }
+        });
+
+        this.buttonPanel.setOpaque(false);
+        this.buttonPanel.setLayout(new BoxLayout(this.buttonPanel, BoxLayout.X_AXIS));
+        this.buttonPanel.setPreferredSize(new Dimension(Integer.MAX_VALUE,60));
+
+        this.buttonPanel.add(btn_abbrechen);
+        this.buttonPanel.add(btn_bestätigen);
+
+    }
+
+    private JPanel skinDefaultButton(String nText, boolean nIsHighlighted){
+        JPanel basePanel = new JPanel();
+        basePanel.setPreferredSize(new Dimension(200, Integer.MAX_VALUE));
+        basePanel.setOpaque(false);
+        basePanel.setLayout(new BorderLayout());
+
+        RoundedPanel viewPanel = new RoundedPanel();
+        viewPanel.setBackground(switchBackgroundColor(nIsHighlighted));
+        viewPanel.setRadius(15);
+        viewPanel.setLayout(new BorderLayout());
+        viewPanel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+        JLabel label = new JLabel(nText);
+        label.setForeground(Colors.TEXT.getColor());
+        label.setFont(Fonts.TEXT.loadFont());
+        label.setVerticalAlignment(SwingConstants.CENTER);
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        viewPanel.add(label, BorderLayout.CENTER);
+
+        basePanel.add(viewPanel, BorderLayout.CENTER);
+
+        return basePanel;
+    }
+
+    private Color switchBackgroundColor(boolean nIsHighlighted){
+        Color backgroundColor = Colors.APP_BAR.getColor();
+        if(nIsHighlighted) backgroundColor = Colors.ERROR.getColor();
+
+        return backgroundColor;
     }
     
 }

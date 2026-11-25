@@ -9,6 +9,7 @@ import de.timonexus.planora.service.DefaultPageService;
 import de.timonexus.planora.ui.ToastSystem.ToastType;
 import de.timonexus.planora.ui.formulars.Abzeichen.AbzeichenAnlegen.AbzeichenAnlegenFormular;
 import de.timonexus.planora.ui.formulars.Deletion.AskingForDeletion;
+import de.timonexus.planora.ui.formulars.Deletion.DeletionNotice;
 import de.timonexus.planora.ui.frame.Frame;
 import de.timonexus.planora.ui.table.Table;
 
@@ -73,22 +74,18 @@ public class AbzeichenService implements DefaultPageService{
 
     @Override
     public void delete() {
-        AskingForDeletion dialog = new AskingForDeletion(
-			this.table.getSelectedLines().contains(-1) ? this.table.getSelectedLines().size() - 1 : this.table.getSelectedLines().size() ,
-			// Bestätigen
-			() -> {deleteInDatabase();},
-			// Abbrechen
-			() -> {closeFormular();}
-		);
+        DeletionNotice deletionNotice = new DeletionNotice(this, "Abzeichen");
+        deletionNotice.prepareComponent();
 
-		this.frame.showFormularPane(dialog);
+		this.frame.showFormularPane(deletionNotice);
     }
 
-    private void deleteInDatabase(){
+    public void deleteInDatabase(){
         int numberOfDeletions = this.table.getSelectedLines().size();
         if(this.table.getSelectedLines().contains(-1)) numberOfDeletions--;
         this.repository.delete(this.table.getSelectedLines());
         this.table.resetSelectedLines();
+        this.closeFormular();
         this.refreshTable();
 
         this.frame.showToast(ToastType.SUCCESS, numberOfDeletions + " wurden erfolgreich gelöscht.");

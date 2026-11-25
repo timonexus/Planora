@@ -23,6 +23,7 @@ public interface DefaultPageService {
     public void safe(Model nValues);
 
     public void delete();
+    public void deleteInDatabase();
 
     public void edit();
 
