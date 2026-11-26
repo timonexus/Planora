@@ -44,7 +44,8 @@ public class ToastManager {
 
         currentToast = new ToastNotification(
                 data.type(),
-                data.message()
+                data.message(),
+                this::removeCurrentToast
         );
         currentToast.prepareComponent();
 
