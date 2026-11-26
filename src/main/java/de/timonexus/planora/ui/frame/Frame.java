@@ -1,5 +1,7 @@
 package de.timonexus.planora.ui.frame;
 
+import javax.swing.JLayeredPane;
+
 import de.timonexus.planora.ui.ToastSystem.ToastType;
 import de.timonexus.planora.ui.formulars.Formular;
 import de.timonexus.planora.ui.pages.DefaultPage;
@@ -22,5 +24,7 @@ public interface Frame{
     public void hideFormularPane();
 
     public void showToast(ToastType type, String message);
+
+    public JLayeredPane getLayeredPage();
 
 }
