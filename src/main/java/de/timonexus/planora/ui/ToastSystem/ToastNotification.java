@@ -27,10 +27,12 @@ public class ToastNotification extends RoundedPanel implements Component{
 
         private final Runnable close;
         private final String message;
+        private final ToastType type;
 
     public ToastNotification(ToastType type, String message, Runnable nClose) {
         this.close = nClose;
         this.message = message;
+        this.type = type;
 
         this.icon = new JPanel();
         this.text = new JPanel();
@@ -75,24 +77,38 @@ public class ToastNotification extends RoundedPanel implements Component{
     }
 
     private void skinIcon(){
+        Color defaultColor;
+        JLabel icon = Icons.CHECK_DARK.getIconLabel();
+        switch (this.type) {
+                case SUCCESS:
+                        defaultColor = Colors.SUCCESS.getColor();
+                        icon = Icons.CHECK_DARK.getIconLabel();
+                        break;
+                case ERROR:
+                        defaultColor = Colors.ERROR.getColor();
+                        icon = Icons.ERROR_DARK.getIconLabel();
+                        break;
+                default:
+                        defaultColor = Colors.ERROR.getColor();
+                        break;
+        }
+
         this.icon.setOpaque(false);
         this.icon.setPreferredSize(new Dimension(55, 55));
         this.icon.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         this.icon.setLayout(new BorderLayout());
 
         RoundedPanel roundedPanel = new RoundedPanel();
-        roundedPanel.setBackground(new Color(Colors.SUCCESS.getColor().getRed(), Colors.SUCCESS.getColor().getGreen(), Colors.SUCCESS.getColor().getBlue(), 50));
+        roundedPanel.setBackground(new Color(defaultColor.getRed(), defaultColor.getGreen(), defaultColor.getBlue(), 50));
         roundedPanel.setLayout(new BorderLayout());
         roundedPanel.setRadius(200);
         roundedPanel.setBorder(BorderFactory.createEmptyBorder(7, 7, 7, 7));
 
         RoundedPanel roundedPanelInner = new RoundedPanel();
-        roundedPanelInner.setBackground(Colors.SUCCESS.getColor());
+        roundedPanelInner.setBackground(defaultColor);
         roundedPanelInner.setLayout(new BorderLayout());
         roundedPanelInner.setRadius(200);
 
-
-        JLabel icon = Icons.CHECK_DARK.getIconLabel();
         icon.setVerticalAlignment(SwingConstants.CENTER);
         icon.setHorizontalAlignment(SwingConstants.CENTER);
         roundedPanelInner.add(icon, BorderLayout.CENTER);
