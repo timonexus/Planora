@@ -13,7 +13,8 @@ public enum Colors {
     TEXT_SECONDARY(new Color(160, 160, 160)), // #A0A0A0
     TEXT_DISABLED(new Color(108, 108, 108)), // #6C6C6C
     PRIMARY(new Color(187, 134, 252)), // #BB86FC
-    ERROR(new Color(179, 38, 30)); // #B3261E
+    ERROR(new Color(179, 38, 30)), // #B3261E
+    SUCCESS(new Color(129, 199, 132)); // #81C784
     
 
     // attributes

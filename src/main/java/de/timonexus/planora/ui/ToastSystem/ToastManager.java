@@ -1,106 +1,175 @@
+
 package de.timonexus.planora.ui.ToastSystem;
 
 import java.awt.Dimension;
-import java.util.ArrayDeque;
-import java.util.Queue;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import javax.swing.JFrame;
-import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
 import javax.swing.Timer;
+
+import de.timonexus.planora.ui.frame.Frame;
 
 public class ToastManager {
 
-    private final JFrame frame;
-    private final Queue<ToastData> queue = new ArrayDeque<>();
+    // --------------------------------------------------
+    // Attributes
+    // --------------------------------------------------
 
-    private ToastNotification currentToast;
-    private Timer timer;
+    private final Frame frame;
+    private final List<ToastNotification> notificationList;
+    private final JPanel toastLayer;
+
+    private final Map<ToastNotification, Timer> timerMap;
 
     private static final int MARGIN = 10;
     private static final int DISPLAY_TIME = 9000;
 
-    public ToastManager(JFrame frame) {
-        this.frame = frame;
+
+    // --------------------------------------------------
+    // Constructor
+    // --------------------------------------------------
+
+    public ToastManager(Frame nFrame) {
+
+        this.frame = nFrame;
+
+        this.toastLayer = frame.getLayeredPage().getToastLayer();
+
+        this.notificationList = new ArrayList<>();
+        this.timerMap = new HashMap<>();
     }
 
-    public void show(ToastType type, String message) {
 
-        queue.offer(new ToastData(type, message));
+    // --------------------------------------------------
+    // Create Toast
+    // --------------------------------------------------
 
-        if (currentToast == null) {
-            showNext();
+    public void createToastNotification(
+        ToastType nToastType,
+        String nMessage
+    ) {
+
+        ToastNotification notification =
+            new ToastNotification(nToastType, nMessage, null);
+
+        this.notificationList.add(notification);
+
+        this.showNotifications();
+        this.startTimer(notification);
+    }
+
+
+    // --------------------------------------------------
+    // Remove Toast
+    // --------------------------------------------------
+
+    public void removeToastNotification(String nMessage) {
+
+        List<ToastNotification> notificationsToRemove =
+            new ArrayList<>();
+
+        for (ToastNotification notification : notificationList) {
+
+            if (notification.getMessage().contains(nMessage)) {
+                notificationsToRemove.add(notification);
+            }
+        }
+
+        for (ToastNotification notification : notificationsToRemove) {
+            this.removeToast(notification);
+        }
+
+        this.showNotifications();
+    }
+
+    private void removeToast(ToastNotification notification) {
+
+        this.notificationList.remove(notification);
+
+        Timer timer = this.timerMap.remove(notification);
+
+        if (timer != null) {
+            timer.stop();
         }
     }
 
-    private void showNext() {
 
-        ToastData data = queue.poll();
+    // --------------------------------------------------
+    // Timer
+    // --------------------------------------------------
 
-        if (data == null) {
-            return;
-        }
+    private void startTimer(ToastNotification notification) {
 
-        JLayeredPane layeredPane = frame.getLayeredPane();
-
-        currentToast = new ToastNotification(
-                data.type(),
-                data.message()
+        Timer timer = new Timer(
+            DISPLAY_TIME,
+            e -> {
+                this.removeToast(notification);
+                this.showNotifications();
+            }
         );
 
-        layeredPane.add(
-                currentToast,
-                JLayeredPane.POPUP_LAYER
-        );
-
-        positionToast();
-        layeredPane.revalidate();
-        layeredPane.repaint();
-
-        timer = new Timer(DISPLAY_TIME, e -> removeCurrentToast());
         timer.setRepeats(false);
+
+        this.timerMap.put(notification, timer);
+
         timer.start();
     }
 
-    private void positionToast() {
 
-        if (currentToast == null) {
-            return;
+    // --------------------------------------------------
+    // Display Notifications
+    // --------------------------------------------------
+
+    public void showNotifications() {
+
+        this.toastLayer.removeAll();
+
+        for (ToastNotification notification : notificationList) {
+
+            notification.prepareComponent();
+
+            this.toastLayer.add(notification);
         }
 
-        Dimension size = currentToast.getPreferredSize();
+        this.positionNotifications();
 
-        int x = frame.getLayeredPane().getWidth()
-                - size.width - MARGIN;
+        this.toastLayer.revalidate();
+        this.toastLayer.repaint();
 
-        int y = frame.getLayeredPane().getHeight()
-                - size.height - MARGIN;
+        this.frame.getLayeredPage().updateVisibility();
+    }
 
-        currentToast.setBounds(
+
+    // --------------------------------------------------
+    // Position Notifications
+    // --------------------------------------------------
+
+    private void positionNotifications() {
+
+        int y = this.toastLayer.getHeight() - MARGIN;
+
+        // Neueste Nachricht zuerst unten platzieren
+        for (int i = 0; i < notificationList.size(); i++) {
+
+            ToastNotification notification = notificationList.get(i);
+
+            Dimension size = notification.getPreferredSize();
+
+            int x = this.toastLayer.getWidth() - size.width - MARGIN;
+
+            y -= size.height;
+
+            notification.setBounds(
                 x,
                 y,
                 size.width,
                 size.height
-        );
-    }
+            );
 
-    private void removeCurrentToast() {
-
-        if (timer != null) {
-            timer.stop();
-            timer = null;
+            y -= MARGIN;
         }
-
-        if (currentToast != null) {
-            frame.getLayeredPane().remove(currentToast);
-            currentToast = null;
-        }
-
-        frame.getLayeredPane().revalidate();
-        frame.getLayeredPane().repaint();
-
-        showNext();
-    }
-
-    private record ToastData(ToastType type, String message) {
     }
 }

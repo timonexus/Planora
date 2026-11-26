@@ -61,11 +61,11 @@ public class PlanoraFrame extends JFrame implements Frame {
         this.setGlassPane(this.formularPane);
 
         // Anfangs ist das Formular ausgeblendet
-        this.formularPane.setVisible(false);
+        this.formularPane.updateVisibility();
     }
 
     public void showToast(ToastType type, String message) {
-        this.toastManager.show(type, message);
+        this.toastManager.createToastNotification(type, message);
     }
 
     @Override
@@ -189,6 +189,10 @@ public class PlanoraFrame extends JFrame implements Frame {
     public DefaultPage getPage() {
         return this.page;
     }
+    @Override
+    public LayeredPane getLayeredPage() {
+        return this.formularPane;
+    }
 
     // --------------------------------------------------
     // Setter
@@ -210,7 +214,6 @@ public class PlanoraFrame extends JFrame implements Frame {
         return pages.getPage();
     }
 
-    // --------------------------------------------------
     // Formular
     // --------------------------------------------------
 
@@ -220,7 +223,7 @@ public class PlanoraFrame extends JFrame implements Frame {
             (javax.swing.JComponent) nFormular
         );
 
-        this.formularPane.setVisible(true);
+        this.formularPane.updateVisibility();
 
         this.formularPane.revalidate();
         this.formularPane.repaint();
@@ -228,9 +231,9 @@ public class PlanoraFrame extends JFrame implements Frame {
 
     public void hideFormularPane() {
 
-        this.formularPane.setVisible(false);
-
         this.formularPane.removeFormular();
+
+        this.formularPane.updateVisibility();
     }
 
     public void openWindow(){
