@@ -155,4 +155,9 @@ public class ToastNotification extends RoundedPanel implements Component{
 
         this.text.add(description, BorderLayout.CENTER);
     }
+
+    // getter
+    public String getMessage() {
+        return message;
+    }
 }
