@@ -1,7 +1,5 @@
 package de.timonexus.planora.ui.frame;
 
-import javax.swing.JLayeredPane;
-
 import de.timonexus.planora.ui.ToastSystem.ToastType;
 import de.timonexus.planora.ui.formulars.Formular;
 import de.timonexus.planora.ui.formulars.LayeredPane;

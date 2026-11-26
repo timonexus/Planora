@@ -8,11 +8,10 @@ import java.awt.event.ComponentEvent;
 import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.JFrame;
-import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 import de.timonexus.planora.ui.Component;
-import de.timonexus.planora.ui.ToastSystem.ToastManagerV2;
+import de.timonexus.planora.ui.ToastSystem.ToastManager;
 import de.timonexus.planora.ui.ToastSystem.ToastType;
 import de.timonexus.planora.ui.formulars.Formular;
 import de.timonexus.planora.ui.formulars.LayeredPane;
@@ -33,7 +32,7 @@ public class PlanoraFrame extends JFrame implements Frame {
     private final LayeredPane formularPane;
     private FrameResizer frameResizer;
     private final WindowAnimator windowAnimator;
-    private final ToastManagerV2 toastManager;
+    private final ToastManager toastManager;
 
     // constructor
     public PlanoraFrame() {
@@ -56,7 +55,7 @@ public class PlanoraFrame extends JFrame implements Frame {
 
         this.formularPane.prepareComponent();
 
-        this.toastManager = new ToastManagerV2(this);
+        this.toastManager = new ToastManager(this);
 
         // Formular-Ebene über den gesamten Inhalt legen
         this.setGlassPane(this.formularPane);
