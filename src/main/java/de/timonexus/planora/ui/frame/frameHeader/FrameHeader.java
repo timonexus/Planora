@@ -10,7 +10,6 @@ import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import de.timonexus.planora.ui.frame.WindowAnimator;
 import de.timonexus.planora.utils.enums.Colors;
 
 public class FrameHeader extends JPanel {
@@ -21,11 +20,8 @@ public class FrameHeader extends JPanel {
 
     private boolean maximized;
 
-    private final WindowAnimator windowAnimator;
-
-    public FrameHeader(JFrame nFrame, WindowAnimator nAnimator) {
+    public FrameHeader(JFrame nFrame) {
         this.frame = nFrame;
-        this.windowAnimator = nAnimator;
 
         this.designComponent();
     }
@@ -65,9 +61,9 @@ public class FrameHeader extends JPanel {
 
         closeButton.addActionListener(e -> frame.dispose());
 
-        minimizeButton.addActionListener(e ->
-            windowAnimator.minimize()
-        );
+        //minimizeButton.addActionListener(e ->
+            //frame should be minimized
+        //);
 
         maximizeButton.addActionListener(e -> toggleMaximize());
 

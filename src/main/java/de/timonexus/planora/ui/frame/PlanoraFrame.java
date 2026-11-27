@@ -31,15 +31,13 @@ public class PlanoraFrame extends JFrame implements Frame {
     private DefaultPage page;
     private final LayeredPane formularPane;
     private FrameResizer frameResizer;
-    private final WindowAnimator windowAnimator;
     private final ToastManager toastManager;
 
     // constructor
     public PlanoraFrame() {
 
         this.sidebar = new PlanoraSidebar(this);
-        this.windowAnimator = new WindowAnimator(this);
-        this.header = new FrameHeader(this, this.windowAnimator);
+        this.header = new FrameHeader(this);
         this.frameResizer = new FrameResizer(this, () -> {
             this.sidebar.refresh();
             this.page.refresh();
@@ -237,7 +235,6 @@ public class PlanoraFrame extends JFrame implements Frame {
     }
 
     public void openWindow(){
-        this.windowAnimator.open();
 
         this.showToast(
             ToastType.SUCCESS,
