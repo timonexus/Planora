@@ -3,6 +3,8 @@ package de.timonexus.planora;
 import javax.swing.SwingUtilities;
 
 import de.timonexus.planora.database.DatabaseInitializer;
+import de.timonexus.planora.service.PlanoraFrameService;
+import de.timonexus.planora.service.services.FrameService;
 import de.timonexus.planora.ui.frame.PlanoraFrame;
 
 public class Application {
@@ -10,10 +12,12 @@ public class Application {
     // Attributes
     private final DatabaseInitializer databaseInitializer;
     private PlanoraFrame planoraFrame;
+    private final FrameService frameService;
 
     // Constructor
     public Application() {
         this.databaseInitializer = new DatabaseInitializer();
+        this.frameService = new PlanoraFrameService();
 
         prepareApplication();
     }
@@ -43,6 +47,8 @@ public class Application {
 
             System.out.println("[INFO] Application successfully started");
         });
+
+        this.frameService.isVisible(true);
     }
 
     // Getter

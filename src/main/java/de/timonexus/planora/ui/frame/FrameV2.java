@@ -18,5 +18,7 @@ public interface FrameV2 {
     void setPage(DefaultPage nDefaultPage);
     void refresh();
 
+    void setVisible(boolean isVisible);
+
     LayeredPane getLayeredPage();
 }
