@@ -3,7 +3,7 @@ package de.timonexus.planora;
 import javax.swing.SwingUtilities;
 
 import de.timonexus.planora.database.DatabaseInitializer;
-import de.timonexus.planora.service.PlanoraFrameService;
+import de.timonexus.planora.service.frame.PlanoraFrameService;
 import de.timonexus.planora.service.services.FrameService;
 import de.timonexus.planora.ui.frame.PlanoraFrame;
 

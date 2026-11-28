@@ -1,4 +1,4 @@
-package de.timonexus.planora.service;
+package de.timonexus.planora.service.frame;
 
 import de.timonexus.planora.service.services.FrameService;
 import de.timonexus.planora.ui.frame.FrameV2;
@@ -18,7 +18,6 @@ public class PlanoraFrameService implements FrameService{
     public void isVisible(boolean isVisible){
         this.frame.prepareFrame();
         this.frame.setVisible(isVisible);
-        System.out.println("Test");
     }
 
 

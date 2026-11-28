@@ -18,4 +18,6 @@ public interface Component{
     void addComponents();
 
     public void refresh();
+
+    void add(Component nComponent, String nBorderLayout);
 }
