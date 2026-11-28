@@ -3,6 +3,7 @@ package de.timonexus.planora.ui.frame;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.geom.RoundRectangle2D;
@@ -93,6 +94,21 @@ public class PlanoraFrameV2 extends JFrame implements FrameV2{
     @Override
     public void add(Component nComponent, String nBorderLayout) {
         super.add((JComponent) nComponent, nBorderLayout);
+    }
+
+    @Override
+    public boolean isMaximized() {
+        return this.getExtendedState() == JFrame.MAXIMIZED_BOTH;
+    }
+
+    @Override
+    public Point getLocation() {
+        return super.getLocation();
+    }
+
+    @Override
+    public void setLocation(Point nPoint) {
+        super.setLocation(nPoint);
     }
 
 

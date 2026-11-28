@@ -8,7 +8,7 @@ public class CloseService extends FrameButtonService{
 
     // constructor
     public CloseService(FrameService nFrameService){
-        super(nFrameService, Icons.CLOSE_DARK.getIconLabel(), Colors.APPLE_CLOSE.getColor());
+        super(nFrameService, Icons.WINDOW_CLOSE_DARK.getIconLabel(), Colors.APPLE_CLOSE.getColor());
     }
 
     @Override

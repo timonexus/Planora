@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import de.timonexus.planora.service.services.ButtonService;
 import de.timonexus.planora.ui.Component;
@@ -40,6 +41,8 @@ public class WindowButton extends JPanel implements Component {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
         this.iconLabel.setVisible(false);
+        this.iconLabel.setVerticalAlignment(SwingConstants.CENTER);
+        this.iconLabel.setHorizontalAlignment(SwingConstants.CENTER);
         this.add(this.iconLabel);
 
         this.addMouseListener(new MouseAdapter() {

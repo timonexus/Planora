@@ -8,7 +8,7 @@ public class MaximizeService extends FrameButtonService{
 
     // constructor
     public MaximizeService(FrameService nFrameService){
-        super(nFrameService, Icons.CLOSE_DARK.getIconLabel(), Colors.APPLE_MAXIMIZE.getColor());
+        super(nFrameService, Icons.WINDOW_MAXIMIZE_DARK.getIconLabel(), Colors.APPLE_MAXIMIZE.getColor());
     }
 
     @Override

@@ -1,5 +1,7 @@
 package de.timonexus.planora.ui.frame;
 
+import java.awt.Point;
+
 import de.timonexus.planora.ui.Component;
 import de.timonexus.planora.ui.formulars.LayeredPane;
 import de.timonexus.planora.ui.pages.DefaultPage;
@@ -27,4 +29,8 @@ public interface FrameV2 {
     void add(Component nComponent, String nBorderLayout);
 
     LayeredPane getLayeredPage();
+
+    boolean isMaximized();
+    Point getLocation();
+    void setLocation(Point nPoint);
 }

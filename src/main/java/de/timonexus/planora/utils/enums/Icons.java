@@ -53,7 +53,13 @@ public enum Icons {
     CHECK_BRIGHT("/icons/check_bright.png", 20),
     CHECK_DARK("/icons/check_dark.png", 20),
     ERROR_BRIGHT("/icons/error_bright.png", 20),
-    ERROR_DARK("/icons/error_dark.png", 20)
+    ERROR_DARK("/icons/error_dark.png", 20),
+    WINDOW_CLOSE_BRIGHT("/icons/close_bright.png", 15),
+    WINDOW_CLOSE_DARK("/icons/close_dark.png", 15),
+    WINDOW_MINIMIZE_BRIGHT("/icons/minimize_bright.png", 15),
+    WINDOW_MINIMIZE_DARK("/icons/minimize_dark.png", 15),
+    WINDOW_MAXIMIZE_BRIGHT("/icons/maximize_bright.png", 15),
+    WINDOW_MAXIMIZE_DARK("/icons/maximize_dark.png", 15),
     ;
 
     private final String path;

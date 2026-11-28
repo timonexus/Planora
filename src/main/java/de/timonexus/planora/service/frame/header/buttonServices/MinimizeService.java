@@ -8,7 +8,7 @@ public class MinimizeService extends FrameButtonService{
 
     // constructor
     public MinimizeService(FrameService nFrameService){
-        super(nFrameService, Icons.CLOSE_DARK.getIconLabel(), Colors.APPLE_MINIMIZE.getColor());
+        super(nFrameService, Icons.WINDOW_MINIMIZE_DARK.getIconLabel(), Colors.APPLE_MINIMIZE.getColor());
     }
 
     @Override

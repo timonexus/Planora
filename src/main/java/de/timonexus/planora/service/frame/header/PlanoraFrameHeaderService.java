@@ -16,7 +16,7 @@ public class PlanoraFrameHeaderService implements ComponentService{
 
     // constructor
     public PlanoraFrameHeaderService(FrameService nFrameService){
-        this.header = new FrameHeader();
+        this.header = new FrameHeader(nFrameService);
         this.buttonService = new ButtonsService(nFrameService);
     }
 

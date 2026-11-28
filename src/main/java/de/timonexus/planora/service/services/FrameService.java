@@ -1,5 +1,7 @@
 package de.timonexus.planora.service.services;
 
+import java.awt.Point;
+
 import de.timonexus.planora.ui.Component;
 
 public interface FrameService{
@@ -12,4 +14,8 @@ public interface FrameService{
     void close();
 
     void add(Component nComponent, String nBorderLayout);
+
+    boolean isMaximized();
+    Point getLocation();
+    void setLocation(Point nPoint);
 }
