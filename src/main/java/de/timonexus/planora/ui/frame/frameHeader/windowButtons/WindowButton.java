@@ -1,4 +1,4 @@
-package de.timonexus.planora.ui.frame.frameHeaderV2.windowButtons;
+package de.timonexus.planora.ui.frame.frameHeader.windowButtons;
 
 import java.awt.Cursor;
 import java.awt.Dimension;

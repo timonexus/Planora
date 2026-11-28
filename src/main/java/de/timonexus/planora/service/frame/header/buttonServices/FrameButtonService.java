@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 import de.timonexus.planora.service.services.ButtonService;
 import de.timonexus.planora.service.services.FrameService;
 import de.timonexus.planora.ui.Component;
-import de.timonexus.planora.ui.frame.frameHeaderV2.windowButtons.WindowButton;
+import de.timonexus.planora.ui.frame.frameHeader.windowButtons.WindowButton;
 
 public abstract class FrameButtonService implements ButtonService{
 

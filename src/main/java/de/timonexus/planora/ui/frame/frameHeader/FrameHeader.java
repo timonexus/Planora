@@ -1,87 +1,60 @@
 package de.timonexus.planora.ui.frame.frameHeader;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
+import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.JFrame;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 
+import de.timonexus.planora.service.services.FrameService;
+import de.timonexus.planora.ui.Component;
 import de.timonexus.planora.utils.enums.Colors;
 
-public class FrameHeader extends JPanel {
+public class FrameHeader extends JPanel implements Component{
 
-    private final JFrame frame;
-
+    // attributes
     private Point dragPoint;
+    private FrameService frameService;
 
-    private boolean maximized;
-
-    public FrameHeader(JFrame nFrame) {
-        this.frame = nFrame;
-
-        this.designComponent();
+    // constructor
+    public FrameHeader(FrameService nFrameService){
+        this.frameService = nFrameService;
     }
 
-    private void designComponent() {
+    @Override
+    public void designComponent() {
         this.setLayout(new BorderLayout());
-
         this.setBackground(Colors.BASE.getColor());
-        this.setPreferredSize(new java.awt.Dimension(0, 40));
-
-        this.add(createWindowButtons(), BorderLayout.WEST);
-        //this.add(createTitle(), BorderLayout.CENTER);
-
-        this.addDragListener();
+        this.setPreferredSize(new Dimension(0, 40));
     }
 
-    private JPanel createWindowButtons() {
-        JPanel panel = new JPanel(new FlowLayout(
-            FlowLayout.LEFT,
-            8,
-            8
-        ));
-
-        panel.setOpaque(false);
-
-        WindowButton closeButton = new WindowButton(
-            new Color(255, 95, 87), 0
-        );
-
-        WindowButton minimizeButton = new WindowButton(
-            new Color(254, 188, 46), 1
-        );
-
-        WindowButton maximizeButton = new WindowButton(
-            new Color(40, 200, 64), 2
-        );
-
-        closeButton.addActionListener(e -> frame.dispose());
-
-        //minimizeButton.addActionListener(e ->
-            //frame should be minimized
-        //);
-
-        maximizeButton.addActionListener(e -> toggleMaximize());
-
-        panel.add(closeButton);
-        panel.add(minimizeButton);
-        panel.add(maximizeButton);
-
-        return panel;
+    @Override
+    public void skinParts() {
     }
 
-    private void toggleMaximize() {
-        if (maximized) {
-            frame.setExtendedState(JFrame.NORMAL);
-        } else {
-            frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        }
+    @Override
+    public void addParts() {
+    }
 
-        maximized = !maximized;
+    @Override
+    public void prepareComponents() {
+        addDragListener();
+    }
+
+    @Override
+    public void addComponents() {
+    }
+
+    @Override
+    public void refresh() {
+    }
+
+    @Override
+    public void add(Component nComponent, String nBorderLayout) {
+        super.add((JComponent) nComponent, nBorderLayout);
     }
 
     private void addDragListener() {
@@ -93,10 +66,8 @@ public class FrameHeader extends JPanel {
             }
 
             @Override
-            public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 2) {
-                    toggleMaximize();
-                }
+            public void mouseReleased(MouseEvent e) {
+                dragPoint = null;
             }
         });
 
@@ -104,17 +75,18 @@ public class FrameHeader extends JPanel {
 
             @Override
             public void mouseDragged(MouseEvent e) {
-                if (maximized || dragPoint == null) {
+                if (frameService.isMaximized() || dragPoint == null) {
                     return;
                 }
 
-                Point location = frame.getLocation();
+                Point location = frameService.getLocation();
 
-                frame.setLocation(
+                frameService.setLocation(new Point(
                     location.x + e.getX() - dragPoint.x,
                     location.y + e.getY() - dragPoint.y
-                );
+                ));
             }
         });
     }
+    
 }

@@ -7,19 +7,19 @@ import de.timonexus.planora.service.frame.header.PlanoraFrameHeaderService;
 import de.timonexus.planora.service.services.ComponentService;
 import de.timonexus.planora.service.services.FrameService;
 import de.timonexus.planora.ui.Component;
-import de.timonexus.planora.ui.frame.FrameV2;
-import de.timonexus.planora.ui.frame.PlanoraFrameV2;
+import de.timonexus.planora.ui.frame.Frame;
+import de.timonexus.planora.ui.frame.PlanoraFrame;
 
 public class PlanoraFrameService implements FrameService{
 
     // attributes
-    private final FrameV2 frame;
+    private final Frame frame;
 
     private final ComponentService header;
 
     // constructor
     public PlanoraFrameService(){
-        this.frame = new PlanoraFrameV2();
+        this.frame = new PlanoraFrame();
 
         this.header = new PlanoraFrameHeaderService(this);
     }

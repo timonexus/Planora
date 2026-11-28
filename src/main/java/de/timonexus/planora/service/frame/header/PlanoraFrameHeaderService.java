@@ -5,7 +5,7 @@ import java.awt.BorderLayout;
 import de.timonexus.planora.service.services.ComponentService;
 import de.timonexus.planora.service.services.FrameService;
 import de.timonexus.planora.ui.Component;
-import de.timonexus.planora.ui.frame.frameHeaderV2.FrameHeader;
+import de.timonexus.planora.ui.frame.frameHeader.FrameHeader;
 
 public class PlanoraFrameHeaderService implements ComponentService{
 

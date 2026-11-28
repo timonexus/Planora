@@ -7,7 +7,7 @@ import de.timonexus.planora.service.frame.header.buttonServices.MinimizeService;
 import de.timonexus.planora.service.services.ComponentService;
 import de.timonexus.planora.service.services.FrameService;
 import de.timonexus.planora.ui.Component;
-import de.timonexus.planora.ui.frame.frameHeaderV2.windowButtons.WindowButtons;
+import de.timonexus.planora.ui.frame.frameHeader.windowButtons.WindowButtons;
 
 public class ButtonsService implements ComponentService{
 

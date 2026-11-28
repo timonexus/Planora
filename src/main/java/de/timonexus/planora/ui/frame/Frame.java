@@ -1,29 +1,36 @@
 package de.timonexus.planora.ui.frame;
 
-import de.timonexus.planora.ui.ToastSystem.ToastType;
-import de.timonexus.planora.ui.formulars.Formular;
+import java.awt.Point;
+
+import de.timonexus.planora.ui.Component;
 import de.timonexus.planora.ui.formulars.LayeredPane;
 import de.timonexus.planora.ui.pages.DefaultPage;
 
-public interface Frame{
-    
+public interface Frame {
+
     default void prepareFrame(){
         skinFrame();
         prepareComponents();
         addComponents();
-    };
+    }
+    
     void skinFrame();
     void prepareComponents();
     void addComponents();
 
-    public void setPage(DefaultPage nDefaultPage);
-    public void refresh();
+    void setPage(DefaultPage nDefaultPage);
+    void refresh();
 
-    public void showFormularPane(Formular nFormular);
-    public void hideFormularPane();
+    void setVisible(boolean isVisible);
+    void maximize();
+    void minimize();
+    void close();
 
-    public void showToast(ToastType type, String message);
+    void add(Component nComponent, String nBorderLayout);
 
-    public LayeredPane getLayeredPage();
+    LayeredPane getLayeredPage();
 
+    boolean isMaximized();
+    Point getLocation();
+    void setLocation(Point nPoint);
 }

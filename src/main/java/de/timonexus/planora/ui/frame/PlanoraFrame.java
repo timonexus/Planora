@@ -1,97 +1,37 @@
-
 package de.timonexus.planora.ui.frame;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.geom.RoundRectangle2D;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import de.timonexus.planora.ui.Component;
-import de.timonexus.planora.ui.ToastSystem.ToastManager;
-import de.timonexus.planora.ui.ToastSystem.ToastType;
-import de.timonexus.planora.ui.formulars.Formular;
 import de.timonexus.planora.ui.formulars.LayeredPane;
-import de.timonexus.planora.ui.frame.frameHeader.FrameHeader;
-import de.timonexus.planora.ui.frame.frameHeader.FrameResizer;
 import de.timonexus.planora.ui.pages.DefaultPage;
-import de.timonexus.planora.ui.pages.Pages;
-import de.timonexus.planora.ui.sidebar.PlanoraSidebar;
 import de.timonexus.planora.utils.enums.Colors;
 import de.timonexus.planora.utils.enums.Logo;
 
-public class PlanoraFrame extends JFrame implements Frame {
+public class PlanoraFrame extends JFrame implements Frame{
 
     // attributes
-    private final Component sidebar;
-    private final FrameHeader header;
-    private DefaultPage page;
-    private final LayeredPane formularPane;
-    private FrameResizer frameResizer;
-    private final ToastManager toastManager;
 
     // constructor
-    public PlanoraFrame() {
-
-        this.sidebar = new PlanoraSidebar(this);
-        this.header = new FrameHeader(this);
-        this.frameResizer = new FrameResizer(this, () -> {
-            this.sidebar.refresh();
-            this.page.refresh();
-
-            this.revalidate();
-            this.repaint();
-        });
-
-        this.page = loadActivePage();
-        this.page.setFrame(this);
-
-        this.formularPane = new LayeredPane();
-
-        this.formularPane.prepareComponent();
-
-        this.toastManager = new ToastManager(this);
-
-        // Formular-Ebene über den gesamten Inhalt legen
-        this.setGlassPane(this.formularPane);
-
-        // Anfangs ist das Formular ausgeblendet
-        this.formularPane.updateVisibility();
-    }
-
-    public void showToast(ToastType type, String message) {
-        this.toastManager.createToastNotification(type, message);
+    public PlanoraFrame(){
     }
 
     @Override
     public void skinFrame() {
-
-        this.setTitle(
-            (String) FrameValues.TITLE.getValue()
-        );
-
-
-        this.setSize(
-            (int) FrameValues.WIDTH.getValue(),
-            (int) FrameValues.HEIGHT.getValue()
-        );
-
+        this.setTitle("Planora");
+        this.setSize(new Dimension(1500 , 800));
         this.setLocationRelativeTo(null);
-
-        this.getContentPane().setBackground(
-            Colors.BASE.getColor()
-        );
-
-        this.setDefaultCloseOperation(
-            JFrame.EXIT_ON_CLOSE
-        );
-
-        this.setIconImage(
-            Logo.DEFAULT_LOGO.getImageForTaskbar()
-        );
+        this.getContentPane().setBackground(Colors.BASE.getColor());
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setIconImage(Logo.DEFAULT_LOGO.getImageForTaskbar());
 
         this.setUndecorated(true);
         this.setBackground(new Color(0, 0, 0, 0));
@@ -102,147 +42,83 @@ public class PlanoraFrame extends JFrame implements Frame {
                 updateWindowShape();
             }
         });
-
         this.updateWindowShape();
 
         this.setLayout(new BorderLayout());
     }
 
-    private void updateWindowShape() {
-        int width = this.getWidth();
-        int height = this.getHeight();
-
-        if (width > 0 && height > 0) {
-            this.setShape(new RoundRectangle2D.Double(
-                0,
-                0,
-                width,
-                height,
-                24,
-                24
-            ));
-        }
-    }
-
     @Override
     public void prepareComponents() {
-
-        this.sidebar.prepareComponent();
-        this.page.preparePage();
     }
 
     @Override
     public void addComponents() {
+    }
 
-        this.add(
-            (JPanel) this.sidebar,
-            BorderLayout.WEST
-        );
-
-        this.add(
-            (JPanel) this.page,
-            BorderLayout.CENTER
-        );
-
-        this.add(this.header, BorderLayout.NORTH);
+    @Override
+    public void setPage(DefaultPage nDefaultPage) {
     }
 
     @Override
     public void refresh() {
-
-        DefaultPage newPage = loadActivePage();
-
-        if (newPage == this.page) {
-            return;
-        }
-
-        if (this.page != null) {
-            this.remove((JPanel) this.page);
-        }
-
-        this.page = newPage;
-
-        this.page.setFrame(this);
-        this.page.preparePage();
-
-        this.add(
-            (JPanel) this.page,
-            BorderLayout.CENTER
-        );
-
         this.revalidate();
         this.repaint();
-
-        this.sidebar.refresh();
     }
 
-    // --------------------------------------------------
-    // Getter
-    // --------------------------------------------------
-
-    public Component getSidebar() {
-        return this.sidebar;
-    }
-
-    public DefaultPage getPage() {
-        return this.page;
-    }
     @Override
     public LayeredPane getLayeredPage() {
-        return this.formularPane;
+        return null;
     }
-
-    // --------------------------------------------------
-    // Setter
-    // --------------------------------------------------
 
     @Override
-    public void setPage(DefaultPage page) {
-        this.page = page;
+    public void setVisible(boolean isVisible) {
+        super.setVisible(isVisible);
+    }
+    @Override
+    public void maximize() {
+        if(this.getExtendedState() == JFrame.NORMAL){
+            this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        }else{
+            this.setExtendedState(JFrame.NORMAL);
+        }
+    }
+    @Override
+    public void minimize() {
+        this.setState(JFrame.ICONIFIED);
+    }
+    @Override
+    public void close() {
+        this.dispose();
     }
 
-    // --------------------------------------------------
-    // Page
-    // --------------------------------------------------
-
-    private DefaultPage loadActivePage() {
-
-        Pages pages = Pages.getActivePage();
-
-        return pages.getPage();
+    @Override
+    public void add(Component nComponent, String nBorderLayout) {
+        super.add((JComponent) nComponent, nBorderLayout);
     }
 
-    // Formular
-    // --------------------------------------------------
-
-    public void showFormularPane(Formular nFormular) {
-
-        this.formularPane.setFormular(
-            (javax.swing.JComponent) nFormular
-        );
-
-        this.formularPane.updateVisibility();
-
-        this.formularPane.revalidate();
-        this.formularPane.repaint();
+    @Override
+    public boolean isMaximized() {
+        return this.getExtendedState() == JFrame.MAXIMIZED_BOTH;
     }
 
-    public void hideFormularPane() {
-
-        this.formularPane.removeFormular();
-
-        this.formularPane.updateVisibility();
+    @Override
+    public Point getLocation() {
+        return super.getLocation();
     }
 
-    public void openWindow(){
-
-        this.showToast(
-            ToastType.SUCCESS,
-            "Planora wurde erfolgreich gestartet."
-        );
+    @Override
+    public void setLocation(Point nPoint) {
+        super.setLocation(nPoint);
     }
 
-    public FrameResizer getFrameResizer() {
-        return frameResizer;
+
+    private void updateWindowShape(){
+        int width = this.getWidth();
+        int height = this.getHeight();
+
+        if(width > 0 && height > 0){
+            this.setShape(new RoundRectangle2D.Double(0, 0, width, height, 24, 24));
+        }
     }
+    
 }
