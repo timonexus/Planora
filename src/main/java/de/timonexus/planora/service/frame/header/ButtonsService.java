@@ -7,6 +7,7 @@ import de.timonexus.planora.service.frame.header.buttonServices.MinimizeService;
 import de.timonexus.planora.service.services.ComponentService;
 import de.timonexus.planora.service.services.FrameService;
 import de.timonexus.planora.ui.Component;
+import de.timonexus.planora.ui.ComponentContainer;
 import de.timonexus.planora.ui.frame.frameHeader.windowButtons.WindowButtons;
 
 public class ButtonsService implements ComponentService{
@@ -16,13 +17,26 @@ public class ButtonsService implements ComponentService{
 
     private final FrameButtonService maximize, minimize, close;
 
-    // constructor
-    public ButtonsService(FrameService nFrameService){
-        this.windowButtons = new WindowButtons();
+    // Constructor
+    public ButtonsService(FrameService nFrameService) {
+        this(
+            new WindowButtons(),
+            new MaximizeService(nFrameService),
+            new MinimizeService(nFrameService),
+            new CloseService(nFrameService)
+        );
+    }
 
-        this.maximize = new MaximizeService(nFrameService);
-        this.minimize = new MinimizeService(nFrameService);
-        this.close = new CloseService(nFrameService);
+    public ButtonsService(
+            Component nWindowButtons,
+            FrameButtonService nMaximize,
+            FrameButtonService nMinimize,
+            FrameButtonService nClose) {
+
+        this.windowButtons = nWindowButtons;
+        this.maximize = nMaximize;
+        this.minimize = nMinimize;
+        this.close = nClose;
     }
 
     @Override
@@ -36,7 +50,7 @@ public class ButtonsService implements ComponentService{
 
     @Override
     public void add(Component nComponent, String nBorderLayout) {
-        this.windowButtons.add(nComponent, nBorderLayout);
+        ((ComponentContainer) this.windowButtons).add(nComponent, nBorderLayout);
     }
 
     @Override

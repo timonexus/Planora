@@ -18,6 +18,16 @@ public class Application {
         prepareApplication();
     }
 
+    public Application(
+        DatabaseInitializer nDatabaseInitializer,
+        FrameService nFrameService
+    ) {
+        this.databaseInitializer = nDatabaseInitializer;
+        this.frameService = nFrameService;
+
+        prepareApplication();
+    }
+
     // Method for preparing the application to run
     private void prepareApplication() {
         try {

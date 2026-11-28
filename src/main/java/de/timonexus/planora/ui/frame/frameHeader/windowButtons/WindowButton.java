@@ -15,8 +15,9 @@ import javax.swing.SwingConstants;
 
 import de.timonexus.planora.service.services.ButtonService;
 import de.timonexus.planora.ui.Component;
+import de.timonexus.planora.ui.ComponentContainer;
 
-public class WindowButton extends JPanel implements Component {
+public class WindowButton extends JPanel implements Component, ComponentContainer {
 
     // attributes
     private final ButtonService buttonService;

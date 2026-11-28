@@ -7,8 +7,9 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 import de.timonexus.planora.ui.Component;
+import de.timonexus.planora.ui.ComponentContainer;
 
-public class WindowButtons extends JPanel implements Component{
+public class WindowButtons extends JPanel implements Component, ComponentContainer{
 
     @Override
     public void designComponent() {

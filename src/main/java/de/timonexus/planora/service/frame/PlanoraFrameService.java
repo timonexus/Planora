@@ -18,10 +18,15 @@ public class PlanoraFrameService implements FrameService{
     private final ComponentService header;
 
     // constructor
-    public PlanoraFrameService(){
-        this.frame = new PlanoraFrame();
+    public PlanoraFrameService() {
+        this(new PlanoraFrame(), null);
+    }
 
-        this.header = new PlanoraFrameHeaderService(this);
+    public PlanoraFrameService(Frame nFrame, ComponentService nHeader) {
+        this.frame = nFrame;
+        this.header = nHeader != null
+                ? nHeader
+                : new PlanoraFrameHeaderService(this);
     }
 
     @Override

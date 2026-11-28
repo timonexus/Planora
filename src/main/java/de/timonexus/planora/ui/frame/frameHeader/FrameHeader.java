@@ -11,9 +11,10 @@ import javax.swing.JPanel;
 
 import de.timonexus.planora.service.services.FrameService;
 import de.timonexus.planora.ui.Component;
+import de.timonexus.planora.ui.ComponentContainer;
 import de.timonexus.planora.utils.enums.Colors;
 
-public class FrameHeader extends JPanel implements Component{
+public class FrameHeader extends JPanel implements Component, ComponentContainer{
 
     // attributes
     private Point dragPoint;

@@ -44,7 +44,7 @@ public class DutiesService implements DefaultPageService{
         DeletionNotice deletionNotice = new DeletionNotice(this, "Dienst");
         deletionNotice.prepareComponent();
 
-		this.frame.showFormularPane(deletionNotice);
+		//this.frame.showFormularPane(deletionNotice);
 	}
 
 	public void deleteInDatabase(){
@@ -56,7 +56,7 @@ public class DutiesService implements DefaultPageService{
         this.closeFormular();
         this.refreshTable();
 
-        this.frame.showToast(ToastType.SUCCESS, numberOfDeletions + " wurden erfolgreich gelöscht.");
+        //this.frame.showToast(ToastType.SUCCESS, numberOfDeletions + " wurden erfolgreich gelöscht.");
 	}
 
     @Override
@@ -65,9 +65,9 @@ public class DutiesService implements DefaultPageService{
         dienstAnlegenFormular.setData(this.table.loadSelectedLine());
         dienstAnlegenFormular.prepareComponent();
         this.table.resetSelectedLines();
-        this.frame.showFormularPane(dienstAnlegenFormular);
+        //this.frame.showFormularPane(dienstAnlegenFormular);
 
-        this.frame.showToast(ToastType.SUCCESS, "Der Dienst wurde erfolgreich bearbeitet.");
+        //this.frame.showToast(ToastType.SUCCESS, "Der Dienst wurde erfolgreich bearbeitet.");
     }
 
     @Override
@@ -83,7 +83,7 @@ public class DutiesService implements DefaultPageService{
     public void safe(Model nValues) {
         this.dienstId = this.repository.safe(nValues);
         this.refreshTable();
-        this.frame.showToast(ToastType.SUCCESS, "Der Dienst wurde erfolgreich gespeichert.");
+        //this.frame.showToast(ToastType.SUCCESS, "Der Dienst wurde erfolgreich gespeichert.");
     }
 
     @Override
@@ -118,18 +118,18 @@ public class DutiesService implements DefaultPageService{
     public void openFormular() {
         DienstAnlegenFormular dienstAnlegenFormular = new DienstAnlegenFormular(this, () -> this.closeFormular());
         dienstAnlegenFormular.prepareComponent();
-        this.frame.showFormularPane(dienstAnlegenFormular);
+        //this.frame.showFormularPane(dienstAnlegenFormular);
     }
 
     @Override
     public void closeFormular() {
-        this.frame.hideFormularPane();
+        //this.frame.hideFormularPane();
         this.table.refresh();
     }
 
     @Override 
     public void showModel(int nLineId){
-        this.frame.showFormularPane(new DienstAnzeigenFormular(this, () -> this.closeFormular(), ((Table) this.table).loadLine(nLineId)));
+        //this.frame.showFormularPane(new DienstAnzeigenFormular(this, () -> this.closeFormular(), ((Table) this.table).loadLine(nLineId)));
     }
 
     public int getDienstId() {

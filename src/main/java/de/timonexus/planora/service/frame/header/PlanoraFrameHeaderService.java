@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import de.timonexus.planora.service.services.ComponentService;
 import de.timonexus.planora.service.services.FrameService;
 import de.timonexus.planora.ui.Component;
+import de.timonexus.planora.ui.ComponentContainer;
 import de.timonexus.planora.ui.frame.frameHeader.FrameHeader;
 
 public class PlanoraFrameHeaderService implements ComponentService{
@@ -14,10 +15,17 @@ public class PlanoraFrameHeaderService implements ComponentService{
 
     private final ComponentService buttonService;
 
-    // constructor
-    public PlanoraFrameHeaderService(FrameService nFrameService){
-        this.header = new FrameHeader(nFrameService);
-        this.buttonService = new ButtonsService(nFrameService);
+    // Constructor
+    public PlanoraFrameHeaderService(FrameService nFrameService) {
+        this(new FrameHeader(nFrameService), new ButtonsService(nFrameService));
+    }
+
+    public PlanoraFrameHeaderService(
+            Component nHeader,
+            ComponentService nButtonService) {
+
+        this.header = nHeader;
+        this.buttonService = nButtonService;
     }
 
     @Override
@@ -30,7 +38,7 @@ public class PlanoraFrameHeaderService implements ComponentService{
 
     @Override
     public void add(Component nComponent, String nBorderLayout) {
-        this.header.add(nComponent, nBorderLayout);
+        ((ComponentContainer) this.header).add(nComponent, nBorderLayout);
     }
 
     @Override

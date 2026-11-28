@@ -76,7 +76,7 @@ public class AusbilderService implements DefaultPageService{
 		DeletionNotice deletionNotice = new DeletionNotice(this, "Ausbilder");
 		deletionNotice.prepareComponent();
 
-		this.frame.showFormularPane(deletionNotice);
+		//this.frame.showFormularPane(deletionNotice);
 	}
 
 	public void deleteInDatabase(){
@@ -88,7 +88,7 @@ public class AusbilderService implements DefaultPageService{
 		this.closeFormular();
 		this.refreshTable();
 
-	    this.frame.showToast(ToastType.SUCCESS, numberOfDeletions + " Ausbilder wurden erfolgreich gelöscht.");
+	    //this.frame.showToast(ToastType.SUCCESS, numberOfDeletions + " Ausbilder wurden erfolgreich gelöscht.");
 	}
 
 	@Override
@@ -97,7 +97,7 @@ public class AusbilderService implements DefaultPageService{
 		formular.setData(this.table.loadSelectedLine());
 
 		this.table.resetSelectedLines();
-		this.frame.showFormularPane(formular);
+		//this.frame.showFormularPane(formular);
 	}
 
 	@Override
@@ -116,12 +116,12 @@ public class AusbilderService implements DefaultPageService{
 
 	@Override
 	public void openFormular() {
-		this.frame.showFormularPane(new AusbilderFormular(this, () -> this.closeFormular()) );
+		//this.frame.showFormularPane(new AusbilderFormular(this, () -> this.closeFormular()) );
 	}
 
 	@Override
 	public void closeFormular() {
-        this.frame.hideFormularPane();
+        //this.frame.hideFormularPane();
 	}
     
 }

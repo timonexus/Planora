@@ -63,7 +63,7 @@ public class AbzeichenService implements DefaultPageService{
     public void safe(Model nValues) {
        this.repository.safe(nValues);
        this.refreshTable();
-       this.frame.showToast(ToastType.SUCCESS, "Das Abzeichen wurde erfolgreich erstellt!");
+       //this.frame.showToast(ToastType.SUCCESS, "Das Abzeichen wurde erfolgreich erstellt!");
     }
 
     @Override
@@ -76,7 +76,7 @@ public class AbzeichenService implements DefaultPageService{
         DeletionNotice deletionNotice = new DeletionNotice(this, "Abzeichen");
         deletionNotice.prepareComponent();
 
-		this.frame.showFormularPane(deletionNotice);
+		//this.frame.showFormularPane(deletionNotice);
     }
 
     public void deleteInDatabase(){
@@ -87,7 +87,7 @@ public class AbzeichenService implements DefaultPageService{
         this.closeFormular();
         this.refreshTable();
 
-        this.frame.showToast(ToastType.SUCCESS, numberOfDeletions + " wurden erfolgreich gelöscht.");
+        //this.frame.showToast(ToastType.SUCCESS, numberOfDeletions + " wurden erfolgreich gelöscht.");
     }
 
     @Override
@@ -97,7 +97,7 @@ public class AbzeichenService implements DefaultPageService{
         formular.prepareComponent();
 
         this.table.resetSelectedLines();
-        this.frame.showFormularPane(formular);
+        //this.frame.showFormularPane(formular);
     }
 
     @Override
@@ -120,12 +120,12 @@ public class AbzeichenService implements DefaultPageService{
     public void openFormular() {
         AbzeichenAnlegenFormular abzeichenAnlegenFormular = new AbzeichenAnlegenFormular(this, this::closeFormular);
         abzeichenAnlegenFormular.prepareComponent();
-        this.frame.showFormularPane(abzeichenAnlegenFormular);
+        //this.frame.showFormularPane(abzeichenAnlegenFormular);
     }
 
     @Override
     public void closeFormular() {
-        this.frame.hideFormularPane();
+        //this.frame.hideFormularPane();
         this.table.refresh();
     }
     
