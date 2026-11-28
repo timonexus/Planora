@@ -1,7 +1,8 @@
 package de.timonexus.planora.ui.frame.frameHeaderV2.windowButtons;
 
-import java.awt.FlowLayout;
+import java.awt.Dimension;
 
+import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
@@ -11,38 +12,29 @@ public class WindowButtons extends JPanel implements Component{
 
     @Override
     public void designComponent() {
-        this.setLayout(new FlowLayout(FlowLayout.LEFT, 8, 8));
+        this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         this.setOpaque(false);
+        this.setPreferredSize(new Dimension(200, 80));
     }
 
     @Override
     public void skinParts() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'skinParts'");
     }
 
     @Override
     public void addParts() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addParts'");
     }
 
     @Override
     public void prepareComponents() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'prepareComponents'");
     }
 
     @Override
     public void addComponents() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addComponents'");
     }
 
     @Override
     public void refresh() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'refresh'");
     }
 
     @Override

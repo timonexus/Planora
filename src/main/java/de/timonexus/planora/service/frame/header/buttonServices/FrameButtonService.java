@@ -1,4 +1,4 @@
-package de.timonexus.planora.service.frame.buttonServices;
+package de.timonexus.planora.service.frame.header.buttonServices;
 
 import java.awt.Color;
 
@@ -6,11 +6,15 @@ import javax.swing.JLabel;
 
 import de.timonexus.planora.service.services.ButtonService;
 import de.timonexus.planora.service.services.FrameService;
+import de.timonexus.planora.ui.Component;
+import de.timonexus.planora.ui.frame.frameHeaderV2.windowButtons.WindowButton;
 
 public abstract class FrameButtonService implements ButtonService{
 
     // attributes
-    private final FrameService frameService;
+    protected final FrameService frameService;
+
+    private final Component button;
 
     private final JLabel iconLabel;
     private final Color buttonColor;
@@ -21,6 +25,8 @@ public abstract class FrameButtonService implements ButtonService{
 
         this.iconLabel = nIconLabel;
         this.buttonColor = nButtonColor;
+
+        this.button = new WindowButton(this);
     }
 
     @Override
@@ -31,5 +37,11 @@ public abstract class FrameButtonService implements ButtonService{
     @Override
     public Color getButtonColor() {
         return this.buttonColor;
+    }
+
+    @Override
+    public Component getButton() {
+        this.button.prepareComponent();
+        return this.button;
     }
 }

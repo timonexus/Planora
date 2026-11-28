@@ -36,7 +36,7 @@ public class Application {
 
     // Method to start application
     public void startApplication() {
-        SwingUtilities.invokeLater(() -> {
+        /*SwingUtilities.invokeLater(() -> {
             if (planoraFrame == null) {
                 planoraFrame = new PlanoraFrame();
                 planoraFrame.prepareFrame();
@@ -46,8 +46,8 @@ public class Application {
             planoraFrame.openWindow();
 
             System.out.println("[INFO] Application successfully started");
-        });
-
+        });*/
+        this.frameService.prepareComponent();
         this.frameService.isVisible(true);
     }
 

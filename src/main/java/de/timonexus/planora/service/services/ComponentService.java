@@ -6,4 +6,5 @@ public interface ComponentService {
     
     void prepareComponent();
     void add(Component nComponent, String nBorderLayout);
+    Component getComponent();
 }

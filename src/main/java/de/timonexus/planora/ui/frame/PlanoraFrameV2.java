@@ -7,8 +7,9 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.geom.RoundRectangle2D;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
+import de.timonexus.planora.ui.Component;
 import de.timonexus.planora.ui.formulars.LayeredPane;
 import de.timonexus.planora.ui.pages.DefaultPage;
 import de.timonexus.planora.utils.enums.Colors;
@@ -71,6 +72,27 @@ public class PlanoraFrameV2 extends JFrame implements FrameV2{
     @Override
     public void setVisible(boolean isVisible) {
         super.setVisible(isVisible);
+    }
+    @Override
+    public void maximize() {
+        if(this.getExtendedState() == JFrame.NORMAL){
+            this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        }else{
+            this.setExtendedState(JFrame.NORMAL);
+        }
+    }
+    @Override
+    public void minimize() {
+        this.setState(JFrame.ICONIFIED);
+    }
+    @Override
+    public void close() {
+        this.dispose();
+    }
+
+    @Override
+    public void add(Component nComponent, String nBorderLayout) {
+        super.add((JComponent) nComponent, nBorderLayout);
     }
 
 

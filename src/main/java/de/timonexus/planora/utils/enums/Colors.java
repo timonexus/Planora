@@ -14,7 +14,10 @@ public enum Colors {
     TEXT_DISABLED(new Color(108, 108, 108)), // #6C6C6C
     PRIMARY(new Color(187, 134, 252)), // #BB86FC
     ERROR(new Color(179, 38, 30)), // #B3261E
-    SUCCESS(new Color(129, 199, 132)); // #81C784
+    SUCCESS(new Color(129, 199, 132)), // #81C784
+    APPLE_CLOSE(new Color(255, 95, 87)),
+    APPLE_MINIMIZE(new Color(254, 188, 46)),
+    APPLE_MAXIMIZE(new Color(40, 200, 64));
     
 
     // attributes
